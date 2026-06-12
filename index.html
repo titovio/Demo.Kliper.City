@@ -10,11 +10,22 @@
   <link rel="alternate icon" type="image/png" href="./assets/brand/kliper-city-logo-3.png">
   <link rel="apple-touch-icon" href="./assets/brand/kliper-city-logo-3.png">
 
-  <link rel="stylesheet" href="./css/style.css" />
+  <script>
+    try {
+      if (localStorage.getItem('kliper-theme') === 'dark') {
+        document.documentElement.classList.add('kliper-dark-theme');
+      }
+    } catch (error) {}
+  </script>
+  <link rel="stylesheet" href="./css/style.css?v=object-ecosystem-tabs-2" />
   </head>
   <body>
     <div id="root"></div>
     <script defer src="./js/app.js?v=top-cards-in-catalog-1"></script>
+    <script defer src="./js/dark-theme-toggle.js?v=dark-theme-toggle-4"></script>
+    <script defer src="./js/mobile-search-toggle.js?v=mobile-feed-search-3"></script>
+    <script defer src="./js/object-plans-block.js?v=house-plan-filter-1"></script>
+    <script defer src="./js/ecosystem-card-polish.js?v=object-ecosystem-tabs-2"></script>
     <script defer src="./js/top-mobile-filters.js?v=top-month-title-1"></script>
     <script>
       window.addEventListener('load', function () {
@@ -25,22 +36,3 @@
     </script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
