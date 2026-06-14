@@ -12,6 +12,12 @@ body.kliper-dark-theme {
   --kliper-dark-surface-2: rgb(24 34 52 / 0.94);
   --kliper-dark-surface-3: rgb(30 41 59 / 0.9);
   --kliper-dark-border: rgb(255 255 255 / 0.08);
+  --kliper-dark-border-soft: rgb(255 255 255 / 0.07);
+  --kliper-dark-input-border: rgb(255 255 255 / 0.1);
+  --kliper-dark-ring: rgb(255 255 255 / 0.08);
+  --kliper-dark-focus-ring: rgb(139 92 246 / 0.78);
+  --kliper-dark-control-ring: rgb(139 92 246 / 0.32);
+  --kliper-dark-shadow-soft: 0 18px 48px rgb(2 6 23 / 0.18);
   --kliper-dark-text: #f8fafc;
   --kliper-dark-muted: #a9b6ca;
   --kliper-dark-soft: #cbd5e1;
@@ -169,13 +175,13 @@ body.kliper-dark-theme [class*="shadow-[0_"] {
 }
 
 body.kliper-dark-theme .kliper-object-hero-facts span {
-  color: #f8fafc;
+  color: var(--kliper-dark-text);
   border-color: rgb(255 255 255 / 0.16);
   background: rgb(2 6 23 / 0.54);
 }
 
 body.kliper-dark-theme .kliper-object-hero-action {
-  color: #f8fafc;
+  color: var(--kliper-dark-text);
   border-color: rgb(255 255 255 / 0.14);
   background: rgb(15 23 42 / 0.52);
 }
@@ -199,7 +205,7 @@ body.kliper-dark-theme .kliper-ecosystem-story__close,
 body.kliper-dark-theme .kliper-ecosystem-drawer__close,
 body.kliper-dark-theme .kliper-house-story__close,
 body.kliper-dark-theme .kliper-plan-modal__close {
-  color: #f8fafc !important;
+  color: var(--kliper-dark-text) !important;
   background: rgb(15 23 42 / 0.9) !important;
   border: 1px solid rgb(255 255 255 / 0.12);
 }
@@ -246,12 +252,12 @@ body.kliper-dark-theme .kliper-object-plan-card__zoom {
 }
 
 body.kliper-dark-theme [aria-label^="Открыть карточку"] {
-  border-color: rgb(255 255 255 / 0.08) !important;
+  border-color: var(--kliper-dark-ring) !important;
 }
 
 body.kliper-dark-theme [aria-label^="Открыть карточку"] [class*="bg-white"],
 body.kliper-dark-theme [aria-label^="Открыть карточку"] [class*="bg-slate"] {
-  color: #f8fafc !important;
+  color: var(--kliper-dark-text) !important;
   border-color: rgb(255 255 255 / 0.14) !important;
   background: rgb(2 6 23 / 0.52) !important;
   backdrop-filter: blur(12px);
@@ -1218,7 +1224,7 @@ section[class*="rounded-[20px]"]:has(button[aria-label="Застройщики"]
 html.kliper-dark-theme,
 body.kliper-dark-theme {
   color-scheme: dark;
-  background: #080d18;
+  background: var(--kliper-dark-page);
 }
 
 body.kliper-dark-theme {
@@ -1229,7 +1235,7 @@ body.kliper-dark-theme > div > div {
   background:
     radial-gradient(circle at 14% -8%, rgb(124 58 237 / 0.2), transparent 34rem),
     radial-gradient(circle at 95% 12%, rgb(6 182 212 / 0.13), transparent 32rem),
-    #080d18 !important;
+    var(--kliper-dark-page) !important;
 }
 
 body.kliper-dark-theme header {
@@ -1245,7 +1251,7 @@ body.kliper-dark-theme header button,
 body.kliper-dark-theme input,
 body.kliper-dark-theme select,
 body.kliper-dark-theme textarea {
-  background-color: rgb(18 26 41 / 0.94) !important;
+  background-color: var(--kliper-dark-surface-2) !important;
   border-color: rgb(51 65 85 / 0.72) !important;
   --tw-ring-color: rgb(51 65 85 / 0.7) !important;
 }
@@ -1273,19 +1279,19 @@ body.kliper-dark-theme [class*="text-slate-950"],
 body.kliper-dark-theme [class*="text-slate-900"],
 body.kliper-dark-theme [class*="text-slate-800"],
 body.kliper-dark-theme [class*="text-slate-700"] {
-  color: #f8fafc !important;
+  color: var(--kliper-dark-text) !important;
 }
 
 body.kliper-dark-theme [class*="text-slate-600"],
 body.kliper-dark-theme [class*="text-slate-500"],
 body.kliper-dark-theme [class*="text-slate-400"] {
-  color: #a9b6ca !important;
+  color: var(--kliper-dark-muted) !important;
 }
 
 body.kliper-dark-theme input,
 body.kliper-dark-theme select,
 body.kliper-dark-theme textarea {
-  color: #f8fafc !important;
+  color: var(--kliper-dark-text) !important;
 }
 
 body.kliper-dark-theme input::placeholder,
@@ -1294,7 +1300,7 @@ body.kliper-dark-theme textarea::placeholder {
 }
 
 body.kliper-dark-theme .kliper-theme-toggle {
-  color: #f8fafc;
+  color: var(--kliper-dark-text);
   background: linear-gradient(135deg, #7c3aed, #2563eb) !important;
   border-color: rgb(255 255 255 / 0.14) !important;
   box-shadow: 0 16px 34px rgb(79 70 229 / 0.28);
@@ -1767,17 +1773,17 @@ body.kliper-dark-theme .kliper-object-plans {
 body.kliper-dark-theme .kliper-object-plans__head h2,
 body.kliper-dark-theme .kliper-object-plan-card h3,
 body.kliper-dark-theme .kliper-object-plan-card__price {
-  color: #f8fafc;
+  color: var(--kliper-dark-text);
 }
 
 body.kliper-dark-theme .kliper-object-plans__head p,
 body.kliper-dark-theme .kliper-house-chip__text small {
-  color: #a9b6ca;
+  color: var(--kliper-dark-muted);
 }
 
 body.kliper-dark-theme .kliper-house-chip {
   border-color: rgb(51 65 85 / 0.8);
-  color: #f8fafc;
+  color: var(--kliper-dark-text);
   background: rgb(24 34 52 / 0.92);
   box-shadow: 0 14px 34px rgb(0 0 0 / 0.18);
 }
@@ -1807,7 +1813,7 @@ body.kliper-dark-theme .kliper-plan-image {
 body.kliper-dark-theme .kliper-object-plan-card__area,
 body.kliper-dark-theme .kliper-object-plan-card__note,
 body.kliper-dark-theme .kliper-object-plan-card__status {
-  color: #a9b6ca;
+  color: var(--kliper-dark-muted);
 }
 
 body.kliper-dark-theme .kliper-plan-svg .kliper-plan-bg {
@@ -1824,7 +1830,7 @@ body.kliper-dark-theme .kliper-plan-svg .kliper-plan-wet {
 }
 
 body.kliper-dark-theme .kliper-plan-svg .kliper-plan-wall {
-  stroke: #a9b6ca;
+  stroke: var(--kliper-dark-muted);
 }
 
 body.kliper-dark-theme .kliper-plan-svg .kliper-plan-thin {
@@ -1842,7 +1848,7 @@ body.kliper-dark-theme .kliper-plan-modal__card {
 }
 
 body.kliper-dark-theme .kliper-plan-modal__close {
-  color: #f8fafc;
+  color: var(--kliper-dark-text);
   background: rgb(30 41 59 / 0.92);
 }
 
@@ -1855,11 +1861,11 @@ body.kliper-dark-theme .kliper-plan-modal__body {
 }
 
 body.kliper-dark-theme .kliper-plan-modal__body h3 {
-  color: #f8fafc;
+  color: var(--kliper-dark-text);
 }
 
 body.kliper-dark-theme .kliper-plan-modal__body p {
-  color: #a9b6ca;
+  color: var(--kliper-dark-muted);
 }
 
 .kliper-object-hero-actions {
@@ -2958,7 +2964,7 @@ body.kliper-dark-theme .kliper-ecosystem-tab.is-active {
 /* Final dark-mode pass: keep every page readable after module overrides */
 body.kliper-dark-theme,
 html.kliper-dark-theme body {
-  background: #080d18 !important;
+  background: var(--kliper-dark-page) !important;
   color: #e5edf9;
 }
 
@@ -2967,7 +2973,7 @@ body.kliper-dark-theme #root > div {
   background:
     radial-gradient(circle at 12% -6%, rgb(124 58 237 / 0.18), transparent 34rem),
     radial-gradient(circle at 96% 8%, rgb(6 182 212 / 0.13), transparent 32rem),
-    #080d18 !important;
+    var(--kliper-dark-page) !important;
 }
 
 body.kliper-dark-theme [class~="bg-white"],
@@ -2992,14 +2998,14 @@ body.kliper-dark-theme [class~="text-slate-950"],
 body.kliper-dark-theme [class~="text-slate-900"],
 body.kliper-dark-theme [class~="text-slate-800"],
 body.kliper-dark-theme [class~="text-slate-700"] {
-  color: #f8fafc !important;
+  color: var(--kliper-dark-text) !important;
 }
 
 body.kliper-dark-theme [class~="text-slate-600"],
 body.kliper-dark-theme [class~="text-slate-500"],
 body.kliper-dark-theme [class~="text-slate-400"],
 body.kliper-dark-theme [class~="text-[#64748b]"] {
-  color: #a9b6ca !important;
+  color: var(--kliper-dark-muted) !important;
 }
 
 body.kliper-dark-theme [class~="border-slate-100"],
@@ -3022,7 +3028,7 @@ body.kliper-dark-theme .kliper-house-chip,
 body.kliper-dark-theme .kliper-object-plan-card,
 body.kliper-dark-theme .kliper-plan-modal__card,
 body.kliper-dark-theme .kliper-ecosystem-drawer__panel {
-  color: #f8fafc !important;
+  color: var(--kliper-dark-text) !important;
   border-color: rgb(71 85 105 / 0.72) !important;
   background: rgb(18 26 41 / 0.96) !important;
   box-shadow: 0 18px 52px rgb(0 0 0 / 0.28) !important;
@@ -3041,7 +3047,7 @@ body.kliper-dark-theme .kliper-object-plan-card__note,
 body.kliper-dark-theme .kliper-object-plan-card__status,
 body.kliper-dark-theme .kliper-plan-modal__body p,
 body.kliper-dark-theme .kliper-house-chip__text small {
-  color: #a9b6ca !important;
+  color: var(--kliper-dark-muted) !important;
 }
 
 body.kliper-dark-theme .kliper-feed-mobile-select__button strong,
@@ -3049,7 +3055,7 @@ body.kliper-dark-theme .kliper-object-plan-card h3,
 body.kliper-dark-theme .kliper-object-plan-card__price,
 body.kliper-dark-theme .kliper-plan-modal__body h3,
 body.kliper-dark-theme .kliper-house-chip__text strong {
-  color: #f8fafc !important;
+  color: var(--kliper-dark-text) !important;
 }
 
 body.kliper-dark-theme button:not([class*="bg-violet"]):not([class*="bg-slate-950"]):not([class*="bg-rose"]):not([class*="bg-emerald"]):not([aria-label^="Открыть карточку"]) {
@@ -3079,7 +3085,7 @@ body.kliper-dark-theme .kliper-mobile-nav-panel button {
 
 body.kliper-dark-theme [aria-label^="Открыть карточку"] [class*="bg-white"],
 body.kliper-dark-theme [aria-label^="Открыть карточку"] [class*="bg-slate"] {
-  color: #f8fafc !important;
+  color: var(--kliper-dark-text) !important;
   border-color: rgb(255 255 255 / 0.14) !important;
   background: rgb(2 6 23 / 0.52) !important;
 }
@@ -3295,9 +3301,9 @@ body.kliper-dark-theme .kliper-house-chip,
 body.kliper-dark-theme .kliper-object-plan-card,
 body.kliper-dark-theme .kliper-plan-modal__card,
 body.kliper-dark-theme .kliper-ecosystem-drawer__panel {
-  border-color: rgb(255 255 255 / 0.07) !important;
-  --tw-ring-color: rgb(255 255 255 / 0.08) !important;
-  box-shadow: 0 18px 48px rgb(2 6 23 / 0.18) !important;
+  border-color: var(--kliper-dark-border-soft) !important;
+  --tw-ring-color: var(--kliper-dark-ring) !important;
+  box-shadow: var(--kliper-dark-shadow-soft) !important;
 }
 
 body.kliper-dark-theme header,
@@ -3305,7 +3311,7 @@ body.kliper-dark-theme .kliper-mobile-nav-panel,
 body.kliper-dark-theme .kliper-mobile-nav-panel > div,
 body.kliper-dark-theme .kliper-mobile-nav-panel button,
 body.kliper-dark-theme main section:has(> div [aria-label="Застройщики"]) {
-  border-color: rgb(255 255 255 / 0.07) !important;
+  border-color: var(--kliper-dark-border-soft) !important;
 }
 
 body.kliper-dark-theme [class~="border-slate-100"],
@@ -3315,16 +3321,16 @@ body.kliper-dark-theme [class~="border-violet-300"],
 body.kliper-dark-theme [class~="ring-slate-100"],
 body.kliper-dark-theme [class~="ring-violet-100"],
 body.kliper-dark-theme [class~="ring-violet-200"] {
-  border-color: rgb(255 255 255 / 0.07) !important;
-  --tw-ring-color: rgb(255 255 255 / 0.08) !important;
+  border-color: var(--kliper-dark-border-soft) !important;
+  --tw-ring-color: var(--kliper-dark-ring) !important;
 }
 
 body.kliper-dark-theme input,
 body.kliper-dark-theme select,
 body.kliper-dark-theme textarea,
 body.kliper-dark-theme button:not([class*="bg-violet"]):not([class*="bg-slate-950"]):not([class*="bg-rose"]):not([class*="bg-emerald"]):not([aria-label^="Открыть карточку"]) {
-  border-color: rgb(255 255 255 / 0.1) !important;
-  --tw-ring-color: rgb(139 92 246 / 0.32) !important;
+  border-color: var(--kliper-dark-input-border) !important;
+  --tw-ring-color: var(--kliper-dark-control-ring) !important;
 }
 
 body.kliper-dark-theme *:focus:not(:focus-visible) {
@@ -3332,7 +3338,7 @@ body.kliper-dark-theme *:focus:not(:focus-visible) {
 }
 
 body.kliper-dark-theme *:focus-visible {
-  outline: 2px solid rgb(139 92 246 / 0.78);
+  outline: 2px solid var(--kliper-dark-focus-ring);
   outline-offset: 2px;
 }
 
@@ -3372,7 +3378,7 @@ body.kliper-dark-theme .kliper-feed-mobile-select__button span {
 }
 
 body.kliper-dark-theme .kliper-feed-mobile-select__button strong {
-  color: #f8fafc !important;
+  color: var(--kliper-dark-text) !important;
 }
 
 body.kliper-dark-theme .kliper-feed-mobile-select__menu {
@@ -3419,53 +3425,26 @@ body.kliper-dark-theme .kliper-cards-filter-head [class*="ring-slate-100"] {
 body.kliper-dark-theme main section:has(> div [aria-label="Застройщики"]),
 body.kliper-dark-theme main section.fixed[class*="bg-white"],
 body.kliper-dark-theme .kliper-cards-filter-head {
-  border-color: rgb(255 255 255 / 0.07) !important;
+  border-color: var(--kliper-dark-border-soft) !important;
   box-shadow: 0 18px 44px rgb(2 6 23 / 0.16) !important;
 }
 
 body.kliper-dark-theme main section:has(> div [aria-label="Застройщики"]) [class*="ring-slate-100"],
 body.kliper-dark-theme .kliper-cards-filter-head [class*="ring-slate-100"],
 body.kliper-dark-theme main section.fixed[class*="bg-white"] [class*="ring-slate-100"] {
-  --tw-ring-color: rgb(255 255 255 / 0.08) !important;
+  --tw-ring-color: var(--kliper-dark-ring) !important;
 }
 
-/* Catalog cards use the image as the card surface; avoid a dark rectangular wrapper. */
-body.kliper-dark-theme [aria-label^="Открыть карточку"] {
-  background: transparent !important;
-  background-color: transparent !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-  --tw-ring-color: transparent !important;
-  --tw-ring-shadow: 0 0 #0000 !important;
-}
-
-/* Catalog grid should sit on the page background, not inside a dark panel. */
+/* Dark theme: cards and structural wrappers should sit on the page background. */
+body.kliper-dark-theme [aria-label^="Открыть карточку"],
 body.kliper-dark-theme main section.xl\:col-span-2 > div:has([aria-label^="Открыть карточку"]):not([data-kliper-keep-panel]),
-body.kliper-dark-theme main section > div:has(> .grid [aria-label^="Открыть карточку"]):not([data-kliper-keep-panel]) {
-  background: transparent !important;
-  background-color: transparent !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-  --tw-ring-color: transparent !important;
-  --tw-ring-shadow: 0 0 #0000 !important;
-}
-
-/* Dark theme: layout wrappers should not read as extra cards. */
+body.kliper-dark-theme main section > div:has(> .grid [aria-label^="Открыть карточку"]):not([data-kliper-keep-panel]),
 body.kliper-dark-theme main article:has([aria-label^="Открыть карточку"]),
 body.kliper-dark-theme main section > div:has(.kliper-feed-filter-panel),
 body.kliper-dark-theme main section > div:has(> article[class*="rounded-[22px]"]),
 body.kliper-dark-theme main section > div:has(> aside),
 body.kliper-dark-theme main section > div:has(> div + div),
-body.kliper-dark-theme main aside:has(> div[class*="rounded-[22px]"]) {
-  background: transparent !important;
-  background-color: transparent !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-  --tw-ring-color: transparent !important;
-  --tw-ring-shadow: 0 0 #0000 !important;
-}
-
-/* Same cleanup for feed and district page structural wrappers. */
+body.kliper-dark-theme main aside:has(> div[class*="rounded-[22px]"]),
 body.kliper-dark-theme main section > div:has(.kliper-feed-filter-panel):not(.kliper-feed-filter-panel),
 body.kliper-dark-theme main section > div[class*="flex"][class*="items-end"][class*="justify-between"],
 body.kliper-dark-theme main section > div[class*="grid"][class*="xl:grid-cols-[1fr_360px]"],
@@ -3490,16 +3469,6 @@ body.kliper-dark-theme main section > div > aside[class*="space-y-5"] {
 .kliper-mobile-nav-panel .relative:has(> button) > div[class*="absolute"][class*="top-full"] {
   z-index: 140 !important;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
