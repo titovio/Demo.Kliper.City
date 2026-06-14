@@ -89,29 +89,48 @@
     wrap.className = 'kliper-feed-mobile-select';
     wrap.dataset.feedFilterType = type;
     wrap.innerHTML =
-      '<label class="kliper-feed-mobile-select__button">' +
+      '<button type="button" class="kliper-feed-mobile-select__button" aria-expanded="false">' +
         '<span>' + title + '</span>' +
         '<strong>' + (current ? current.text : 'Выбрать') + '</strong>' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>' +
-        '<select class="kliper-feed-mobile-select__native" aria-label="' + title + '"></select>' +
-      '</label>';
+      '</button>' +
+      '<div class="kliper-feed-mobile-select__menu" role="listbox"></div>';
 
-    var native = wrap.querySelector('.kliper-feed-mobile-select__native');
+    var button = wrap.querySelector('.kliper-feed-mobile-select__button');
+    var label = wrap.querySelector('strong');
+    var menu = wrap.querySelector('.kliper-feed-mobile-select__menu');
     options.forEach(function (option) {
-      var item = document.createElement('option');
-      item.value = option.text;
+      var item = document.createElement('button');
+      item.type = 'button';
+      item.className = 'kliper-feed-mobile-select__item' + (option === current ? ' is-active' : '');
+      item.setAttribute('role', 'option');
+      item.setAttribute('aria-selected', option === current ? 'true' : 'false');
       item.textContent = option.text;
-      item.selected = option === current;
-      native.appendChild(item);
+      item.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        option.button.click();
+        label.textContent = option.text;
+        wrap.classList.remove('is-open');
+        button.setAttribute('aria-expanded', 'false');
+        window.setTimeout(enhance, 80);
+      });
+      menu.appendChild(item);
     });
 
-    native.addEventListener('change', function (event) {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
       event.stopPropagation();
-      var selected = options.find(function (option) {
-        return option.text === native.value;
+      var nextOpen = !wrap.classList.contains('is-open');
+      Array.prototype.slice.call(document.querySelectorAll('.kliper-feed-mobile-select.is-open')).forEach(function (node) {
+        if (node !== wrap) {
+          node.classList.remove('is-open');
+          var openButton = node.querySelector('.kliper-feed-mobile-select__button');
+          if (openButton) openButton.setAttribute('aria-expanded', 'false');
+        }
       });
-      if (selected) selected.button.click();
-      window.setTimeout(enhance, 80);
+      wrap.classList.toggle('is-open', nextOpen);
+      button.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
     });
 
     return wrap;
@@ -158,6 +177,11 @@
       return;
     }
 
+    Array.prototype.slice.call(document.querySelectorAll('.kliper-feed-mobile-select.is-open')).forEach(function (node) {
+      node.classList.remove('is-open');
+      var button = node.querySelector('.kliper-feed-mobile-select__button');
+      if (button) button.setAttribute('aria-expanded', 'false');
+    });
     window.setTimeout(enhance, 120);
   }, true);
 

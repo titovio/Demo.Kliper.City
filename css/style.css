@@ -11,7 +11,7 @@ body.kliper-dark-theme {
   --kliper-dark-surface: rgb(15 23 42 / 0.96);
   --kliper-dark-surface-2: rgb(24 34 52 / 0.94);
   --kliper-dark-surface-3: rgb(30 41 59 / 0.9);
-  --kliper-dark-border: rgb(71 85 105 / 0.72);
+  --kliper-dark-border: rgb(255 255 255 / 0.08);
   --kliper-dark-text: #f8fafc;
   --kliper-dark-muted: #a9b6ca;
   --kliper-dark-soft: #cbd5e1;
@@ -3203,6 +3203,292 @@ body.kliper-dark-theme .kliper-object-hero-action__label {
 body.kliper-dark-theme.kliper-cards-mobile-filter-ready .kliper-cards-param-popover {
   border-color: rgb(71 85 105 / 0.72) !important;
   background: rgb(15 23 42 / 0.98) !important;
+}
+
+/* Feed mobile selects: custom, stable dropdowns instead of native popups */
+.kliper-feed-mobile-select__button {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+@media (max-width: 640px) {
+  .kliper-feed-mobile-select {
+    position: relative;
+    z-index: 20;
+  }
+
+  .kliper-feed-mobile-select__button {
+    min-height: 3.15rem;
+    border-radius: 1.05rem;
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.98), rgb(248 250 252 / 0.96));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.86),
+      0 14px 30px rgb(15 23 42 / 0.06);
+  }
+
+  .kliper-feed-mobile-select__button[aria-expanded="true"] {
+    border-color: rgb(139 92 246 / 0.42);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.88),
+      0 18px 42px rgb(124 58 237 / 0.16);
+  }
+
+  .kliper-feed-mobile-select__menu {
+    left: 0;
+    right: 0;
+    z-index: 120;
+    width: auto;
+    min-width: 100%;
+    max-width: none;
+    max-height: min(44dvh, 320px);
+    overflow-y: auto;
+    border-radius: 1.15rem;
+    padding: 0.45rem;
+    background: rgb(255 255 255 / 0.98);
+    box-shadow: 0 24px 64px rgb(15 23 42 / 0.18);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .kliper-feed-mobile-select__item {
+    min-height: 2.7rem;
+    justify-content: flex-start;
+    border-radius: 0.9rem;
+    white-space: normal;
+  }
+}
+
+/* Final dark visual cleanup: remove accidental dark boxes around media and brand */
+body.kliper-dark-theme header img,
+body.kliper-dark-theme [aria-label^="Открыть story"] img,
+body.kliper-dark-theme [aria-label^="Открыть карточку"] img,
+body.kliper-dark-theme .kliper-object-plan-card img,
+body.kliper-dark-theme .kliper-plan-modal__body img {
+  background: transparent !important;
+}
+
+body.kliper-dark-theme header button:first-child,
+body.kliper-dark-theme header button:first-child *,
+body.kliper-dark-theme header [class*="rounded-full"]:has(img),
+body.kliper-dark-theme [aria-label^="Открыть story"],
+body.kliper-dark-theme [aria-label^="Открыть story"] *,
+body.kliper-dark-theme [aria-label^="Открыть карточку"] picture,
+body.kliper-dark-theme [aria-label^="Открыть карточку"] picture *,
+body.kliper-dark-theme [aria-label^="Открыть карточку"] > div:first-child,
+body.kliper-dark-theme [aria-label^="Открыть карточку"] > div:first-child * {
+  background-color: transparent !important;
+}
+
+/* Dark border cleanup: soften broad generated borders without touching layout */
+body.kliper-dark-theme main article:not([aria-label^="Открыть карточку"]),
+body.kliper-dark-theme [aria-label^="Открыть карточку"],
+body.kliper-dark-theme main aside,
+body.kliper-dark-theme main section > div:not([class*="bg-[#030a1d]"]):not([class*="bg-slate-950"]),
+body.kliper-dark-theme .kliper-cards-filter-head,
+body.kliper-dark-theme .kliper-feed-mobile-select__button,
+body.kliper-dark-theme .kliper-feed-mobile-select__menu,
+body.kliper-dark-theme .kliper-mobile-filter-field select,
+body.kliper-dark-theme .kliper-cards-param-popover,
+body.kliper-dark-theme .kliper-ecosystem-polished,
+body.kliper-dark-theme .kliper-object-plans,
+body.kliper-dark-theme .kliper-house-chip,
+body.kliper-dark-theme .kliper-object-plan-card,
+body.kliper-dark-theme .kliper-plan-modal__card,
+body.kliper-dark-theme .kliper-ecosystem-drawer__panel {
+  border-color: rgb(255 255 255 / 0.07) !important;
+  --tw-ring-color: rgb(255 255 255 / 0.08) !important;
+  box-shadow: 0 18px 48px rgb(2 6 23 / 0.18) !important;
+}
+
+body.kliper-dark-theme header,
+body.kliper-dark-theme .kliper-mobile-nav-panel,
+body.kliper-dark-theme .kliper-mobile-nav-panel > div,
+body.kliper-dark-theme .kliper-mobile-nav-panel button,
+body.kliper-dark-theme main section:has(> div [aria-label="Застройщики"]) {
+  border-color: rgb(255 255 255 / 0.07) !important;
+}
+
+body.kliper-dark-theme [class~="border-slate-100"],
+body.kliper-dark-theme [class~="border-slate-200"],
+body.kliper-dark-theme [class~="border-violet-200"],
+body.kliper-dark-theme [class~="border-violet-300"],
+body.kliper-dark-theme [class~="ring-slate-100"],
+body.kliper-dark-theme [class~="ring-violet-100"],
+body.kliper-dark-theme [class~="ring-violet-200"] {
+  border-color: rgb(255 255 255 / 0.07) !important;
+  --tw-ring-color: rgb(255 255 255 / 0.08) !important;
+}
+
+body.kliper-dark-theme input,
+body.kliper-dark-theme select,
+body.kliper-dark-theme textarea,
+body.kliper-dark-theme button:not([class*="bg-violet"]):not([class*="bg-slate-950"]):not([class*="bg-rose"]):not([class*="bg-emerald"]):not([aria-label^="Открыть карточку"]) {
+  border-color: rgb(255 255 255 / 0.1) !important;
+  --tw-ring-color: rgb(139 92 246 / 0.32) !important;
+}
+
+body.kliper-dark-theme *:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
+body.kliper-dark-theme *:focus-visible {
+  outline: 2px solid rgb(139 92 246 / 0.78);
+  outline-offset: 2px;
+}
+
+body.kliper-dark-theme header img,
+body.kliper-dark-theme [aria-label^="Открыть story"] img,
+body.kliper-dark-theme [aria-label^="Открыть карточку"] picture,
+body.kliper-dark-theme [aria-label^="Открыть карточку"] picture *,
+body.kliper-dark-theme .kliper-object-plan-card__media img,
+body.kliper-dark-theme .kliper-plan-modal__media img {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.kliper-dark-theme header button:first-child {
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+body.kliper-dark-theme header .shadow-lg,
+body.kliper-dark-theme header .shadow-xl {
+  box-shadow: none !important;
+}
+
+body.kliper-dark-theme .kliper-feed-mobile-select__button {
+  color: #e5edf9 !important;
+  border-color: rgb(71 85 105 / 0.72) !important;
+  background:
+    linear-gradient(180deg, rgb(20 29 45 / 0.98), rgb(15 23 42 / 0.96)) !important;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.06),
+    0 16px 36px rgb(2 6 23 / 0.24) !important;
+}
+
+body.kliper-dark-theme .kliper-feed-mobile-select__button span {
+  color: #94a3b8 !important;
+}
+
+body.kliper-dark-theme .kliper-feed-mobile-select__button strong {
+  color: #f8fafc !important;
+}
+
+body.kliper-dark-theme .kliper-feed-mobile-select__menu {
+  border-color: rgb(71 85 105 / 0.74) !important;
+  background: rgb(15 23 42 / 0.98) !important;
+  box-shadow: 0 24px 70px rgb(2 6 23 / 0.42) !important;
+}
+
+body.kliper-dark-theme .kliper-feed-mobile-select__item {
+  color: #dbeafe !important;
+}
+
+body.kliper-dark-theme .kliper-feed-mobile-select__item:not(.is-active):hover {
+  background: rgb(30 41 59 / 0.78) !important;
+}
+
+body.kliper-dark-theme main section:has(> div [aria-label="Застройщики"]),
+body.kliper-dark-theme .kliper-cards-filter-head {
+  border-color: rgb(51 65 85 / 0.72) !important;
+  background: rgb(15 23 42 / 0.9) !important;
+  box-shadow: 0 18px 44px rgb(2 6 23 / 0.22) !important;
+}
+
+body.kliper-dark-theme main section:has(> div [aria-label="Застройщики"]) [class*="ring-slate-100"],
+body.kliper-dark-theme .kliper-cards-filter-head [class*="ring-slate-100"] {
+  --tw-ring-color: rgb(71 85 105 / 0.7) !important;
+}
+
+@media (max-width: 640px) {
+  body.kliper-dark-theme::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    height: max(18px, env(safe-area-inset-bottom));
+    pointer-events: none;
+    background: linear-gradient(180deg, rgb(8 13 24 / 0), #080d18 68%);
+  }
+}
+
+/* Last dark border override: keep separators soft after all module rules */
+body.kliper-dark-theme main section:has(> div [aria-label="Застройщики"]),
+body.kliper-dark-theme main section.fixed[class*="bg-white"],
+body.kliper-dark-theme .kliper-cards-filter-head {
+  border-color: rgb(255 255 255 / 0.07) !important;
+  box-shadow: 0 18px 44px rgb(2 6 23 / 0.16) !important;
+}
+
+body.kliper-dark-theme main section:has(> div [aria-label="Застройщики"]) [class*="ring-slate-100"],
+body.kliper-dark-theme .kliper-cards-filter-head [class*="ring-slate-100"],
+body.kliper-dark-theme main section.fixed[class*="bg-white"] [class*="ring-slate-100"] {
+  --tw-ring-color: rgb(255 255 255 / 0.08) !important;
+}
+
+/* Catalog cards use the image as the card surface; avoid a dark rectangular wrapper. */
+body.kliper-dark-theme [aria-label^="Открыть карточку"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+/* Catalog grid should sit on the page background, not inside a dark panel. */
+body.kliper-dark-theme main section.xl\:col-span-2 > div:has([aria-label^="Открыть карточку"]):not([data-kliper-keep-panel]),
+body.kliper-dark-theme main section > div:has(> .grid [aria-label^="Открыть карточку"]):not([data-kliper-keep-panel]) {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+/* Dark theme: layout wrappers should not read as extra cards. */
+body.kliper-dark-theme main article:has([aria-label^="Открыть карточку"]),
+body.kliper-dark-theme main section > div:has(.kliper-feed-filter-panel),
+body.kliper-dark-theme main section > div:has(> article[class*="rounded-[22px]"]),
+body.kliper-dark-theme main section > div:has(> aside),
+body.kliper-dark-theme main section > div:has(> div + div),
+body.kliper-dark-theme main aside:has(> div[class*="rounded-[22px]"]) {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+/* Same cleanup for feed and district page structural wrappers. */
+body.kliper-dark-theme main section > div:has(.kliper-feed-filter-panel):not(.kliper-feed-filter-panel),
+body.kliper-dark-theme main section > div[class*="flex"][class*="items-end"][class*="justify-between"],
+body.kliper-dark-theme main section > div[class*="grid"][class*="xl:grid-cols-[1fr_360px]"],
+body.kliper-dark-theme main section > div[class*="flex"][class*="items-start"][class*="justify-between"],
+body.kliper-dark-theme main section > div[class*="grid"][class*="gap-4"]:has([class*="rounded-[22px]"]),
+body.kliper-dark-theme main section > div > aside[class*="space-y-5"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+/* Keep the city selector above catalog filters and cards. */
+.kliper-mobile-nav-panel,
+.kliper-mobile-nav-panel .relative:has(> button) {
+  position: relative;
+  z-index: 120;
+}
+
+.kliper-mobile-nav-panel .relative:has(> button) > div[class*="absolute"][class*="top-full"] {
+  z-index: 140 !important;
 }
 
 
