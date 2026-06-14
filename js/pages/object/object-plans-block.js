@@ -84,16 +84,16 @@
     }
   ];
   var planImages = [
-    './assets/plans/plan-studio-1.png',
-    './assets/plans/plan-1room-1.png',
-    './assets/plans/plan-2room-wide.png',
-    './assets/plans/plan-3room-1.png',
-    './assets/plans/plan-2room-1.png',
-    './assets/plans/plan-2room-2.png',
-    './assets/plans/plan-2room-wide-2.png',
-    './assets/plans/plan-1room-2.png',
-    './assets/plans/plan-1room-terrace.png',
-    './assets/plans/plan-2room-3.png'
+    './assets/images/plans/plan-studio-1.png',
+    './assets/images/plans/plan-1room-1.png',
+    './assets/images/plans/plan-2room-wide.png',
+    './assets/images/plans/plan-3room-1.png',
+    './assets/images/plans/plan-2room-1.png',
+    './assets/images/plans/plan-2room-2.png',
+    './assets/images/plans/plan-2room-wide-2.png',
+    './assets/images/plans/plan-1room-2.png',
+    './assets/images/plans/plan-1room-terrace.png',
+    './assets/images/plans/plan-2room-3.png'
   ];
   var imageCursor = 0;
 
