@@ -1,6 +1,7 @@
 (function () {
   var storageKey = 'kliper-last-open-page';
   var restoringKey = 'kliper-page-restore-active';
+  var dom = window.KLIPER_DOM || {};
   var ignoredTitles = {
     '': true,
     'Застройщики': true,
@@ -12,7 +13,7 @@
   };
 
   function textOf(node) {
-    return (node && node.textContent ? node.textContent : '').replace(/\s+/g, ' ').trim();
+    return dom.text ? dom.text(node) : (node && node.textContent ? node.textContent : '').replace(/\s+/g, ' ').trim();
   }
 
   function isLargePageTitle(title) {

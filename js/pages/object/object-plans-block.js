@@ -1,5 +1,6 @@
 (function () {
   var activeHouse = 0;
+  var dom = window.KLIPER_DOM || {};
   var houses = [
     {
       name: 'Дом 1',
@@ -142,11 +143,8 @@
   }
 
   function escapeHtml(value) {
-    return String(value)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
+    if (dom.escapeHtml) return dom.escapeHtml(value);
+    return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
   function renderHouseFilter() {

@@ -1,6 +1,8 @@
 (function () {
+  var dom = window.KLIPER_DOM || {};
+
   function text(node) {
-    return (node && node.textContent ? node.textContent : '').trim();
+    return dom.text ? dom.text(node) : (node && node.textContent ? node.textContent : '').trim();
   }
 
   function findWinnersPanel() {
@@ -84,7 +86,9 @@
     window.requestAnimationFrame(enhanceTopFilters);
   }
 
-  if (document.readyState === 'loading') {
+  if (dom.onReady) {
+    dom.onReady(scheduleEnhance);
+  } else if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', scheduleEnhance, { once: true });
   } else {
     scheduleEnhance();

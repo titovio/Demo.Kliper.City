@@ -1,5 +1,6 @@
 (function () {
   window.__kliperTopMetricPolishLoaded = true;
+  const dom = window.KLIPER_DOM || {};
   const metrics = [
     { label: 'Больше всего лайков', icon: '♡', kind: 'likes' },
     { label: 'Больше всего подписчиков', icon: '♢', kind: 'subs' },
@@ -8,7 +9,7 @@
   const activeMetrics = new Set(metrics.map((metric) => metric.kind));
 
   function text(node) {
-    return (node && node.textContent ? node.textContent : '').trim();
+    return dom.text ? dom.text(node) : (node && node.textContent ? node.textContent : '').trim();
   }
 
   function findTopPanel() {
@@ -342,7 +343,9 @@
     });
   }
 
-  if (document.readyState === 'loading') {
+  if (dom.onReady) {
+    dom.onReady(schedule);
+  } else if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', schedule, { once: true });
   } else {
     schedule();

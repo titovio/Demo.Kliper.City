@@ -1,5 +1,6 @@
 (function () {
   var activeTab = 'Связанные компании';
+  var dom = window.KLIPER_DOM || {};
   var likedCards = readStoredList('kliper-liked-cards');
   var subscribedCards = readStoredList('kliper-subscribed-cards');
   var cardSets = {
@@ -190,11 +191,8 @@
   }
 
   function escapeHtml(value) {
-    return String(value)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
+    if (dom.escapeHtml) return dom.escapeHtml(value);
+    return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
   function icon(name) {
@@ -205,6 +203,15 @@
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg>';
     }
     return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"></path></svg>';
+  }
+
+  function statButton(options) {
+    var dataAttribute = options.dataName ? ' ' + options.dataName + '="' + escapeHtml(options.id) + '"' : '';
+    var ariaAttribute = options.ariaLabel ? ' aria-label="' + escapeHtml(options.ariaLabel) + '"' : '';
+    return '<button class="' + options.className + (options.active ? ' is-active' : '') + '" type="button"' + dataAttribute + ariaAttribute + '>' +
+      icon(options.icon) +
+      '<span>' + escapeHtml(options.value) + '</span>' +
+    '</button>';
   }
 
   function getCardById(id) {
@@ -236,10 +243,10 @@
         '</p>' +
         '<h3>' + escapeHtml(card.displayTitle) + '</h3>' +
         '<div class="kliper-ecosystem-card__stats">' +
-          '<button class="kliper-ecosystem-stat kliper-ecosystem-stat--like' + (isLiked ? ' is-active' : '') + '" type="button" data-ecosystem-like="' + id + '" aria-label="Лайкнуть ' + escapeHtml(card.displayTitle) + '">' + icon('heart') + '<span>' + escapeHtml(card.likes + (isLiked ? 1 : 0)) + '</span></button>' +
+          statButton({ className: 'kliper-ecosystem-stat kliper-ecosystem-stat--like', icon: 'heart', value: card.likes + (isLiked ? 1 : 0), dataName: 'data-ecosystem-like', id: id, ariaLabel: 'Лайкнуть ' + card.displayTitle, active: isLiked }) +
           '<span class="kliper-ecosystem-stat-group">' +
-            '<button class="kliper-ecosystem-stat kliper-ecosystem-stat--follow' + (isSubscribed ? ' is-active' : '') + '" type="button" data-ecosystem-subscribe="' + id + '" aria-label="Подписаться на ' + escapeHtml(card.displayTitle) + '">' + icon('bell') + '<span>' + escapeHtml(card.follows + (isSubscribed ? 1 : 0)) + '</span></button>' +
-            '<button class="kliper-ecosystem-stat kliper-ecosystem-stat--comment" type="button" data-ecosystem-open="' + id + '" aria-label="Открыть рецензии ' + escapeHtml(card.displayTitle) + '">' + icon('comment') + '<span>' + escapeHtml(card.comments) + '</span></button>' +
+            statButton({ className: 'kliper-ecosystem-stat kliper-ecosystem-stat--follow', icon: 'bell', value: card.follows + (isSubscribed ? 1 : 0), dataName: 'data-ecosystem-subscribe', id: id, ariaLabel: 'Подписаться на ' + card.displayTitle, active: isSubscribed }) +
+            statButton({ className: 'kliper-ecosystem-stat kliper-ecosystem-stat--comment', icon: 'comment', value: card.comments, dataName: 'data-ecosystem-open', id: id, ariaLabel: 'Открыть рецензии ' + card.displayTitle }) +
           '</span>' +
         '</div>' +
       '</div>';
@@ -304,9 +311,9 @@
             '<span>В объекте</span><strong>ЖК Речной Порт</strong>' +
           '</div>' +
           '<div class="kliper-ecosystem-drawer__actions">' +
-            '<button class="' + (isLiked ? 'is-active ' : '') + 'kliper-ecosystem-drawer__action" type="button" data-ecosystem-like="' + slug(card.displayTitle) + '">' + icon('heart') + '<span>' + escapeHtml(card.likes + (isLiked ? 1 : 0)) + '</span></button>' +
-            '<button class="' + (isSubscribed ? 'is-active ' : '') + 'kliper-ecosystem-drawer__action" type="button" data-ecosystem-subscribe="' + slug(card.displayTitle) + '">' + icon('bell') + '<span>' + escapeHtml(card.follows + (isSubscribed ? 1 : 0)) + '</span></button>' +
-            '<button class="kliper-ecosystem-drawer__action" type="button">' + icon('comment') + '<span>' + escapeHtml(card.comments) + '</span></button>' +
+            statButton({ className: 'kliper-ecosystem-drawer__action', icon: 'heart', value: card.likes + (isLiked ? 1 : 0), dataName: 'data-ecosystem-like', id: slug(card.displayTitle), active: isLiked }) +
+            statButton({ className: 'kliper-ecosystem-drawer__action', icon: 'bell', value: card.follows + (isSubscribed ? 1 : 0), dataName: 'data-ecosystem-subscribe', id: slug(card.displayTitle), active: isSubscribed }) +
+            statButton({ className: 'kliper-ecosystem-drawer__action', icon: 'comment', value: card.comments }) +
           '</div>' +
           '<button class="kliper-ecosystem-drawer__primary" type="button" data-ecosystem-goto="' + slug(card.displayTitle) + '">Открыть в каталоге</button>' +
         '</div>' +

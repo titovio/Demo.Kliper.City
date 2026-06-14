@@ -1,8 +1,9 @@
 (function () {
   var enhancedPanel = null;
+  var dom = window.KLIPER_DOM || {};
 
   function cleanText(node) {
-    return (node && node.textContent ? node.textContent : '').replace(/\s+/g, ' ').trim();
+    return dom.text ? dom.text(node) : (node && node.textContent ? node.textContent : '').replace(/\s+/g, ' ').trim();
   }
 
   function isFeedPage() {
