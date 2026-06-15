@@ -3463,11 +3463,74 @@ body.kliper-dark-theme main section > div > aside[class*="space-y-5"] {
 .kliper-mobile-nav-panel,
 .kliper-mobile-nav-panel .relative:has(> button) {
   position: relative;
-  z-index: 120;
+  z-index: 260;
 }
 
 .kliper-mobile-nav-panel .relative:has(> button) > div[class*="absolute"][class*="top-full"] {
-  z-index: 140 !important;
+  z-index: 320 !important;
+  isolation: isolate;
+}
+
+body.kliper-dark-theme .kliper-mobile-nav-panel .relative:has(> button) > div[class*="absolute"][class*="top-full"] {
+  color: var(--kliper-dark-text) !important;
+  border-color: var(--kliper-dark-border-soft) !important;
+  background: rgb(15 23 42 / 0.98) !important;
+  box-shadow: 0 24px 58px rgb(2 6 23 / 0.42) !important;
+}
+
+body.kliper-dark-theme .kliper-mobile-nav-panel .relative:has(> button) > div[class*="absolute"][class*="top-full"] button:not([class*="bg-violet"]) {
+  color: var(--kliper-dark-muted) !important;
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+body.kliper-dark-theme .kliper-mobile-nav-panel .relative:has(> button) > div[class*="absolute"][class*="top-full"] button:not([class*="bg-violet"]):hover {
+  color: var(--kliper-dark-text) !important;
+  background: rgb(124 58 237 / 0.16) !important;
+}
+
+/* Dark visual polish: remove accidental rectangular surfaces around header
+   stories and the catalog filter wrapper while keeping useful controls visible. */
+body.kliper-dark-theme header div.col-span-2.row-start-2.overflow-x-auto,
+body.kliper-dark-theme header div.col-span-2.row-start-2.overflow-x-auto > button,
+body.kliper-dark-theme header div.col-span-2.row-start-2.overflow-x-auto > button > div:not([class*="rounded-full"]) {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+body.kliper-dark-theme header div.col-span-2.row-start-2.overflow-x-auto [class*="ring-white"],
+body.kliper-dark-theme header div.col-span-2.row-start-2.overflow-x-auto [class*="border-white"] {
+  --tw-ring-color: rgb(15 23 42 / 0.88) !important;
+  border-color: rgb(15 23 42 / 0.88) !important;
+}
+
+body.kliper-dark-theme main section:has([aria-label="Застройщики"]),
+body.kliper-dark-theme main section:has([aria-label="Застройщики"]) > div:first-child,
+body.kliper-dark-theme main section:has([aria-label="Застройщики"]) > div:has([aria-label="Застройщики"]) {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+body.kliper-dark-theme main section:has([aria-label="Застройщики"]) div[class*="overflow-x-auto"][class*="rounded-"] {
+  background: rgb(15 23 42 / 0.38) !important;
+  border-color: var(--kliper-dark-border-soft) !important;
+  box-shadow: none !important;
+}
+
+body.kliper-dark-theme main section[class*="relative"][class*="z-[80]"]:has([aria-label="Застройщики"]) {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
 }
 
 
