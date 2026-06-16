@@ -132,7 +132,7 @@
 
   function planMedia(plan, large) {
     if (plan && plan.image) {
-      return '<img class="kliper-plan-image' + (large ? ' kliper-plan-image--large' : '') + '" src="' + escapeHtml(plan.image) + '" alt="Планировка ' + escapeHtml(plan.title) + '" loading="lazy">';
+      return '<img class="kliper-plan-image' + (large ? ' kliper-plan-image--large' : '') + '" src="' + escapeHtml(plan.image) + '" alt="Планировка ' + escapeHtml(plan.title) + '" loading="' + (large ? 'eager' : 'lazy') + '" decoding="async">';
     }
 
     return planSvg(plan.type, plan, large);
@@ -165,7 +165,7 @@
   function renderPlansGrid() {
     var house = houses[activeHouse] || houses[0];
     return house.plans.map(function (plan, index) {
-      return '<article class="kliper-object-plan-card" role="button" tabindex="0" data-plan-index="' + index + '" aria-label="Открыть планировку ' + escapeHtml(plan.title) + ' крупно">' +
+      return '<button class="kliper-object-plan-card" type="button" data-plan-index="' + index + '" aria-label="Открыть планировку ' + escapeHtml(plan.title) + ' крупно">' +
             '<div class="kliper-object-plan-card__media">' + planMedia(plan, false) + '<span class="kliper-object-plan-card__zoom">Увеличить</span></div>' +
             '<div class="kliper-object-plan-card__body">' +
               '<h3>' + escapeHtml(plan.title) + '</h3>' +
@@ -174,7 +174,7 @@
               '<p class="kliper-object-plan-card__note">' + escapeHtml(plan.note) + '</p>' +
               '<p class="kliper-object-plan-card__status">Планировки доступны</p>' +
             '</div>' +
-          '</article>';
+          '</button>';
     }).join('');
   }
 

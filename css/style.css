@@ -1332,6 +1332,1197 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
   box-shadow: 0 18px 52px rgb(15 23 42 / 0.06);
 }
 
+.kliper-object-section-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 1rem;
+  padding: 0.35rem;
+  border: 1px solid rgb(226 232 240 / 0.95);
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 0.94);
+  box-shadow: 0 16px 42px rgb(15 23 42 / 0.05);
+}
+
+.kliper-object-section-tabs__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: 0.75rem;
+  color: #334155;
+  background: transparent;
+  font-size: 0.88rem;
+  font-weight: 950;
+  transition: color 170ms ease, background 170ms ease, box-shadow 170ms ease, transform 170ms ease;
+}
+
+.kliper-object-section-tabs__button:hover,
+.kliper-object-section-tabs__button:focus-visible {
+  color: #4c1d95;
+  background: rgb(124 58 237 / 0.08);
+  outline: none;
+}
+
+.kliper-object-section-tabs__button.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 14px 30px rgb(124 58 237 / 0.24);
+  transform: translateY(-1px);
+}
+
+.kliper-object-section-hidden {
+  display: none !important;
+}
+
+.kliper-object-feed {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 1rem;
+  padding: 1.15rem 1.25rem 1.2rem;
+  border: 1px solid rgb(226 232 240 / 0.95);
+  border-radius: 1.2rem;
+  background:
+    radial-gradient(circle at 84% 0%, rgb(124 58 237 / 0.08), transparent 30%),
+    rgb(255 255 255 / 0.96);
+  box-shadow: 0 18px 52px rgb(15 23 42 / 0.06);
+}
+
+.kliper-object-feed__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.95rem;
+}
+
+.kliper-object-feed__head h2 {
+  color: #020617;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  font-weight: 950;
+}
+
+.kliper-object-feed__head p {
+  margin-top: 0.35rem;
+  max-width: 36rem;
+  color: #64748b;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  font-weight: 750;
+}
+
+.kliper-object-feed__head > span {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  color: #6d28d9;
+  background: rgb(124 58 237 / 0.1);
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kliper-object-feed__list {
+  display: grid;
+  gap: 0.72rem;
+}
+
+.kliper-object-feed-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem;
+  border: 1px solid rgb(226 232 240 / 0.9);
+  border-radius: 0.9rem;
+  background: rgb(248 250 252 / 0.82);
+}
+
+.kliper-object-feed-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.78rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6, #020617);
+  font-size: 0.82rem;
+  font-weight: 950;
+}
+
+.kliper-object-feed-card__body {
+  min-width: 0;
+}
+
+.kliper-object-feed-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #7c3aed;
+  font-size: 0.68rem;
+  font-weight: 950;
+}
+
+.kliper-object-feed-card__meta small {
+  color: #94a3b8;
+  font-size: 0.68rem;
+  font-weight: 850;
+}
+
+.kliper-object-feed-card h3 {
+  margin-top: 0.22rem;
+  color: #020617;
+  font-size: 0.92rem;
+  line-height: 1.25;
+  font-weight: 950;
+}
+
+.kliper-object-feed-card p {
+  margin-top: 0.22rem;
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.kliper-object-feed-card button {
+  min-height: 2.15rem;
+  padding: 0 1rem;
+  border: 1px solid rgb(226 232 240 / 0.95);
+  border-radius: 0.68rem;
+  color: #4c1d95;
+  background: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 950;
+}
+
+.kliper-object-feed-card button:hover,
+.kliper-object-feed-card button:focus-visible {
+  color: #ffffff;
+  background: #7c3aed;
+  outline: none;
+}
+
+.kliper-object-feed-post {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.42fr) minmax(0, 1fr);
+  gap: 1rem;
+  min-width: 0;
+  padding: 0.78rem;
+  border: 1px solid rgb(226 232 240 / 0.92);
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 0.94);
+  box-shadow: 0 16px 42px rgb(15 23 42 / 0.055);
+}
+
+.kliper-object-feed-post__media {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 12.4rem;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0.82rem;
+  background: #020617;
+  cursor: pointer;
+}
+
+.kliper-object-feed-post__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(2 6 23 / 0.08), rgb(2 6 23 / 0.74)),
+    linear-gradient(90deg, rgb(2 6 23 / 0.32), transparent 58%);
+  pointer-events: none;
+}
+
+.kliper-object-feed-post__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 180ms ease;
+}
+
+.kliper-object-feed-post:hover .kliper-object-feed-post__media img {
+  transform: scale(1.035);
+}
+
+.kliper-object-feed-post__badge,
+.kliper-object-feed-post__target,
+.kliper-object-feed-post__stat {
+  position: absolute;
+  z-index: 1;
+}
+
+.kliper-object-feed-post__badge {
+  top: 0.72rem;
+  left: 0.72rem;
+  padding: 0.42rem 0.62rem;
+  border-radius: 999px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 10px 24px rgb(124 58 237 / 0.32);
+  font-size: 0.66rem;
+  line-height: 1;
+  font-weight: 950;
+}
+
+.kliper-object-feed-post__target {
+  top: 0.72rem;
+  right: 0.72rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  color: #ffffff;
+  background: #111827;
+  box-shadow: 0 0 0 3px rgb(56 189 248 / 0.72);
+  font-size: 0.68rem;
+  font-weight: 950;
+}
+
+.kliper-object-feed-post__stat {
+  bottom: 0.72rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.72rem;
+  border: 1px solid rgb(255 255 255 / 0.22);
+  border-radius: 999px;
+  color: #ffffff;
+  background: rgb(2 6 23 / 0.46);
+  backdrop-filter: blur(10px);
+  font-size: 0.74rem;
+  font-weight: 950;
+}
+
+.kliper-object-feed-post__stat--likes {
+  left: 0.72rem;
+}
+
+.kliper-object-feed-post__stat--comments {
+  right: 0.72rem;
+}
+
+.kliper-object-feed-post__body {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.35rem 0.2rem;
+}
+
+.kliper-object-feed-post__source {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+  margin-bottom: 0.72rem;
+  color: #0f172a;
+}
+
+.kliper-object-feed-post__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  color: #ffffff;
+  background: linear-gradient(135deg, #020617, #7c3aed);
+  font-size: 0.64rem;
+  font-weight: 950;
+}
+
+.kliper-object-feed-post__source strong {
+  overflow: hidden;
+  color: #0f172a;
+  font-size: 0.82rem;
+  font-weight: 950;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kliper-object-feed-post__source small {
+  color: #94a3b8;
+  font-size: 0.72rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.kliper-object-feed-post__more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  margin-left: auto;
+  border: 0;
+  border-radius: 50%;
+  color: #64748b;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.kliper-object-feed-post h3 {
+  color: #020617;
+  font-size: clamp(1.12rem, 1.8vw, 1.55rem);
+  line-height: 1.16;
+  font-weight: 950;
+}
+
+.kliper-object-feed-post p {
+  margin-top: 0.55rem;
+  max-width: 36rem;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  font-weight: 750;
+}
+
+.kliper-object-feed-post__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.kliper-object-feed-post__actions button {
+  min-height: 2.35rem;
+  padding: 0 1rem;
+  border: 1px solid rgb(226 232 240 / 0.95);
+  border-radius: 0.72rem;
+  color: #475569;
+  background: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 950;
+}
+
+.kliper-object-feed-post__more:hover,
+.kliper-object-feed-post__more:focus-visible,
+.kliper-object-feed-post__actions button:hover,
+.kliper-object-feed-post__actions button:focus-visible {
+  color: #ffffff;
+  background: #7c3aed;
+  outline: none;
+}
+
+.kliper-aerial-view {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 1rem;
+  padding: 1.05rem 1.25rem 1.15rem;
+  border: 1px solid rgb(226 232 240 / 0.95);
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 85% 5%, rgb(37 99 235 / 0.08), transparent 30%),
+    rgb(255 255 255 / 0.96);
+  box-shadow: 0 18px 52px rgb(15 23 42 / 0.06);
+}
+
+.kliper-aerial-view__head {
+  display: none;
+}
+
+.kliper-aerial-view__head h2 {
+  color: #020617;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  font-weight: 950;
+}
+
+.kliper-aerial-view__head p {
+  margin-top: 0.28rem;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.kliper-aerial-view__preview {
+  position: relative;
+  min-height: 7.35rem;
+  overflow: hidden;
+  border-radius: 0.82rem;
+  background: #020617;
+}
+
+.kliper-aerial-view__preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(2 6 23 / 0.16), transparent 42%, rgb(2 6 23 / 0.36)),
+    linear-gradient(180deg, rgb(2 6 23 / 0.02), rgb(2 6 23 / 0.22));
+  pointer-events: none;
+}
+
+.kliper-aerial-view__preview img {
+  display: block;
+  width: 100%;
+  height: 7.35rem;
+  object-fit: cover;
+  opacity: 0.92;
+}
+
+.kliper-aerial-view__overlay,
+.kliper-map-location__overlay {
+  position: absolute;
+  right: 1rem;
+  bottom: 3.45rem;
+  z-index: 2;
+  max-width: min(64%, 22rem);
+  color: #ffffff;
+  text-align: right;
+  text-shadow: 0 10px 24px rgb(2 6 23 / 0.56);
+  pointer-events: none;
+}
+
+.kliper-aerial-view__overlay span,
+.kliper-map-location__overlay span {
+  display: block;
+  margin-bottom: 0.24rem;
+  font-size: 0.68rem;
+  line-height: 1.1;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kliper-aerial-view__overlay strong,
+.kliper-map-location__overlay strong {
+  display: block;
+  font-size: clamp(1.25rem, 2.4vw, 2.35rem);
+  line-height: 0.98;
+  font-weight: 950;
+}
+
+.kliper-aerial-view__button {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  z-index: 2;
+  min-height: 2.15rem;
+  padding: 0 1.25rem;
+  border: 1px solid rgb(255 255 255 / 0.24);
+  border-radius: 0.62rem;
+  color: #ffffff;
+  background: rgb(15 23 42 / 0.55);
+  font-size: 0.78rem;
+  font-weight: 900;
+  box-shadow: 0 14px 30px rgb(2 6 23 / 0.18);
+  backdrop-filter: blur(14px);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.kliper-aerial-view__button:hover,
+.kliper-aerial-view__button:focus-visible {
+  border-color: rgb(139 92 246 / 0.58);
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  transform: translateY(-1px);
+}
+
+.kliper-object-map-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 1rem;
+}
+
+.kliper-object-map-pair > .kliper-map-location,
+.kliper-object-map-pair > .kliper-aerial-view {
+  margin-bottom: 0;
+}
+
+.kliper-object-map-pair .kliper-map-location__preview,
+.kliper-object-map-pair .kliper-aerial-view__preview {
+  min-height: 8.35rem;
+}
+
+.kliper-object-map-pair .kliper-map-location__map,
+.kliper-object-map-pair .kliper-map-location__aerial img,
+.kliper-object-map-pair .kliper-aerial-view__preview img {
+  height: 8.35rem;
+}
+
+.kliper-map-location {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 1rem;
+  padding: 1.05rem 1.25rem 1.15rem;
+  border: 1px solid rgb(226 232 240 / 0.95);
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 85% 5%, rgb(37 99 235 / 0.08), transparent 30%),
+    rgb(255 255 255 / 0.96);
+  box-shadow: 0 18px 52px rgb(15 23 42 / 0.06);
+}
+
+.kliper-map-location__head {
+  display: none;
+}
+
+.kliper-map-location__head h2 {
+  color: #020617;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  font-weight: 950;
+}
+
+.kliper-map-location__head p {
+  margin-top: 0.28rem;
+  color: #64748b;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  font-weight: 750;
+}
+
+.kliper-map-location__preview {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.48fr) minmax(0, 1fr);
+  min-height: 7.35rem;
+  overflow: hidden;
+  border-radius: 0.82rem;
+  background: #020617;
+}
+
+.kliper-map-location__preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(2 6 23 / 0.08), rgb(2 6 23 / 0.22) 48%, rgb(2 6 23 / 0.42)),
+    linear-gradient(180deg, rgb(2 6 23 / 0.02), rgb(2 6 23 / 0.22));
+  pointer-events: none;
+}
+
+.kliper-map-location__map {
+  position: relative;
+  overflow: hidden;
+  min-height: 7.35rem;
+  background:
+    radial-gradient(circle at 28% 28%, rgb(148 163 184 / 0.24) 0 2px, transparent 3px),
+    linear-gradient(128deg, transparent 0 42%, rgb(14 165 233 / 0.28) 43% 53%, transparent 54%),
+    linear-gradient(34deg, transparent 0 26%, rgb(226 232 240 / 0.18) 27% 29%, transparent 30%),
+    linear-gradient(120deg, transparent 0 62%, rgb(226 232 240 / 0.16) 63% 65%, transparent 66%),
+    linear-gradient(160deg, rgb(30 41 59), rgb(15 23 42));
+  background-size: 36px 36px, auto, auto, auto, auto;
+  filter: saturate(0.78);
+}
+
+.kliper-map-location__map::before,
+.kliper-map-location__map::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  transform: rotate(18deg);
+}
+
+.kliper-map-location__map::after {
+  transform: rotate(-24deg);
+}
+
+.kliper-map-location__pin {
+  position: absolute;
+  top: 44%;
+  left: 52%;
+  z-index: 2;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 0.32rem solid rgb(244 63 94);
+  border-radius: 999px 999px 999px 0;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgb(244 63 94 / 0.32);
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.kliper-map-location__aerial {
+  min-width: 0;
+  background: #020617;
+}
+
+.kliper-map-location__aerial img {
+  display: block;
+  width: 100%;
+  height: 7.35rem;
+  object-fit: cover;
+  opacity: 0.76;
+}
+
+.kliper-map-location__button {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  z-index: 2;
+  min-width: 10.2rem;
+  min-height: 2.15rem;
+  padding: 0 1.25rem;
+  border: 1px solid rgb(255 255 255 / 0.24);
+  border-radius: 0.62rem;
+  color: #ffffff;
+  background: rgb(15 23 42 / 0.55);
+  font-size: 0.78rem;
+  font-weight: 900;
+  box-shadow: 0 14px 30px rgb(2 6 23 / 0.18);
+  backdrop-filter: blur(14px);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.kliper-map-location__button:hover,
+.kliper-map-location__button:focus-visible {
+  border-color: rgb(139 92 246 / 0.58);
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  transform: translateY(-1px);
+}
+
+.kliper-object-gallery {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 1rem;
+  padding: 1.05rem 1.25rem 1.1rem;
+  border: 1px solid rgb(226 232 240 / 0.95);
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 85% 5%, rgb(124 58 237 / 0.08), transparent 28%),
+    rgb(255 255 255 / 0.96);
+  box-shadow: 0 18px 52px rgb(15 23 42 / 0.06);
+}
+
+.kliper-object-gallery__head {
+  margin-bottom: 0.85rem;
+}
+
+.kliper-object-gallery__head h2 {
+  color: #020617;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  font-weight: 950;
+}
+
+.kliper-object-gallery__head p {
+  display: none;
+}
+
+.kliper-object-gallery__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.72rem;
+  margin-bottom: 0.92rem;
+}
+
+.kliper-object-gallery__tab {
+  min-height: 2.15rem;
+  padding: 0 1.1rem;
+  border-radius: 0.55rem;
+  color: #334155;
+  background: rgb(241 245 249 / 0.92);
+  font-size: 0.76rem;
+  line-height: 1;
+  font-weight: 900;
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.kliper-object-gallery__tab:hover,
+.kliper-object-gallery__tab:focus-visible,
+.kliper-object-gallery__tab.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 12px 26px rgb(124 58 237 / 0.22);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.kliper-object-gallery__viewport {
+  position: relative;
+  min-width: 0;
+}
+
+.kliper-object-gallery__track {
+  display: flex;
+  gap: 1.2rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+}
+
+.kliper-object-gallery__track::-webkit-scrollbar {
+  display: none;
+}
+
+.kliper-object-gallery__photo {
+  position: relative;
+  flex: 0 0 17.7rem;
+  height: 9.55rem;
+  overflow: hidden;
+  border: 1px solid rgb(226 232 240 / 0.85);
+  border-radius: 0.8rem;
+  background: #e2e8f0;
+  box-shadow: 0 10px 28px rgb(15 23 42 / 0.08);
+  transition: transform 170ms ease, border-color 170ms ease, box-shadow 170ms ease;
+}
+
+.kliper-object-gallery__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 48%, rgb(2 6 23 / 0.42));
+  opacity: 0;
+  transition: opacity 170ms ease;
+}
+
+.kliper-object-gallery__photo:hover,
+.kliper-object-gallery__photo:focus-visible {
+  border-color: rgb(124 58 237 / 0.45);
+  box-shadow: 0 16px 34px rgb(124 58 237 / 0.16);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.kliper-object-gallery__photo:hover::after,
+.kliper-object-gallery__photo:focus-visible::after {
+  opacity: 1;
+}
+
+.kliper-object-gallery__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 220ms ease;
+}
+
+.kliper-object-gallery__photo:hover img,
+.kliper-object-gallery__photo:focus-visible img {
+  transform: scale(1.035);
+}
+
+.kliper-object-gallery__photo span {
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: 0.52rem;
+  z-index: 1;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(0.25rem);
+  transition: opacity 170ms ease, transform 170ms ease;
+}
+
+.kliper-object-gallery__photo:hover span,
+.kliper-object-gallery__photo:focus-visible span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.kliper-object-gallery__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  color: #475569;
+  background: rgb(255 255 255 / 0.9);
+  box-shadow: 0 12px 26px rgb(15 23 42 / 0.16);
+  transform: translateY(-50%);
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.kliper-object-gallery__arrow:hover,
+.kliper-object-gallery__arrow:focus-visible {
+  color: #ffffff;
+  background: #7c3aed;
+  transform: translateY(-50%) scale(1.04);
+  outline: none;
+}
+
+.kliper-object-gallery__arrow--prev {
+  left: -0.45rem;
+}
+
+.kliper-object-gallery__arrow--next {
+  right: -0.45rem;
+}
+
+.kliper-gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 980;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.8rem, 2vw, 1.5rem);
+}
+
+.kliper-gallery-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(2 6 23 / 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.kliper-gallery-modal__card {
+  position: relative;
+  z-index: 1;
+  width: min(92rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 1.35rem;
+  background: #020617;
+  box-shadow: 0 28px 90px rgb(0 0 0 / 0.45);
+}
+
+.kliper-gallery-modal__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: min(74vh, 46rem);
+  min-height: 24rem;
+  background:
+    radial-gradient(circle at 20% 0%, rgb(124 58 237 / 0.14), transparent 34%),
+    #020617;
+}
+
+.kliper-gallery-modal__card img,
+.kliper-gallery-modal__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
+}
+
+.kliper-gallery-modal__caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem 1rem;
+  border-top: 1px solid rgb(255 255 255 / 0.08);
+  background: rgb(2 6 23 / 0.94);
+}
+
+.kliper-gallery-modal__caption p {
+  min-width: 0;
+  padding: 0;
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.kliper-gallery-modal__caption span {
+  flex: 0 0 auto;
+  color: rgb(226 232 240 / 0.68);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.kliper-gallery-modal__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  color: #0f172a;
+  background: rgb(255 255 255 / 0.9);
+  font-size: 1.3rem;
+  font-weight: 700;
+  box-shadow: 0 12px 28px rgb(0 0 0 / 0.22);
+}
+
+.kliper-gallery-modal__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  color: #ffffff;
+  background: rgb(15 23 42 / 0.68);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 16px 34px rgb(0 0 0 / 0.26);
+  backdrop-filter: blur(16px);
+  transform: translateY(-50%);
+  transition: background 170ms ease, transform 170ms ease;
+}
+
+.kliper-gallery-modal__nav:hover,
+.kliper-gallery-modal__nav:focus-visible {
+  background: #7c3aed;
+  outline: none;
+  transform: translateY(-50%) scale(1.04);
+}
+
+.kliper-gallery-modal__nav--prev {
+  left: 1rem;
+}
+
+.kliper-gallery-modal__nav--next {
+  right: 1rem;
+}
+
+.kliper-aerial-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 985;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.kliper-aerial-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(2 6 23 / 0.76);
+  backdrop-filter: blur(14px);
+}
+
+.kliper-aerial-modal__card {
+  position: relative;
+  z-index: 1;
+  width: min(68rem, calc(100vw - 2.5rem));
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 1.2rem;
+  background: #020617;
+  box-shadow: 0 28px 90px rgb(0 0 0 / 0.42);
+}
+
+.kliper-aerial-modal__scene {
+  position: relative;
+  min-height: min(62vh, 36rem);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  color: #ffffff;
+  background-position: center;
+  background-size: cover;
+}
+
+.kliper-aerial-modal__scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 78% 22%, rgb(124 58 237 / 0.25), transparent 32%),
+    linear-gradient(180deg, rgb(2 6 23 / 0.2), rgb(2 6 23 / 0.72));
+  pointer-events: none;
+}
+
+.kliper-aerial-modal__scene > div {
+  position: relative;
+  z-index: 1;
+  max-width: 34rem;
+}
+
+.kliper-aerial-modal__scene p {
+  color: rgb(255 255 255 / 0.72);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kliper-aerial-modal__scene h3 {
+  margin-top: 0.35rem;
+  color: #ffffff;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 0.98;
+  font-weight: 950;
+}
+
+.kliper-aerial-modal__scene span {
+  display: block;
+  margin-top: 0.75rem;
+  color: rgb(226 232 240 / 0.82);
+  font-size: 1rem;
+  font-weight: 750;
+}
+
+.kliper-aerial-modal__close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 3;
+  width: 2.45rem;
+  height: 2.45rem;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 999px;
+  color: #ffffff;
+  background: rgb(15 23 42 / 0.68);
+  font-size: 1.35rem;
+  font-weight: 900;
+  box-shadow: 0 16px 36px rgb(0 0 0 / 0.26);
+  backdrop-filter: blur(12px);
+}
+
+.kliper-aerial-modal__close:hover,
+.kliper-aerial-modal__close:focus-visible {
+  background: #7c3aed;
+}
+
+.kliper-map-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 985;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.kliper-map-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(2 6 23 / 0.76);
+  backdrop-filter: blur(14px);
+}
+
+.kliper-map-modal__card {
+  position: relative;
+  z-index: 1;
+  width: min(68rem, calc(100vw - 2.5rem));
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 1.2rem;
+  background: #020617;
+  box-shadow: 0 28px 90px rgb(0 0 0 / 0.42);
+}
+
+.kliper-map-modal__map {
+  position: relative;
+  min-height: min(62vh, 36rem);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 70% 22%, rgb(124 58 237 / 0.24), transparent 30%),
+    linear-gradient(126deg, transparent 0 40%, rgb(14 165 233 / 0.28) 41% 51%, transparent 52%),
+    repeating-linear-gradient(32deg, rgb(255 255 255 / 0.06) 0 1px, transparent 1px 44px),
+    repeating-linear-gradient(122deg, rgb(255 255 255 / 0.045) 0 1px, transparent 1px 52px),
+    linear-gradient(160deg, rgb(30 41 59), rgb(2 6 23));
+}
+
+.kliper-map-modal__map::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(2 6 23 / 0.12), rgb(2 6 23 / 0.74));
+  pointer-events: none;
+}
+
+.kliper-map-modal__map > div {
+  position: relative;
+  z-index: 1;
+  max-width: 35rem;
+}
+
+.kliper-map-modal__pin {
+  position: absolute;
+  top: 42%;
+  left: 54%;
+  z-index: 2;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 0.42rem solid rgb(244 63 94);
+  border-radius: 999px 999px 999px 0;
+  background: #ffffff;
+  box-shadow: 0 18px 42px rgb(244 63 94 / 0.34);
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.kliper-map-modal__map p {
+  color: rgb(255 255 255 / 0.72);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kliper-map-modal__map h3 {
+  margin-top: 0.35rem;
+  color: #ffffff;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 0.98;
+  font-weight: 950;
+}
+
+.kliper-map-modal__map span {
+  display: block;
+  margin-top: 0.75rem;
+  color: rgb(226 232 240 / 0.82);
+  font-size: 1rem;
+  font-weight: 750;
+}
+
+.kliper-map-modal__close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 3;
+  width: 2.45rem;
+  height: 2.45rem;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 999px;
+  color: #ffffff;
+  background: rgb(15 23 42 / 0.68);
+  font-size: 1.35rem;
+  font-weight: 900;
+  box-shadow: 0 16px 36px rgb(0 0 0 / 0.26);
+  backdrop-filter: blur(12px);
+}
+
+.kliper-map-modal__close:hover,
+.kliper-map-modal__close:focus-visible {
+  background: #7c3aed;
+}
+
 .kliper-object-plans__head {
   display: flex;
   align-items: center;
@@ -1485,19 +2676,23 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 }
 
 .kliper-object-plan-card {
+  appearance: none;
   display: flex;
-  flex: 0 0 13.4rem;
+  flex: 0 0 12.8rem;
   flex-direction: column;
   align-items: stretch;
   gap: 0.78rem;
-  min-height: 14.2rem;
+  min-height: 19.2rem;
   padding: 0.78rem 0.78rem 0.95rem;
   border: 1px solid rgb(226 232 240 / 0.88);
   border-radius: 1.08rem;
   background:
     linear-gradient(180deg, rgb(255 255 255 / 0.98), rgb(248 250 252 / 0.98));
   box-shadow: 0 10px 28px rgb(15 23 42 / 0.04);
+  color: inherit;
   cursor: pointer;
+  font: inherit;
+  touch-action: manipulation;
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
@@ -1514,7 +2709,8 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 7.65rem;
+  min-height: 11.2rem;
+  aspect-ratio: 4 / 5;
   min-width: 0;
   overflow: hidden;
   border: 1px solid rgb(226 232 240 / 0.72);
@@ -1548,14 +2744,14 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 
 .kliper-plan-svg {
   width: 100%;
-  height: 7.55rem;
+  height: 10.9rem;
   color: #8b95a6;
 }
 
 .kliper-plan-image {
   display: block;
   width: 100%;
-  height: 7.55rem;
+  height: 10.9rem;
   object-fit: contain;
   border-radius: 0.8rem;
   background: #fbfaf8;
@@ -1624,7 +2820,9 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 .kliper-object-plan-card__body {
   display: grid;
   justify-items: center;
+  align-content: start;
   min-width: 0;
+  min-height: 6.6rem;
   text-align: center;
 }
 
@@ -1681,7 +2879,7 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
   position: relative;
   z-index: 1;
   display: grid;
-  width: min(72rem, calc(100vw - 2.2rem));
+  width: min(46rem, calc(100vw - 2.2rem));
   max-height: calc(100vh - 2rem);
   overflow: hidden;
   border: 1px solid rgb(255 255 255 / 0.68);
@@ -1709,7 +2907,7 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 
 .kliper-plan-modal__media {
   display: grid;
-  min-height: min(72vh, 42rem);
+  min-height: min(72vh, 48rem);
   place-items: center;
   padding: 1.1rem;
   overflow: auto;
@@ -1719,14 +2917,15 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 }
 
 .kliper-plan-modal__media .kliper-plan-svg {
-  height: min(70vh, 38rem);
+  width: min(100%, 36rem);
+  height: min(70vh, 42rem);
 }
 
 .kliper-plan-modal__media .kliper-plan-image {
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: min(76vh, 56rem);
+  max-height: min(74vh, 48rem);
   object-fit: contain;
   border-radius: 1rem;
   background: #ffffff;
@@ -1770,15 +2969,212 @@ body.kliper-dark-theme .kliper-object-plans {
   box-shadow: 0 18px 52px rgb(0 0 0 / 0.28);
 }
 
+body.kliper-dark-theme .kliper-object-section-tabs {
+  border-color: rgb(255 255 255 / 0.08);
+  background: rgb(15 23 42 / 0.62);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 18px 52px rgb(0 0 0 / 0.2);
+}
+
+body.kliper-dark-theme .kliper-object-section-tabs__button {
+  color: rgb(226 232 240 / 0.78);
+  background: transparent;
+}
+
+body.kliper-dark-theme .kliper-object-section-tabs__button:hover,
+body.kliper-dark-theme .kliper-object-section-tabs__button:focus-visible {
+  color: #ffffff;
+  background: rgb(124 58 237 / 0.16);
+}
+
+body.kliper-dark-theme .kliper-object-section-tabs__button.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6, #4f46e5);
+  box-shadow: 0 14px 32px rgb(79 70 229 / 0.26);
+}
+
+body.kliper-dark-theme .kliper-object-feed {
+  border-color: rgb(255 255 255 / 0.09);
+  background:
+    radial-gradient(circle at 78% 0%, rgb(37 99 235 / 0.13), transparent 34%),
+    radial-gradient(circle at 0% 100%, rgb(124 58 237 / 0.1), transparent 34%),
+    rgb(15 23 42 / 0.78);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 18px 52px rgb(0 0 0 / 0.24);
+}
+
+body.kliper-dark-theme .kliper-object-feed__head h2,
+body.kliper-dark-theme .kliper-object-feed-card h3,
+body.kliper-dark-theme .kliper-object-feed-post h3,
+body.kliper-dark-theme .kliper-object-feed-post__source strong {
+  color: var(--kliper-dark-text);
+}
+
+body.kliper-dark-theme .kliper-object-feed__head p,
+body.kliper-dark-theme .kliper-object-feed-card p,
+body.kliper-dark-theme .kliper-object-feed-card__meta small,
+body.kliper-dark-theme .kliper-object-feed-post p,
+body.kliper-dark-theme .kliper-object-feed-post__source small {
+  color: var(--kliper-dark-muted);
+}
+
+body.kliper-dark-theme .kliper-object-feed__head > span {
+  color: #d8b4fe;
+  background: rgb(124 58 237 / 0.18);
+}
+
+body.kliper-dark-theme .kliper-object-feed-card {
+  border-color: rgb(255 255 255 / 0.07);
+  background: rgb(15 23 42 / 0.62);
+}
+
+body.kliper-dark-theme .kliper-object-feed-post {
+  border-color: rgb(255 255 255 / 0.075);
+  background: linear-gradient(180deg, rgb(15 23 42 / 0.82), rgb(12 18 32 / 0.88));
+  box-shadow: 0 18px 48px rgb(0 0 0 / 0.22);
+}
+
+body.kliper-dark-theme .kliper-object-feed-post__media {
+  background: #020617;
+}
+
+body.kliper-dark-theme .kliper-object-feed-post__source {
+  color: var(--kliper-dark-text);
+}
+
+body.kliper-dark-theme .kliper-object-feed-post__more {
+  color: rgb(203 213 225 / 0.78);
+}
+
+body.kliper-dark-theme .kliper-object-feed-card button {
+  color: rgb(226 232 240 / 0.9);
+  border-color: rgb(255 255 255 / 0.08);
+  background: rgb(30 41 59 / 0.74);
+}
+
+body.kliper-dark-theme .kliper-object-feed-post__actions button {
+  color: rgb(226 232 240 / 0.88);
+  border-color: rgb(255 255 255 / 0.08);
+  background: rgb(30 41 59 / 0.66);
+}
+
+body.kliper-dark-theme .kliper-object-feed-card button:hover,
+body.kliper-dark-theme .kliper-object-feed-card button:focus-visible,
+body.kliper-dark-theme .kliper-object-feed-post__more:hover,
+body.kliper-dark-theme .kliper-object-feed-post__more:focus-visible,
+body.kliper-dark-theme .kliper-object-feed-post__actions button:hover,
+body.kliper-dark-theme .kliper-object-feed-post__actions button:focus-visible {
+  color: #ffffff;
+  background: #7c3aed;
+}
+
+body.kliper-dark-theme .kliper-object-gallery {
+  border-color: rgb(255 255 255 / 0.09);
+  background:
+    radial-gradient(circle at 78% 0%, rgb(37 99 235 / 0.13), transparent 34%),
+    radial-gradient(circle at 0% 100%, rgb(124 58 237 / 0.1), transparent 34%),
+    rgb(15 23 42 / 0.78);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 18px 52px rgb(0 0 0 / 0.24);
+}
+
+body.kliper-dark-theme .kliper-aerial-view {
+  border-color: rgb(255 255 255 / 0.09);
+  background:
+    radial-gradient(circle at 78% 0%, rgb(37 99 235 / 0.13), transparent 34%),
+    radial-gradient(circle at 0% 100%, rgb(124 58 237 / 0.1), transparent 34%),
+    rgb(15 23 42 / 0.78);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 18px 52px rgb(0 0 0 / 0.24);
+}
+
+body.kliper-dark-theme .kliper-map-location {
+  border-color: rgb(255 255 255 / 0.09);
+  background:
+    radial-gradient(circle at 78% 0%, rgb(37 99 235 / 0.13), transparent 34%),
+    radial-gradient(circle at 0% 100%, rgb(124 58 237 / 0.1), transparent 34%),
+    rgb(15 23 42 / 0.78);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 18px 52px rgb(0 0 0 / 0.24);
+}
+
+body.kliper-dark-theme .kliper-aerial-view__head h2 {
+  color: var(--kliper-dark-text);
+}
+
+body.kliper-dark-theme .kliper-map-location__head h2 {
+  color: var(--kliper-dark-text);
+}
+
+body.kliper-dark-theme .kliper-aerial-view__head p,
+body.kliper-dark-theme .kliper-map-location__head p {
+  color: var(--kliper-dark-muted);
+}
+
+body.kliper-dark-theme .kliper-aerial-view__preview {
+  border: 1px solid rgb(255 255 255 / 0.06);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+}
+
+body.kliper-dark-theme .kliper-map-location__preview {
+  border: 1px solid rgb(255 255 255 / 0.06);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+}
+
 body.kliper-dark-theme .kliper-object-plans__head h2,
+body.kliper-dark-theme .kliper-object-gallery__head h2,
 body.kliper-dark-theme .kliper-object-plan-card h3,
 body.kliper-dark-theme .kliper-object-plan-card__price {
   color: var(--kliper-dark-text);
 }
 
 body.kliper-dark-theme .kliper-object-plans__head p,
+body.kliper-dark-theme .kliper-object-gallery__head p,
 body.kliper-dark-theme .kliper-house-chip__text small {
   color: var(--kliper-dark-muted);
+}
+
+body.kliper-dark-theme .kliper-object-gallery__tab {
+  color: rgb(226 232 240 / 0.86);
+  background: rgb(30 41 59 / 0.88);
+  box-shadow: none;
+}
+
+body.kliper-dark-theme .kliper-object-gallery__tab:hover,
+body.kliper-dark-theme .kliper-object-gallery__tab:focus-visible,
+body.kliper-dark-theme .kliper-object-gallery__tab.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 13px 30px rgb(124 58 237 / 0.27);
+}
+
+body.kliper-dark-theme .kliper-object-gallery__photo {
+  border-color: rgb(255 255 255 / 0.08);
+  background: rgb(15 23 42 / 0.88);
+  box-shadow: 0 12px 30px rgb(0 0 0 / 0.24);
+}
+
+body.kliper-dark-theme .kliper-object-gallery__photo:hover,
+body.kliper-dark-theme .kliper-object-gallery__photo:focus-visible {
+  border-color: rgb(139 92 246 / 0.54);
+  box-shadow: 0 18px 38px rgb(0 0 0 / 0.32);
+}
+
+body.kliper-dark-theme .kliper-object-gallery__arrow {
+  color: rgb(226 232 240 / 0.88);
+  background: rgb(30 41 59 / 0.88);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 0.24);
+}
+
+body.kliper-dark-theme .kliper-object-gallery__arrow:hover,
+body.kliper-dark-theme .kliper-object-gallery__arrow:focus-visible {
+  color: #ffffff;
+  background: #7c3aed;
 }
 
 body.kliper-dark-theme .kliper-house-chip {
@@ -2770,6 +4166,292 @@ body.kliper-dark-theme .kliper-ecosystem-tab.is-active {
     border-radius: 0.9rem;
   }
 
+  .kliper-object-section-tabs {
+    gap: 0.32rem;
+    margin-left: -0.15rem;
+    margin-right: -0.15rem;
+    padding: 0.3rem;
+    border-radius: 1.05rem;
+  }
+
+  .kliper-object-section-tabs__button {
+    min-height: 2.45rem;
+    padding: 0 0.55rem;
+    border-radius: 0.78rem;
+    font-size: 0.78rem;
+  }
+
+  .kliper-object-feed {
+    margin-left: -0.15rem;
+    margin-right: -0.15rem;
+    padding: 1rem 0.95rem;
+    border-radius: 1.25rem;
+  }
+
+  .kliper-object-feed__head {
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .kliper-object-feed__head h2 {
+    font-size: 1rem;
+  }
+
+  .kliper-object-feed__head p {
+    font-size: 0.74rem;
+  }
+
+  .kliper-object-feed__head > span {
+    padding: 0.38rem 0.55rem;
+    font-size: 0.58rem;
+  }
+
+  .kliper-object-feed-card {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: flex-start;
+  }
+
+  .kliper-object-feed-card button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .kliper-object-feed-post {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0.62rem;
+    border-radius: 1rem;
+  }
+
+  .kliper-object-feed-post__media {
+    height: 15rem;
+    border-radius: 0.9rem;
+  }
+
+  .kliper-object-feed-post__body {
+    padding: 0.25rem 0.2rem 0.35rem;
+  }
+
+  .kliper-object-feed-post__source {
+    gap: 0.45rem;
+    margin-bottom: 0.62rem;
+  }
+
+  .kliper-object-feed-post__source small {
+    max-width: 8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .kliper-object-feed-post h3 {
+    font-size: 1.2rem;
+  }
+
+  .kliper-object-feed-post p {
+    font-size: 0.84rem;
+  }
+
+  .kliper-object-feed-post__actions button {
+    flex: 1 1 8rem;
+  }
+
+  .kliper-aerial-view {
+    margin-left: -0.15rem;
+    margin-right: -0.15rem;
+    padding: 1rem 0.95rem;
+    border-radius: 1.25rem;
+  }
+
+  .kliper-object-map-pair {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .kliper-object-map-pair > .kliper-map-location,
+  .kliper-object-map-pair > .kliper-aerial-view {
+    margin-bottom: 0;
+  }
+
+  .kliper-aerial-view__head h2 {
+    font-size: 1rem;
+  }
+
+  .kliper-aerial-view__head p {
+    font-size: 0.74rem;
+  }
+
+  .kliper-aerial-view__preview,
+  .kliper-aerial-view__preview img {
+    height: 6.4rem;
+    min-height: 6.4rem;
+  }
+
+  .kliper-aerial-view__button {
+    right: 0.65rem;
+    bottom: 0.65rem;
+    min-height: 2rem;
+    padding: 0 0.85rem;
+    font-size: 0.72rem;
+  }
+
+  .kliper-aerial-modal {
+    padding: 0.75rem;
+  }
+
+  .kliper-aerial-modal__card {
+    width: calc(100vw - 1.5rem);
+    border-radius: 1rem;
+  }
+
+  .kliper-aerial-modal__scene {
+    min-height: min(66vh, 30rem);
+    padding: 1.15rem;
+  }
+
+  .kliper-map-location {
+    margin-left: -0.15rem;
+    margin-right: -0.15rem;
+    padding: 1rem 0.95rem;
+    border-radius: 1.25rem;
+  }
+
+  .kliper-map-location__head h2 {
+    font-size: 1rem;
+  }
+
+  .kliper-map-location__head p {
+    font-size: 0.74rem;
+  }
+
+  .kliper-map-location__preview {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 10rem;
+  }
+
+  .kliper-map-location__map,
+  .kliper-map-location__aerial img {
+    height: 5rem;
+    min-height: 5rem;
+  }
+
+  .kliper-map-location__button {
+    right: 0.65rem;
+    bottom: 0.65rem;
+    min-width: 8.5rem;
+    min-height: 2rem;
+    padding: 0 0.85rem;
+    font-size: 0.72rem;
+  }
+
+  .kliper-map-modal {
+    padding: 0.75rem;
+  }
+
+  .kliper-map-modal__card {
+    width: calc(100vw - 1.5rem);
+    border-radius: 1rem;
+  }
+
+  .kliper-map-modal__map {
+    min-height: min(66vh, 30rem);
+    padding: 1.15rem;
+  }
+
+  .kliper-object-gallery {
+    margin-left: -0.15rem;
+    margin-right: -0.15rem;
+    padding: 1rem 0.95rem;
+    border-radius: 1.25rem;
+  }
+
+  .kliper-object-gallery__head h2 {
+    font-size: 1rem;
+  }
+
+  .kliper-object-gallery__head p {
+    font-size: 0.74rem;
+  }
+
+  .kliper-object-gallery__tabs {
+    flex-wrap: nowrap;
+    gap: 0.55rem;
+    margin-left: -0.95rem;
+    margin-right: -0.95rem;
+    padding: 0 0.95rem 0.15rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .kliper-object-gallery__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .kliper-object-gallery__tab {
+    flex: 0 0 auto;
+    min-height: 2rem;
+    padding: 0 0.86rem;
+    font-size: 0.72rem;
+  }
+
+  .kliper-object-gallery__track {
+    gap: 0.85rem;
+    margin-left: -0.95rem;
+    margin-right: -0.95rem;
+    padding: 0 0.95rem 0.1rem;
+  }
+
+  .kliper-object-gallery__photo {
+    flex: 0 0 min(15.3rem, calc(100vw - 4.1rem));
+    height: min(8.2rem, 52vw);
+    border-radius: 0.85rem;
+  }
+
+  .kliper-object-gallery__arrow {
+    display: none;
+  }
+
+  .kliper-gallery-modal {
+    padding: 0.6rem;
+  }
+
+  .kliper-gallery-modal__card {
+    width: calc(100vw - 1.2rem);
+    max-height: calc(100vh - 1.2rem);
+    border-radius: 1rem;
+  }
+
+  .kliper-gallery-modal__media {
+    height: min(72vh, 34rem);
+    min-height: 19rem;
+  }
+
+  .kliper-gallery-modal__caption {
+    padding: 0.78rem 0.85rem 0.85rem;
+  }
+
+  .kliper-gallery-modal__caption p {
+    font-size: 0.84rem;
+  }
+
+  .kliper-gallery-modal__caption span {
+    font-size: 0.76rem;
+  }
+
+  .kliper-gallery-modal__nav {
+    width: 2.45rem;
+    height: 2.45rem;
+    font-size: 1.55rem;
+  }
+
+  .kliper-gallery-modal__nav--prev {
+    left: 0.55rem;
+  }
+
+  .kliper-gallery-modal__nav--next {
+    right: 0.55rem;
+  }
+
   .kliper-object-plans {
     margin-left: -0.15rem;
     margin-right: -0.15rem;
@@ -2834,21 +4516,22 @@ body.kliper-dark-theme .kliper-ecosystem-tab.is-active {
   }
 
   .kliper-object-plan-card {
-    flex: 0 0 min(15.2rem, calc(100vw - 2.75rem));
-    min-height: 13.9rem;
+    flex: 0 0 min(14.4rem, calc(100vw - 2.75rem));
+    min-height: 20.4rem;
     padding: 0.75rem 0.75rem 0.9rem;
   }
 
   .kliper-plan-svg {
-    height: 7.2rem;
+    height: 11.4rem;
   }
 
   .kliper-plan-image {
-    height: 7.2rem;
+    height: 11.4rem;
   }
 
   .kliper-object-plan-card__media {
-    min-height: 7.25rem;
+    min-height: 11.8rem;
+    aspect-ratio: 4 / 5;
   }
 
   .kliper-plan-modal {
@@ -2862,16 +4545,17 @@ body.kliper-dark-theme .kliper-ecosystem-tab.is-active {
   }
 
   .kliper-plan-modal__media {
-    min-height: min(62vh, 31rem);
+    min-height: min(66vh, 34rem);
     padding: 0.75rem;
   }
 
   .kliper-plan-modal__media .kliper-plan-svg {
-    height: min(50vh, 19rem);
+    width: min(100%, 21rem);
+    height: min(56vh, 30rem);
   }
 
   .kliper-plan-modal__media .kliper-plan-image {
-    max-height: min(64vh, 30rem);
+    max-height: min(62vh, 32rem);
   }
 
   .kliper-plan-modal__body {
@@ -3114,6 +4798,8 @@ body.kliper-dark-theme .kliper-object-hero-action__label {
 /* Mobile catalog filters: full-screen panel and safe dropdown sheets */
 @media (max-width: 640px) {
   body.kliper-cards-mobile-filter-ready .kliper-cards-filter-head {
+    position: static !important;
+    top: auto !important;
     left: max(0px, env(safe-area-inset-left)) !important;
     right: max(0px, env(safe-area-inset-right)) !important;
     width: auto !important;
@@ -3211,6 +4897,12 @@ body.kliper-dark-theme.kliper-cards-mobile-filter-ready .kliper-cards-param-popo
   background: rgb(15 23 42 / 0.98) !important;
 }
 
+.kliper-cards-filter-head {
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+}
+
 /* Feed mobile selects: custom, stable dropdowns instead of native popups */
 .kliper-feed-mobile-select__button {
   appearance: none;
@@ -3296,14 +4988,40 @@ body.kliper-dark-theme .kliper-feed-mobile-select__menu,
 body.kliper-dark-theme .kliper-mobile-filter-field select,
 body.kliper-dark-theme .kliper-cards-param-popover,
 body.kliper-dark-theme .kliper-ecosystem-polished,
+body.kliper-dark-theme .kliper-aerial-view,
+body.kliper-dark-theme .kliper-map-location,
+body.kliper-dark-theme .kliper-object-gallery,
 body.kliper-dark-theme .kliper-object-plans,
+body.kliper-dark-theme .kliper-object-section-tabs,
+body.kliper-dark-theme .kliper-object-feed,
+body.kliper-dark-theme .kliper-object-feed-card,
 body.kliper-dark-theme .kliper-house-chip,
 body.kliper-dark-theme .kliper-object-plan-card,
 body.kliper-dark-theme .kliper-plan-modal__card,
+body.kliper-dark-theme .kliper-gallery-modal__card,
+body.kliper-dark-theme .kliper-aerial-modal__card,
+body.kliper-dark-theme .kliper-map-modal__card,
 body.kliper-dark-theme .kliper-ecosystem-drawer__panel {
   border-color: var(--kliper-dark-border-soft) !important;
   --tw-ring-color: var(--kliper-dark-ring) !important;
   box-shadow: var(--kliper-dark-shadow-soft) !important;
+}
+
+body.kliper-dark-theme .kliper-object-feed-post {
+  border-color: rgb(255 255 255 / 0.075) !important;
+  background: linear-gradient(180deg, rgb(15 23 42 / 0.82), rgb(12 18 32 / 0.88)) !important;
+  box-shadow: 0 18px 48px rgb(0 0 0 / 0.22) !important;
+}
+
+body.kliper-dark-theme .kliper-object-feed-post__media {
+  border: 0 !important;
+  background: #020617 !important;
+  box-shadow: none !important;
+}
+
+body.kliper-dark-theme .kliper-object-feed-post__actions button,
+body.kliper-dark-theme .kliper-object-feed-post__more {
+  box-shadow: none !important;
 }
 
 body.kliper-dark-theme header,
@@ -3435,8 +5153,7 @@ body.kliper-dark-theme main section.fixed[class*="bg-white"] [class*="ring-slate
   --tw-ring-color: var(--kliper-dark-ring) !important;
 }
 
-/* Dark theme: cards and structural wrappers should sit on the page background. */
-body.kliper-dark-theme [aria-label^="Открыть карточку"],
+/* Dark theme: structural wrappers should sit on the page background. */
 body.kliper-dark-theme main section.xl\:col-span-2 > div:has([aria-label^="Открыть карточку"]):not([data-kliper-keep-panel]),
 body.kliper-dark-theme main section > div:has(> .grid [aria-label^="Открыть карточку"]):not([data-kliper-keep-panel]),
 body.kliper-dark-theme main article:has([aria-label^="Открыть карточку"]),
@@ -3533,6 +5250,124 @@ body.kliper-dark-theme main section[class*="relative"][class*="z-[80]"]:has([ari
   --tw-ring-shadow: 0 0 #0000 !important;
 }
 
+/* Final dark surface model: transparent wrappers, soft real panels. */
+body.kliper-dark-theme main section > div:has(> [aria-label^="Открыть карточку"]),
+body.kliper-dark-theme main section > div:has(> div [aria-label^="Открыть карточку"]),
+body.kliper-dark-theme main section > div:has(> .kliper-ecosystem-polished),
+body.kliper-dark-theme main section > div:has(> .kliper-object-plans),
+body.kliper-dark-theme main section > div:has(.kliper-house-chip),
+body.kliper-dark-theme main section > div:has(.kliper-object-plan-card),
+body.kliper-dark-theme main section > div:has(.kliper-top-metric-tag),
+body.kliper-dark-theme main section > div:has(.kliper-feed-mobile-select),
+body.kliper-dark-theme main section > div[class*="grid"][class*="gap-4"]:not(.kliper-ecosystem-polished):not(.kliper-object-plans),
+body.kliper-dark-theme main section > div[class*="grid"][class*="gap-5"]:not(.kliper-ecosystem-polished):not(.kliper-object-plans),
+body.kliper-dark-theme main section > div[class*="grid"][class*="gap-7"]:not(.kliper-ecosystem-polished):not(.kliper-object-plans),
+body.kliper-dark-theme main section > div[class*="space-y-5"]:not(.kliper-feed-filter-panel),
+body.kliper-dark-theme main section > div[class*="space-y-6"]:not(.kliper-feed-filter-panel),
+body.kliper-dark-theme main section > div[class*="flex"][class*="items-center"][class*="justify-between"],
+body.kliper-dark-theme main section > div[class*="flex"][class*="items-end"][class*="justify-between"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+body.kliper-dark-theme main article:not([aria-label^="Открыть карточку"]):not(:has([aria-label^="Открыть карточку"])),
+body.kliper-dark-theme main aside > div[class*="rounded"],
+body.kliper-dark-theme .kliper-feed-filter-panel,
+body.kliper-dark-theme .kliper-feed-mobile-select__button,
+body.kliper-dark-theme .kliper-feed-mobile-select__menu,
+body.kliper-dark-theme .kliper-mobile-filter-field select,
+body.kliper-dark-theme .kliper-cards-param-popover,
+body.kliper-dark-theme .kliper-ecosystem-polished,
+body.kliper-dark-theme .kliper-object-plans,
+body.kliper-dark-theme .kliper-object-section-tabs,
+body.kliper-dark-theme .kliper-object-feed,
+body.kliper-dark-theme .kliper-plan-modal__card,
+body.kliper-dark-theme .kliper-ecosystem-drawer__panel {
+  color: var(--kliper-dark-text) !important;
+  background: rgb(15 23 42 / 0.9) !important;
+  border-color: var(--kliper-dark-border-soft) !important;
+  box-shadow: var(--kliper-dark-shadow-soft) !important;
+}
+
+body.kliper-dark-theme .kliper-house-chip,
+body.kliper-dark-theme .kliper-object-plan-card,
+body.kliper-dark-theme .kliper-object-feed-card,
+body.kliper-dark-theme .kliper-ecosystem-tab:not(.is-active) {
+  color: var(--kliper-dark-text) !important;
+  background: linear-gradient(180deg, rgb(15 23 42 / 0.9), rgb(12 18 32 / 0.92)) !important;
+  border-color: var(--kliper-dark-border-soft) !important;
+  box-shadow: none !important;
+}
+
+body.kliper-dark-theme .kliper-object-plan-card__media,
+body.kliper-dark-theme .kliper-plan-modal__media {
+  background:
+    radial-gradient(circle at 30% 0%, rgb(124 58 237 / 0.14), transparent 34%),
+    rgb(255 255 255 / 0.035) !important;
+  border-color: rgb(255 255 255 / 0.06) !important;
+}
+
+/* Header stories: keep the circular gradient, remove white square/ring artifacts. */
+body.kliper-dark-theme header div.col-span-2.row-start-2.overflow-x-auto > button,
+body.kliper-dark-theme header div.col-span-2.row-start-2.overflow-x-auto > button > div,
+body.kliper-dark-theme header div.col-span-2.row-start-2.overflow-x-auto > button > div > div {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+body.kliper-dark-theme header div.col-span-2.row-start-2.overflow-x-auto > button > div > div[class*="rounded-full"] {
+  background: rgb(15 23 42 / 0.44) !important;
+  border-color: rgb(255 255 255 / 0.08) !important;
+}
+
+body.kliper-dark-theme header div.col-span-2.row-start-2.overflow-x-auto > button > div > div[class*="rounded-full"]:has(img) {
+  background: transparent !important;
+}
+
+body.kliper-dark-theme header div.col-span-2.row-start-2.overflow-x-auto > button > span {
+  color: var(--kliper-dark-muted) !important;
+}
+
+/* Catalog filter head: remove generated rectangular helper surfaces. */
+body.kliper-dark-theme main section:has([aria-label="Застройщики"]) > div.mb-3,
+body.kliper-dark-theme main section:has([aria-label="Застройщики"]) > div.pointer-events-none,
+body.kliper-dark-theme main section.fixed[class*="bg-white"]:has([aria-label="Застройщики"]),
+body.kliper-dark-theme main section.fixed:has([aria-label="Застройщики"]) > div.pointer-events-none {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+body.kliper-dark-theme main section.fixed:has([aria-label="Застройщики"]) > div:first-child {
+  background: rgb(15 23 42 / 0.72) !important;
+  border-color: var(--kliper-dark-border-soft) !important;
+  box-shadow: 0 16px 42px rgb(2 6 23 / 0.16) !important;
+}
+
+body.kliper-dark-theme main section:has([aria-label="Застройщики"]) div[class*="overflow-x-auto"][class*="rounded-"] {
+  background: rgb(2 6 23 / 0.18) !important;
+  border-color: rgb(255 255 255 / 0.08) !important;
+  box-shadow: none !important;
+}
+
+body.kliper-dark-theme [aria-label^="Открыть карточку"] {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
 
 
 

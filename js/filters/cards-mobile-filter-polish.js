@@ -115,12 +115,30 @@
     document.body.classList.toggle('kliper-cards-param-open', opened);
   }
 
+  function collapseFilterIfOpen() {
+    var head = findFilterHead();
+    if (!head) return;
+    var collapseButton = Array.prototype.slice.call(head.querySelectorAll('button')).find(function (node) {
+      return cleanText(node).indexOf('Свернуть') !== -1;
+    });
+    if (collapseButton) collapseButton.click();
+  }
+
+  function isCatalogTabButton(node) {
+    if (!node) return false;
+    return ['Застройщики', 'Новостройки', 'Сданные дома', 'Для бизнеса', 'Риелторы'].indexOf(cleanText(node)) !== -1;
+  }
+
   function schedule(delay) {
     window.clearTimeout(enhanceTimer);
     enhanceTimer = window.setTimeout(enhance, delay || 80);
   }
 
-  document.addEventListener('click', function () {
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest && event.target.closest('button');
+    if (isCatalogTabButton(button)) {
+      window.setTimeout(collapseFilterIfOpen, 180);
+    }
     schedule(80);
   }, true);
 

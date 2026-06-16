@@ -20,7 +20,7 @@
       }
     } catch (error) {}
   </script>
-    <link rel="stylesheet" href="./css/style.css?v=dark-surface-polish-1" />
+    <link rel="stylesheet" href="./css/style.css?v=object-page-cleanup-1" />
     <script src="./js/data/site-config.js?v=content-data-1"></script>
     <script src="./js/data/navigation.js?v=content-data-1"></script>
     <script src="./js/data/contacts.js?v=content-data-1"></script>
@@ -28,16 +28,27 @@
     <script src="./js/shared/dom-utils.js?v=component-utils-1"></script>
   </head>
   <body>
+    <script>
+      try {
+        if (document.documentElement.classList.contains('kliper-dark-theme')) {
+          document.body.classList.add('kliper-dark-theme');
+        }
+      } catch (error) {}
+    </script>
     <div id="root"></div>
-    <script defer src="./js/app.js?v=top-cards-in-catalog-1"></script>
+    <script defer src="./js/app.js?v=object-page-cleanup-1"></script>
     <script defer src="./js/behavior/dark-theme-toggle.js?v=dark-theme-toggle-4"></script>
     <script defer src="./js/behavior/mobile-search-toggle.js?v=mobile-feed-search-3"></script>
     <script defer src="./js/filters/feed-mobile-filters.js?v=feed-mobile-filters-8"></script>
-    <script defer src="./js/filters/cards-mobile-filter-polish.js?v=cards-mobile-filter-2"></script>
+    <script defer src="./js/filters/cards-mobile-filter-polish.js?v=object-page-cleanup-1"></script>
     <script defer src="./js/behavior/page-restore.js?v=page-restore-5"></script>
-    <script defer src="./js/pages/object/object-plans-block.js?v=plan-frame-modal-1"></script>
+    <script defer src="./js/pages/object/object-plans-block.js?v=vertical-plan-cards-2"></script>
+    <script defer src="./js/pages/object/object-aerial-view-block.js?v=object-page-cleanup-1"></script>
+    <script defer src="./js/pages/object/object-map-location-block.js?v=object-page-cleanup-1"></script>
+    <script defer src="./js/pages/object/object-gallery-block.js?v=object-page-cleanup-1"></script>
     <script defer src="./js/pages/object/object-hero-compact.js?v=standard-hero-height-2"></script>
     <script defer src="./js/pages/object/ecosystem-card-polish.js?v=jk-stories-format-1"></script>
+    <script defer src="./js/pages/object/object-section-tabs.js?v=object-page-cleanup-1"></script>
     <script defer src="./js/filters/top-mobile-filters.js?v=top-month-title-1"></script>
     <script>
       window.addEventListener('load', function () {
