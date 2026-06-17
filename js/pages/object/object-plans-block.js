@@ -147,6 +147,29 @@
     return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  function allPlanEntries() {
+    var entries = [];
+    houses.forEach(function (house, houseIndex) {
+      house.plans.forEach(function (plan, planIndex) {
+        entries.push({
+          house: house,
+          houseIndex: houseIndex,
+          plan: plan,
+          planIndex: planIndex
+        });
+      });
+    });
+    return entries;
+  }
+
+  function planEntryIndex(houseIndex, planIndex) {
+    var entries = allPlanEntries();
+    var found = entries.findIndex(function (entry) {
+      return entry.houseIndex === houseIndex && entry.planIndex === planIndex;
+    });
+    return found >= 0 ? found : 0;
+  }
+
   function renderHouseFilter() {
     return '<div class="kliper-house-filter" role="tablist" aria-label="Выбор дома">' +
       houses.map(function (house, index) {
@@ -240,8 +263,11 @@
     });
   }
 
-  function showPlanModal(plan) {
-    if (!plan) return;
+  function showPlanModalAt(houseIndex, planIndex) {
+    var entries = allPlanEntries();
+    var currentIndex = planEntryIndex(houseIndex, planIndex);
+    var entry = entries[currentIndex];
+    if (!entry || !entry.plan) return;
 
     var oldModal = document.querySelector('.kliper-plan-modal');
     if (oldModal) oldModal.remove();
@@ -256,24 +282,58 @@
       if (event.key === 'Escape') {
         closeModal();
       }
+      if (event.key === 'ArrowRight') {
+        showNextPlan(1);
+      }
+      if (event.key === 'ArrowLeft') {
+        showNextPlan(-1);
+      }
+    }
+
+    function renderModalPlan() {
+      entry = entries[currentIndex];
+      var plan = entry.plan;
+      var card = modal.querySelector('.kliper-plan-modal');
+      var dialog = modal.querySelector('.kliper-plan-modal__card');
+      var media = modal.querySelector('.kliper-plan-modal__media');
+      var label = modal.querySelector('.kliper-plan-modal__body span');
+      var title = modal.querySelector('.kliper-plan-modal__body h3');
+      var details = modal.querySelector('.kliper-plan-modal__body p');
+      var counter = modal.querySelector('.kliper-plan-modal__counter');
+
+      modal.setAttribute('aria-label', 'Просмотр планировки ' + plan.title + ', ' + entry.house.name);
+      if (dialog) dialog.setAttribute('data-house-index', entry.houseIndex);
+      if (media) media.innerHTML = planMedia(plan, true);
+      if (label) label.textContent = 'Планировка · ' + entry.house.name;
+      if (title) title.textContent = plan.title;
+      if (details) details.textContent = plan.area + ' · ' + plan.price + ' ' + plan.note;
+      if (counter) counter.textContent = (currentIndex + 1) + ' / ' + entries.length;
+    }
+
+    function showNextPlan(direction) {
+      currentIndex = (currentIndex + direction + entries.length) % entries.length;
+      renderModalPlan();
     }
 
     var modal = document.createElement('div');
     modal.className = 'kliper-plan-modal';
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
-    modal.setAttribute('aria-label', 'Просмотр планировки ' + plan.title);
+    modal.setAttribute('aria-label', 'Просмотр планировки ' + entry.plan.title + ', ' + entry.house.name);
     modal.innerHTML =
       '<button class="kliper-plan-modal__backdrop" type="button" aria-label="Закрыть планировку"></button>' +
-      '<article class="kliper-plan-modal__card">' +
+      '<article class="kliper-plan-modal__card" data-house-index="' + entry.houseIndex + '">' +
         '<button class="kliper-plan-modal__close" type="button" aria-label="Закрыть">×</button>' +
-        '<div class="kliper-plan-modal__media">' + planMedia(plan, true) + '</div>' +
+        '<button class="kliper-plan-modal__nav kliper-plan-modal__nav--prev" type="button" aria-label="Предыдущая планировка">‹</button>' +
+        '<div class="kliper-plan-modal__media">' + planMedia(entry.plan, true) + '</div>' +
+        '<button class="kliper-plan-modal__nav kliper-plan-modal__nav--next" type="button" aria-label="Следующая планировка">›</button>' +
         '<div class="kliper-plan-modal__body">' +
           '<div>' +
-            '<span>Планировка</span>' +
-            '<h3>' + escapeHtml(plan.title) + '</h3>' +
+            '<span>Планировка · ' + escapeHtml(entry.house.name) + '</span>' +
+            '<h3>' + escapeHtml(entry.plan.title) + '</h3>' +
           '</div>' +
-          '<p>' + escapeHtml(plan.area) + ' · ' + escapeHtml(plan.price) + ' ' + escapeHtml(plan.note) + '</p>' +
+          '<p>' + escapeHtml(entry.plan.area) + ' · ' + escapeHtml(entry.plan.price) + ' ' + escapeHtml(entry.plan.note) + '</p>' +
+          '<small class="kliper-plan-modal__counter">' + (currentIndex + 1) + ' / ' + entries.length + '</small>' +
         '</div>' +
       '</article>';
     document.body.appendChild(modal);
@@ -283,6 +343,14 @@
     modal.addEventListener('click', function (event) {
       if (event.target.closest('.kliper-plan-modal__close') || event.target.closest('.kliper-plan-modal__backdrop')) {
         closeModal();
+        return;
+      }
+      if (event.target.closest('.kliper-plan-modal__nav--next')) {
+        showNextPlan(1);
+        return;
+      }
+      if (event.target.closest('.kliper-plan-modal__nav--prev')) {
+        showNextPlan(-1);
       }
     });
 
@@ -312,12 +380,18 @@
       return;
     }
 
+    var handledGridTap = event.target.closest('.kliper-object-plans__grid[data-tap-handled="true"]');
+    if (handledGridTap) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
     var planCard = event.target.closest('[data-plan-index]');
     if (planCard) {
       event.preventDefault();
       event.stopPropagation();
-      var house = houses[activeHouse] || houses[0];
-      showPlanModal(house.plans[Number(planCard.getAttribute('data-plan-index'))]);
+      showPlanModalAt(activeHouse, Number(planCard.getAttribute('data-plan-index')) || 0);
       return;
     }
 
@@ -341,8 +415,7 @@
     var planCard = event.target.closest('[data-plan-index]');
     if (planCard) {
       event.preventDefault();
-      var house = houses[activeHouse] || houses[0];
-      showPlanModal(house.plans[Number(planCard.getAttribute('data-plan-index'))]);
+      showPlanModalAt(activeHouse, Number(planCard.getAttribute('data-plan-index')) || 0);
       return;
     }
 
@@ -411,6 +484,21 @@
     }
   }
 
+  function handlePlanTap(event, grid) {
+    if (!grid || !grid.classList.contains('kliper-object-plans__grid')) return;
+
+    var target = document.elementFromPoint(event.clientX, event.clientY) || event.target;
+    var planCard = target && target.closest ? target.closest('[data-plan-index]') : null;
+    if (!planCard || !grid.contains(planCard)) return;
+
+    showPlanModalAt(activeHouse, Number(planCard.getAttribute('data-plan-index')) || 0);
+    grid.dataset.tapHandled = 'true';
+
+    window.setTimeout(function () {
+      grid.dataset.tapHandled = 'false';
+    }, 120);
+  }
+
   function stopFilterDrag(event) {
     if (!dragState) return;
 
@@ -425,7 +513,11 @@
     } else {
       filter.dataset.dragged = 'false';
       if (event && event.clientX != null) {
-        handleHouseTap(event, filter);
+        if (filter.classList.contains('kliper-house-filter')) {
+          handleHouseTap(event, filter);
+        } else {
+          handlePlanTap(event, filter);
+        }
       }
     }
     dragState = null;

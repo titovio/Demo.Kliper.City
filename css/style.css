@@ -422,6 +422,20 @@ html.kliper-page-restoring.kliper-restore-ready #root {
   min-height: 320px !important;
 }
 
+.kliper-developer-card-hero {
+  height: 370px !important;
+  min-height: 370px !important;
+}
+
+.kliper-developer-card-hero > [class*="bottom-"],
+.kliper-developer-card-hero > div > [class*="bottom-"] {
+  bottom: 1.35rem !important;
+}
+
+.kliper-developer-card-hero h1 {
+  line-height: 1.02 !important;
+}
+
 .kliper-object-hero-facts span {
   display: inline-flex;
   min-height: 2rem;
@@ -470,12 +484,27 @@ html.kliper-page-restoring.kliper-restore-ready #root {
     height: 270px !important;
     min-height: 270px !important;
   }
+
+  .kliper-developer-card-hero {
+    height: 330px !important;
+    min-height: 330px !important;
+  }
+
+  .kliper-developer-card-hero > [class*="bottom-"],
+  .kliper-developer-card-hero > div > [class*="bottom-"] {
+    bottom: 1rem !important;
+  }
 }
 
 @media (min-width: 641px) and (max-width: 1023px) {
   .kliper-standard-card-hero {
     height: 300px !important;
     min-height: 300px !important;
+  }
+
+  .kliper-developer-card-hero {
+    height: 350px !important;
+    min-height: 350px !important;
   }
 }
 
@@ -1377,6 +1406,440 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
   transform: translateY(-1px);
 }
 
+.kliper-developer-section-shell {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.kliper-developer-section-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 1rem 0;
+  padding: 0.35rem;
+  border: 1px solid rgb(226 232 240 / 0.95);
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 0.94);
+  box-shadow: 0 16px 42px rgb(15 23 42 / 0.05);
+}
+
+.kliper-developer-section-tabs__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: 0.75rem;
+  color: #334155;
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 950;
+  transition: color 170ms ease, background 170ms ease, box-shadow 170ms ease, transform 170ms ease;
+}
+
+.kliper-developer-section-tabs__button:hover,
+.kliper-developer-section-tabs__button:focus-visible {
+  color: #4c1d95;
+  background: rgb(124 58 237 / 0.08);
+  outline: none;
+}
+
+.kliper-developer-section-tabs__button.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 14px 30px rgb(124 58 237 / 0.24);
+  transform: translateY(-1px);
+}
+
+.kliper-developer-section-shell[data-developer-section="objects"] .kliper-developer-feed,
+.kliper-developer-section-shell[data-developer-section="feed"] .kliper-developer-objects-area {
+  display: none !important;
+}
+
+.kliper-developer-feed {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 1rem;
+  padding: 1.15rem 1.25rem 1.2rem;
+  border: 1px solid rgb(226 232 240 / 0.95);
+  border-radius: 1.2rem;
+  background:
+    radial-gradient(circle at 84% 0%, rgb(124 58 237 / 0.08), transparent 30%),
+    rgb(255 255 255 / 0.96);
+  box-shadow: 0 18px 52px rgb(15 23 42 / 0.06);
+}
+
+.kliper-developer-feed__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.kliper-developer-feed__head h2 {
+  margin: 0;
+  color: #020617;
+  font-size: 1.35rem;
+  font-weight: 950;
+}
+
+.kliper-developer-feed__head p {
+  margin: 0.3rem 0 0;
+  max-width: 42rem;
+  color: #64748b;
+  font-size: 0.92rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.kliper-developer-feed__head span {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #020617;
+  color: #ffffff;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.76rem;
+  font-weight: 950;
+}
+
+.kliper-developer-feed__list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.kliper-developer-feed-post {
+  display: grid;
+  grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  padding: 0.7rem;
+  border: 1px solid rgb(226 232 240 / 0.9);
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 0.88);
+}
+
+.kliper-developer-feed-post__media {
+  position: relative;
+  overflow: hidden;
+  min-height: 9.5rem;
+  border: 0;
+  border-radius: 0.85rem;
+  background: #0f172a;
+  cursor: pointer;
+}
+
+.kliper-developer-feed-post__media img {
+  width: 100%;
+  height: 100%;
+  min-height: 9.5rem;
+  object-fit: cover;
+  filter: brightness(0.78);
+}
+
+.kliper-developer-feed-post__badge,
+.kliper-developer-feed-post__logo,
+.kliper-developer-feed-post__stat {
+  position: absolute;
+  z-index: 1;
+}
+
+.kliper-developer-feed-post__badge {
+  left: 0.7rem;
+  top: 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: #ffffff;
+  padding: 0.38rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 950;
+}
+
+.kliper-developer-feed-post__logo {
+  right: 0.65rem;
+  top: 0.65rem;
+  display: inline-flex;
+  width: 2.8rem;
+  height: 2.8rem;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #ffffff;
+  border-radius: 999px;
+  background: #020617;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 950;
+}
+
+.kliper-developer-feed-post__stat {
+  bottom: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  border-radius: 999px;
+  padding: 0 0.65rem;
+  background: rgb(2 6 23 / 0.58);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 950;
+  backdrop-filter: blur(10px);
+}
+
+.kliper-developer-feed-post__stat--likes {
+  left: 0.65rem;
+}
+
+.kliper-developer-feed-post__stat--comments {
+  right: 0.65rem;
+}
+
+.kliper-developer-feed-post__body {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.35rem 0.25rem;
+}
+
+.kliper-developer-feed-post__source {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  margin-bottom: 0.55rem;
+}
+
+.kliper-developer-feed-post__avatar {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #020617;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 950;
+}
+
+.kliper-developer-feed-post__source strong {
+  color: #0f172a;
+  font-size: 0.88rem;
+  font-weight: 950;
+}
+
+.kliper-developer-feed-post__source small {
+  color: #94a3b8;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.kliper-developer-feed-post h3 {
+  margin: 0;
+  color: #020617;
+  font-size: 1.18rem;
+  font-weight: 950;
+  line-height: 1.18;
+}
+
+.kliper-developer-feed-post p {
+  margin: 0.45rem 0 0;
+  color: #475569;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.kliper-developer-feed-post__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.kliper-developer-feed-post__actions button {
+  border: 0;
+  background: transparent;
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.kliper-sidebar-list-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.kliper-sidebar-list-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgb(2 6 23 / 0.54);
+  backdrop-filter: blur(14px);
+}
+
+.kliper-sidebar-list-modal__panel {
+  position: relative;
+  display: flex;
+  width: min(34rem, 100%);
+  max-height: min(42rem, calc(100vh - 2.5rem));
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgb(226 232 240 / 0.95);
+  border-radius: 1.4rem;
+  background:
+    radial-gradient(circle at 82% 0%, rgb(124 58 237 / 0.08), transparent 32%),
+    #ffffff;
+  box-shadow: 0 30px 90px rgb(15 23 42 / 0.26);
+}
+
+.kliper-sidebar-list-modal__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid rgb(226 232 240 / 0.78);
+}
+
+.kliper-sidebar-list-modal__head p {
+  margin: 0;
+  color: #7c3aed;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.kliper-sidebar-list-modal__head h2 {
+  margin: 0.25rem 0 0;
+  color: #020617;
+  font-size: 1.55rem;
+  font-weight: 950;
+  line-height: 1.1;
+}
+
+.kliper-sidebar-list-modal__head span {
+  display: block;
+  margin-top: 0.45rem;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.kliper-sidebar-list-modal__close {
+  display: inline-flex;
+  width: 2.45rem;
+  height: 2.45rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(226 232 240 / 0.9);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #334155;
+  font-size: 1.35rem;
+  font-weight: 850;
+  line-height: 1;
+  box-shadow: 0 12px 28px rgb(15 23 42 / 0.08);
+}
+
+.kliper-sidebar-list-modal__body {
+  display: grid;
+  gap: 0.65rem;
+  overflow-y: auto;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.kliper-sidebar-list-modal__subscriber,
+.kliper-sidebar-list-modal__recommendation {
+  border: 1px solid rgb(226 232 240 / 0.82);
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 0.88);
+  box-shadow: 0 12px 30px rgb(15 23 42 / 0.04);
+}
+
+.kliper-sidebar-list-modal__subscriber {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem;
+}
+
+.kliper-sidebar-list-modal__avatar {
+  display: inline-flex;
+  width: 2.55rem;
+  height: 2.55rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #020617;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.kliper-sidebar-list-modal__subscriber strong,
+.kliper-sidebar-list-modal__recommendation strong {
+  display: block;
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 950;
+}
+
+.kliper-sidebar-list-modal__subscriber p,
+.kliper-sidebar-list-modal__recommendation p {
+  margin: 0.25rem 0 0;
+  color: #64748b;
+  font-size: 0.84rem;
+  font-weight: 750;
+  line-height: 1.42;
+}
+
+.kliper-sidebar-list-modal__status,
+.kliper-sidebar-list-modal__recommendation-head span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgb(124 58 237 / 0.1);
+  color: #7c3aed;
+  padding: 0.36rem 0.58rem;
+  font-size: 0.68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.kliper-sidebar-list-modal__recommendation {
+  padding: 0.9rem;
+}
+
+.kliper-sidebar-list-modal__recommendation-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.kliper-sidebar-list-modal-open {
+  overflow: hidden;
+}
+
 .kliper-object-section-hidden {
   display: none !important;
 }
@@ -1761,8 +2224,15 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
   position: relative;
   min-height: 7.35rem;
   overflow: hidden;
+  cursor: pointer;
   border-radius: 0.82rem;
   background: #020617;
+}
+
+.kliper-aerial-view__preview:focus-visible,
+.kliper-map-location__preview:focus-visible {
+  outline: 2px solid rgb(139 92 246 / 0.82);
+  outline-offset: 3px;
 }
 
 .kliper-aerial-view__preview::after {
@@ -1786,12 +2256,13 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 .kliper-aerial-view__overlay,
 .kliper-map-location__overlay {
   position: absolute;
-  right: 1rem;
-  bottom: 3.45rem;
+  left: 1rem;
+  right: auto;
+  bottom: 1.05rem;
   z-index: 2;
   max-width: min(64%, 22rem);
   color: #ffffff;
-  text-align: right;
+  text-align: left;
   text-shadow: 0 10px 24px rgb(2 6 23 / 0.56);
   pointer-events: none;
 }
@@ -1816,6 +2287,7 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 }
 
 .kliper-aerial-view__button {
+  display: none;
   position: absolute;
   right: 0.85rem;
   bottom: 0.85rem;
@@ -1905,6 +2377,7 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
   grid-template-columns: minmax(13rem, 0.48fr) minmax(0, 1fr);
   min-height: 7.35rem;
   overflow: hidden;
+  cursor: pointer;
   border-radius: 0.82rem;
   background: #020617;
 }
@@ -1974,6 +2447,7 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 }
 
 .kliper-map-location__button {
+  display: none;
   position: absolute;
   right: 0.85rem;
   bottom: 0.85rem;
@@ -2584,10 +3058,10 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 0.62rem;
-  min-width: 9.45rem;
-  min-height: 3.25rem;
-  padding: 0.36rem 0.86rem 0.36rem 0.42rem;
+  gap: 0.74rem;
+  min-width: 10.85rem;
+  min-height: 3.55rem;
+  padding: 0.4rem 1.05rem 0.4rem 0.42rem;
   border: 1px solid rgb(203 213 225 / 0.92);
   border-radius: 999px;
   color: #172033;
@@ -2598,30 +3072,48 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 }
 
 .kliper-house-chip:hover,
-.kliper-house-chip:focus-visible,
-.kliper-house-chip.is-active {
+.kliper-house-chip:focus-visible {
   transform: translateY(-1px);
   border-color: rgb(124 58 237 / 0.45);
   background: #ffffff;
   box-shadow: 0 14px 32px rgb(124 58 237 / 0.14);
 }
 
+.kliper-house-chip.is-active {
+  transform: translateY(-1px);
+  border-color: rgb(124 58 237 / 0.72);
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, rgb(124 58 237 / 0.96), rgb(79 70 229 / 0.92)),
+    rgb(124 58 237);
+  box-shadow:
+    0 18px 38px rgb(79 70 229 / 0.24),
+    0 0 0 1px rgb(255 255 255 / 0.18) inset;
+}
+
 .kliper-house-chip__story {
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
-  width: 2.35rem;
-  height: 2.35rem;
-  border: 2px solid #ffffff;
+  width: 2.72rem;
+  height: 2.72rem;
+  border: 3px solid #ffffff;
   border-radius: 999px;
   background-color: #e2e8f0;
   background-position: center;
   background-size: cover;
-  box-shadow: 0 0 0 2px rgb(124 58 237 / 0.22);
+  box-shadow:
+    0 0 0 2px rgb(56 189 248 / 0.72),
+    0 0 0 4px rgb(124 58 237 / 0.64),
+    0 10px 22px rgb(15 23 42 / 0.18);
 }
 
 .kliper-house-chip.is-active .kliper-house-chip__story {
-  box-shadow: 0 0 0 2px #7c3aed, 0 0 0 5px rgb(124 58 237 / 0.12);
+  box-shadow:
+    0 0 0 2px rgb(255 255 255 / 0.94),
+    0 0 0 5px rgb(168 85 247 / 0.88),
+    0 0 0 8px rgb(56 189 248 / 0.45),
+    0 14px 28px rgb(15 23 42 / 0.28);
 }
 
 .kliper-house-chip__text {
@@ -2633,7 +3125,7 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 .kliper-house-chip__text strong,
 .kliper-house-chip__text small {
   display: block;
-  max-width: 6.25rem;
+  max-width: 7.3rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2651,6 +3143,10 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
   font-size: 0.68rem;
   line-height: 1.1;
   font-weight: 800;
+}
+
+.kliper-house-chip.is-active .kliper-house-chip__text small {
+  color: rgb(237 233 254 / 0.86);
 }
 
 .kliper-object-plans__grid {
@@ -2905,6 +3401,42 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
   font-weight: 800;
 }
 
+.kliper-plan-modal__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  color: #ffffff;
+  background: rgb(15 23 42 / 0.66);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 16px 34px rgb(2 6 23 / 0.22);
+  backdrop-filter: blur(16px);
+  transform: translateY(-50%);
+  transition: background 170ms ease, transform 170ms ease;
+}
+
+.kliper-plan-modal__nav:hover,
+.kliper-plan-modal__nav:focus-visible {
+  background: #7c3aed;
+  outline: none;
+  transform: translateY(-50%) scale(1.04);
+}
+
+.kliper-plan-modal__nav--prev {
+  left: 1rem;
+}
+
+.kliper-plan-modal__nav--next {
+  right: 1rem;
+}
+
 .kliper-plan-modal__media {
   display: grid;
   min-height: min(72vh, 48rem);
@@ -2963,6 +3495,13 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
   text-align: right;
 }
 
+.kliper-plan-modal__counter {
+  flex: 0 0 auto;
+  color: #94a3b8;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
 body.kliper-dark-theme .kliper-object-plans {
   border-color: rgb(51 65 85 / 0.72);
   background: rgb(18 26 41 / 0.94);
@@ -2992,6 +3531,185 @@ body.kliper-dark-theme .kliper-object-section-tabs__button.is-active {
   color: #ffffff;
   background: linear-gradient(135deg, #8b5cf6, #4f46e5);
   box-shadow: 0 14px 32px rgb(79 70 229 / 0.26);
+}
+
+body.kliper-dark-theme .kliper-developer-section-tabs {
+  border-color: rgb(255 255 255 / 0.08);
+  background: rgb(15 23 42 / 0.62);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 18px 52px rgb(0 0 0 / 0.2);
+}
+
+body.kliper-dark-theme .kliper-developer-section-tabs__button {
+  color: rgb(226 232 240 / 0.78);
+  background: transparent;
+}
+
+body.kliper-dark-theme .kliper-developer-section-tabs__button:hover,
+body.kliper-dark-theme .kliper-developer-section-tabs__button:focus-visible {
+  color: #ffffff;
+  background: rgb(124 58 237 / 0.16);
+}
+
+body.kliper-dark-theme .kliper-developer-section-tabs__button.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6, #4f46e5);
+  box-shadow: 0 14px 32px rgb(79 70 229 / 0.26);
+}
+
+body.kliper-dark-theme .kliper-developer-feed {
+  border-color: rgb(255 255 255 / 0.09);
+  background:
+    radial-gradient(circle at 78% 0%, rgb(37 99 235 / 0.13), transparent 34%),
+    radial-gradient(circle at 0% 100%, rgb(124 58 237 / 0.1), transparent 34%),
+    rgb(15 23 42 / 0.78);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 18px 52px rgb(0 0 0 / 0.24);
+}
+
+body.kliper-dark-theme .kliper-developer-feed__head h2,
+body.kliper-dark-theme .kliper-developer-feed-post h3,
+body.kliper-dark-theme .kliper-developer-feed-post__source strong {
+  color: #f8fafc;
+}
+
+body.kliper-dark-theme .kliper-developer-feed__head p,
+body.kliper-dark-theme .kliper-developer-feed-post p,
+body.kliper-dark-theme .kliper-developer-feed-post__actions button {
+  color: rgb(203 213 225 / 0.78);
+}
+
+body.kliper-dark-theme .kliper-developer-feed__head span,
+body.kliper-dark-theme .kliper-developer-feed-post__avatar {
+  background: rgb(2 6 23 / 0.92);
+  color: #ffffff;
+}
+
+body.kliper-dark-theme .kliper-developer-feed-post {
+  border-color: rgb(255 255 255 / 0.08);
+  background: rgb(15 23 42 / 0.7);
+}
+
+body.kliper-dark-theme .kliper-developer-feed-post__source small {
+  color: rgb(148 163 184 / 0.9);
+}
+
+body.kliper-dark-theme .kliper-sidebar-list-modal__backdrop {
+  background: rgb(0 0 0 / 0.64);
+}
+
+body.kliper-dark-theme .kliper-sidebar-list-modal__panel {
+  border-color: rgb(255 255 255 / 0.09);
+  background:
+    radial-gradient(circle at 82% 0%, rgb(124 58 237 / 0.13), transparent 34%),
+    rgb(15 23 42 / 0.96);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 30px 90px rgb(0 0 0 / 0.45);
+}
+
+body.kliper-dark-theme .kliper-sidebar-list-modal__head {
+  border-bottom-color: rgb(255 255 255 / 0.08);
+}
+
+body.kliper-dark-theme .kliper-sidebar-list-modal__head h2,
+body.kliper-dark-theme .kliper-sidebar-list-modal__subscriber strong,
+body.kliper-dark-theme .kliper-sidebar-list-modal__recommendation strong {
+  color: #f8fafc;
+}
+
+body.kliper-dark-theme .kliper-sidebar-list-modal__head span,
+body.kliper-dark-theme .kliper-sidebar-list-modal__subscriber p,
+body.kliper-dark-theme .kliper-sidebar-list-modal__recommendation p {
+  color: rgb(203 213 225 / 0.78);
+}
+
+body.kliper-dark-theme .kliper-sidebar-list-modal__close,
+body.kliper-dark-theme .kliper-sidebar-list-modal__subscriber,
+body.kliper-dark-theme .kliper-sidebar-list-modal__recommendation {
+  border-color: rgb(255 255 255 / 0.08);
+  background: rgb(15 23 42 / 0.72);
+}
+
+body.kliper-dark-theme .kliper-sidebar-list-modal__avatar {
+  background: rgb(2 6 23 / 0.94);
+  color: #ffffff;
+}
+
+body.kliper-dark-theme .kliper-sidebar-list-modal__close {
+  color: #e2e8f0;
+  box-shadow: 0 12px 28px rgb(0 0 0 / 0.22);
+}
+
+@media (max-width: 720px) {
+  .kliper-sidebar-list-modal {
+    align-items: flex-end;
+    padding: 0.75rem;
+  }
+
+  .kliper-sidebar-list-modal__panel {
+    max-height: min(40rem, calc(100vh - 1.5rem));
+    border-radius: 1.25rem;
+  }
+
+  .kliper-sidebar-list-modal__head {
+    padding: 1rem 1rem 0.85rem;
+  }
+
+  .kliper-sidebar-list-modal__head h2 {
+    font-size: 1.35rem;
+  }
+
+  .kliper-sidebar-list-modal__body {
+    padding: 0.85rem 1rem 1rem;
+  }
+
+  .kliper-sidebar-list-modal__subscriber {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .kliper-sidebar-list-modal__status {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .kliper-developer-section-tabs {
+    margin: 0.85rem 0;
+    border-radius: 0.95rem;
+  }
+
+  .kliper-developer-section-tabs__button {
+    min-height: 2.55rem;
+    padding: 0 0.7rem;
+    font-size: 0.86rem;
+  }
+
+  .kliper-developer-feed {
+    padding: 1rem;
+    border-radius: 1.05rem;
+  }
+
+  .kliper-developer-feed__head {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .kliper-developer-feed__head span {
+    align-self: flex-start;
+  }
+
+  .kliper-developer-feed-post {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.7rem;
+    padding: 0.65rem;
+  }
+
+  .kliper-developer-feed-post__media,
+  .kliper-developer-feed-post__media img {
+    min-height: 12.5rem;
+  }
 }
 
 body.kliper-dark-theme .kliper-object-feed {
@@ -3262,6 +3980,10 @@ body.kliper-dark-theme .kliper-plan-modal__body h3 {
 
 body.kliper-dark-theme .kliper-plan-modal__body p {
   color: var(--kliper-dark-muted);
+}
+
+body.kliper-dark-theme .kliper-plan-modal__counter {
+  color: rgb(203 213 225 / 0.68);
 }
 
 .kliper-object-hero-actions {
@@ -4486,14 +5208,19 @@ body.kliper-dark-theme .kliper-ecosystem-tab.is-active {
   }
 
   .kliper-house-chip {
-    min-width: 8.7rem;
-    min-height: 3rem;
-    padding-right: 0.75rem;
+    min-width: 10.25rem;
+    min-height: 3.45rem;
+    padding-right: 0.95rem;
   }
 
   .kliper-house-chip__story {
-    width: 2.15rem;
-    height: 2.15rem;
+    width: 2.58rem;
+    height: 2.58rem;
+  }
+
+  .kliper-house-chip__text strong,
+  .kliper-house-chip__text small {
+    max-width: 6.65rem;
   }
 
   .kliper-house-story__media {
@@ -4538,6 +5265,20 @@ body.kliper-dark-theme .kliper-ecosystem-tab.is-active {
     padding: 0.7rem;
   }
 
+  .kliper-plan-modal__nav {
+    width: 2.45rem;
+    height: 2.45rem;
+    font-size: 1.55rem;
+  }
+
+  .kliper-plan-modal__nav--prev {
+    left: 0.55rem;
+  }
+
+  .kliper-plan-modal__nav--next {
+    right: 0.55rem;
+  }
+
   .kliper-plan-modal__card {
     width: calc(100vw - 1.4rem);
     max-height: calc(100vh - 1.4rem);
@@ -4571,6 +5312,10 @@ body.kliper-dark-theme .kliper-ecosystem-tab.is-active {
 
   .kliper-plan-modal__body p {
     text-align: left;
+  }
+
+  .kliper-plan-modal__counter {
+    font-size: 0.76rem;
   }
 
   .kliper-object-hero-actions {
@@ -4795,8 +5540,398 @@ body.kliper-dark-theme .kliper-object-hero-action__label {
   color: #ffffff !important;
 }
 
+.kliper-cards-visual-filter {
+  position: relative;
+  z-index: 30;
+  margin: 0 0 0.75rem;
+  overflow: visible;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgb(15 23 42 / 0.08);
+}
+
+.kliper-cards-visual-filter.is-clean-filter-open {
+  overflow: hidden;
+}
+
+.kliper-cards-visual-filter__row {
+  display: grid;
+  grid-template-columns: minmax(170px, auto) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.kliper-cards-visual-filter__title {
+  min-width: 0;
+  color: #0f172a;
+  font-size: 1.05rem;
+  font-weight: 950;
+  line-height: 1.15;
+}
+
+.kliper-cards-visual-filter__tabs {
+  display: flex;
+  min-width: 0;
+  justify-content: flex-start;
+  gap: 0.45rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.kliper-cards-visual-filter__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.kliper-cards-visual-filter__tab {
+  display: inline-flex;
+  min-height: 2.25rem;
+  min-width: 7.35rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 0 0.75rem;
+  color: #64748b;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgb(226 232 240 / 0.95);
+  font-size: 0.82rem;
+  font-weight: 950;
+  line-height: 1;
+  transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.kliper-cards-visual-filter__tab-icon {
+  display: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: 0 0 auto;
+}
+
+.kliper-cards-visual-filter__tab-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.kliper-cards-visual-filter__tab:hover,
+.kliper-cards-visual-filter__tab:focus-visible {
+  color: #6d28d9;
+  background: #f5f3ff;
+  outline: none;
+}
+
+.kliper-cards-visual-filter__tab.is-active {
+  color: #ffffff;
+  background: #7c3aed;
+  box-shadow: 0 10px 20px rgb(124 58 237 / 0.18);
+}
+
+.kliper-cards-visual-filter__filter-toggle {
+  display: inline-flex;
+  min-height: 2.35rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: #1c2234;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 950;
+  line-height: 1;
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+  box-shadow: 0 12px 26px rgb(15 23 42 / 0.16), inset 0 0 0 1px rgb(255 255 255 / 0.1);
+  transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.kliper-cards-visual-filter__filter-toggle[hidden] {
+  display: none !important;
+}
+
+.kliper-cards-visual-filter__filter-toggle:hover,
+.kliper-cards-visual-filter__filter-toggle:focus-visible {
+  background: #273149;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.kliper-cards-visual-filter__filter-icon {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+}
+
+.kliper-cards-visual-filter__filter-icon::before,
+.kliper-cards-visual-filter__filter-icon::after {
+  position: absolute;
+  content: "";
+}
+
+.kliper-cards-visual-filter__filter-icon::before {
+  left: 0.1rem;
+  right: 0.1rem;
+  top: 0.24rem;
+  height: 0.12rem;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0.36rem 0 currentColor, 0 0.72rem 0 currentColor;
+}
+
+.kliper-cards-visual-filter__filter-icon::after {
+  left: 0.56rem;
+  top: 0.1rem;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: -0.42rem 0.36rem 0 #ffffff, 0.18rem 0.72rem 0 #ffffff;
+}
+
+.kliper-cards-clean-filter {
+  overflow: hidden;
+  border-top: 1px solid rgb(226 232 240 / 0.72);
+  background: rgb(255 255 255 / 0.96);
+  border-radius: 0 0 20px 20px;
+}
+
+.kliper-cards-clean-filter[hidden] {
+  display: none !important;
+}
+
+.kliper-cards-clean-filter__row {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.12fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding: 0.95rem 1.25rem;
+  border-top: 1px solid rgb(226 232 240 / 0.55);
+}
+
+.kliper-cards-clean-filter__row:first-child {
+  border-top: 0;
+}
+
+.kliper-cards-clean-filter__row--compact {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.kliper-cards-clean-filter__label {
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 950;
+}
+
+.kliper-cards-clean-filter__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.kliper-cards-clean-filter__chip {
+  display: inline-flex;
+  min-height: 2.45rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e8edf5;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 950;
+  line-height: 1;
+  padding: 0.68rem 1rem;
+  box-shadow: 0 7px 18px rgb(15 23 42 / 0.035);
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+}
+
+.kliper-cards-clean-filter__chip:hover,
+.kliper-cards-clean-filter__chip:focus-visible {
+  color: #6d28d9;
+  border-color: #ddd6fe;
+  outline: none;
+}
+
+.kliper-cards-clean-filter__chip.is-active {
+  color: #ffffff;
+  border-color: #7c3aed;
+  background: #7c3aed;
+  box-shadow: 0 12px 24px rgb(124 58 237 / 0.2);
+}
+
+.kliper-cards-clean-filter__chip.is-dark {
+  color: #ffffff;
+  border-color: #070d20;
+  background: #070d20;
+  box-shadow: 0 12px 24px rgb(15 23 42 / 0.2);
+}
+
+.kliper-cards-clean-filter__fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.kliper-cards-clean-filter__field {
+  display: inline-flex;
+  min-height: 2.8rem;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e8edf5;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 950;
+  line-height: 1;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  box-shadow: 0 7px 18px rgb(15 23 42 / 0.03);
+}
+
+.kliper-cards-clean-filter__chevron {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-0.1rem);
+  opacity: 0.78;
+}
+
+body.kliper-cards-visual-filter-ready .kliper-cards-source-filter {
+  display: none !important;
+}
+
+body.kliper-cards-visual-filter-ready .kliper-cards-filter-head {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  clip-path: inset(50%) !important;
+}
+
+body.kliper-cards-visual-filter-ready .kliper-cards-filter-body,
+body.kliper-cards-visual-filter-ready .kliper-cards-source-filter-body {
+  display: none !important;
+}
+
+body.kliper-cards-visual-filter-ready .kliper-cards-old-filter-shell {
+  display: none !important;
+}
+
+body.kliper-cards-visual-filter-ready .kliper-cards-source-filter-overlay {
+  display: none !important;
+}
+
+@media (max-width: 1180px) {
+  .kliper-cards-visual-filter__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title toggle"
+      "tabs tabs";
+    gap: 0.75rem;
+  }
+
+  .kliper-cards-visual-filter__title {
+    grid-area: title;
+  }
+
+  .kliper-cards-visual-filter__tabs {
+    grid-area: tabs;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    width: 100%;
+    gap: 0.4rem;
+    overflow: visible;
+  }
+
+  .kliper-cards-visual-filter__tab {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    padding: 0.55rem;
+  }
+
+  .kliper-cards-visual-filter__tab-icon {
+    display: block;
+  }
+
+  .kliper-cards-visual-filter__tab-label {
+    display: none;
+  }
+
+  .kliper-cards-visual-filter__filter-toggle {
+    grid-area: toggle;
+    width: auto;
+    justify-self: end;
+  }
+}
+
 /* Mobile catalog filters: full-screen panel and safe dropdown sheets */
 @media (max-width: 640px) {
+  .kliper-cards-visual-filter {
+    margin: 0 0 0.75rem;
+    border-radius: 22px;
+    box-shadow: 0 16px 38px rgb(15 23 42 / 0.16);
+  }
+
+  .kliper-cards-visual-filter__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem 1rem;
+  }
+
+  .kliper-cards-visual-filter__title {
+    font-size: 1rem;
+  }
+
+  .kliper-cards-visual-filter__tab {
+    min-width: 0;
+    max-width: none;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .kliper-cards-visual-filter__filter-toggle {
+    width: auto;
+    min-height: 2.25rem;
+    padding: 0.65rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .kliper-cards-clean-filter__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.65rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .kliper-cards-clean-filter__label:empty {
+    display: none;
+  }
+
+  .kliper-cards-clean-filter__fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .kliper-cards-clean-filter__chip {
+    flex: 1 1 auto;
+    min-width: 7.5rem;
+  }
+
   body.kliper-cards-mobile-filter-ready .kliper-cards-filter-head {
     position: static !important;
     top: auto !important;
@@ -4807,6 +5942,37 @@ body.kliper-dark-theme .kliper-object-hero-action__label {
     margin: 0 !important;
     border-radius: 0 0 22px 22px !important;
     box-shadow: 0 16px 38px rgb(15 23 42 / 0.16) !important;
+  }
+
+  body.kliper-cards-mobile-filter-ready .kliper-cards-filter-row,
+  body.kliper-cards-mobile-filter-ready .kliper-cards-filter-main {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  body.kliper-cards-mobile-filter-ready .kliper-cards-filter-tabs {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    justify-content: flex-start !important;
+    gap: 0.45rem !important;
+    overflow-x: auto !important;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body.kliper-cards-mobile-filter-ready .kliper-cards-filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  body.kliper-cards-mobile-filter-ready .kliper-cards-filter-tabs > button {
+    flex: 0 0 auto !important;
+    min-width: 6.9rem !important;
+    max-width: 8.8rem !important;
+    padding-left: 0.65rem !important;
+    padding-right: 0.65rem !important;
   }
 
   body.kliper-cards-mobile-filter-ready .kliper-cards-filter-body {
@@ -4901,6 +6067,54 @@ body.kliper-dark-theme.kliper-cards-mobile-filter-ready .kliper-cards-param-popo
   position: static !important;
   top: auto !important;
   z-index: auto !important;
+}
+
+.kliper-cards-filter-head.kliper-cards-filter-no-body .kliper-cards-filter-title > button,
+.kliper-cards-filter-head.kliper-cards-filter-no-body .kliper-cards-filter-actions {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .kliper-cards-filter-row {
+    display: grid !important;
+    grid-template-columns: minmax(170px, auto) minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+
+  .kliper-cards-filter-main {
+    display: contents !important;
+  }
+
+  .kliper-cards-filter-title {
+    grid-column: 1 !important;
+    min-width: 0 !important;
+  }
+
+  .kliper-cards-filter-title > button {
+    display: none !important;
+  }
+
+  .kliper-cards-filter-tabs {
+    grid-column: 2 !important;
+    min-width: 0 !important;
+    justify-self: start !important;
+  }
+
+  .kliper-cards-filter-actions {
+    grid-column: 3 !important;
+    justify-self: end !important;
+    min-width: max-content !important;
+  }
+
+  .kliper-cards-filter-actions > button:last-child {
+    display: inline-flex !important;
+  }
+}
+
+body.kliper-cards-filter-switching .kliper-cards-filter-body,
+.kliper-cards-filter-body--suppress {
+  display: none !important;
 }
 
 /* Feed mobile selects: custom, stable dropdowns instead of native popups */
@@ -5176,8 +6390,12 @@ body.kliper-dark-theme main section > div > aside[class*="space-y-5"] {
   --tw-ring-shadow: 0 0 #0000 !important;
 }
 
-/* Keep the city selector above catalog filters and cards. */
-.kliper-mobile-nav-panel,
+/* Let the navigation panel scroll below the header while its city menu stays on top. */
+.kliper-mobile-nav-panel {
+  position: relative;
+  z-index: auto;
+}
+
 .kliper-mobile-nav-panel .relative:has(> button) {
   position: relative;
   z-index: 260;
@@ -5301,6 +6519,25 @@ body.kliper-dark-theme .kliper-ecosystem-tab:not(.is-active) {
   background: linear-gradient(180deg, rgb(15 23 42 / 0.9), rgb(12 18 32 / 0.92)) !important;
   border-color: var(--kliper-dark-border-soft) !important;
   box-shadow: none !important;
+}
+
+body.kliper-dark-theme .kliper-house-chip.is-active {
+  color: #ffffff !important;
+  background:
+    linear-gradient(135deg, rgb(124 58 237 / 0.88), rgb(37 99 235 / 0.58)),
+    rgb(15 23 42 / 0.92) !important;
+  border-color: rgb(167 139 250 / 0.72) !important;
+  box-shadow:
+    0 18px 40px rgb(37 99 235 / 0.16),
+    0 0 0 1px rgb(255 255 255 / 0.09) inset !important;
+}
+
+body.kliper-dark-theme .kliper-house-chip.is-active .kliper-house-chip__text strong {
+  color: #ffffff !important;
+}
+
+body.kliper-dark-theme .kliper-house-chip.is-active .kliper-house-chip__text small {
+  color: rgb(237 233 254 / 0.86) !important;
 }
 
 body.kliper-dark-theme .kliper-object-plan-card__media,

@@ -17,10 +17,17 @@
   }
 
   function reset() {
-    Array.prototype.forEach.call(document.querySelectorAll('.kliper-cards-filter-head, .kliper-cards-filter-body, .kliper-cards-param-field, .kliper-cards-param-popover'), function (node) {
+    Array.prototype.forEach.call(document.querySelectorAll('.kliper-cards-filter-head, .kliper-cards-filter-row, .kliper-cards-filter-main, .kliper-cards-filter-title, .kliper-cards-filter-tabs, .kliper-cards-filter-actions, .kliper-cards-filter-body, .kliper-cards-filter-body--suppress, .kliper-cards-param-field, .kliper-cards-param-popover'), function (node) {
       node.classList.remove(
         'kliper-cards-filter-head',
+        'kliper-cards-filter-no-body',
+        'kliper-cards-filter-row',
+        'kliper-cards-filter-main',
+        'kliper-cards-filter-title',
+        'kliper-cards-filter-tabs',
+        'kliper-cards-filter-actions',
         'kliper-cards-filter-body',
+        'kliper-cards-filter-body--suppress',
         'kliper-cards-param-field',
         'kliper-cards-param-popover',
         'kliper-cards-param-popover--year',
@@ -40,23 +47,35 @@
 
     var node = title;
     while (node && node !== document.body) {
-      if (node.tagName === 'SECTION' && cleanText(node).indexOf('Свернуть') !== -1) return node;
+      if (node.tagName === 'SECTION' && (cleanText(node).indexOf('Свернуть') !== -1 || cleanText(node).indexOf('Развернуть') !== -1)) return node;
       node = node.parentElement;
     }
     return null;
   }
 
   function findFilterBody() {
-    var candidates = Array.prototype.slice.call(document.querySelectorAll('main section'));
-    return candidates.find(function (node) {
+    var candidates = Array.prototype.slice.call(document.querySelectorAll('main section, main section > div, main section > div > div')).filter(function (node) {
       var text = cleanText(node);
+      if (!text || node.classList.contains('kliper-cards-filter-head')) return false;
       return text.indexOf('Где') !== -1 &&
         text.indexOf('Сценарий покупки') !== -1 &&
         text.indexOf('Параметры') !== -1 &&
         text.indexOf('Год сдачи') !== -1 &&
         text.indexOf('Комнат') !== -1 &&
         text.indexOf('Цена') !== -1;
-    }) || null;
+    }).map(function (node) {
+      var rect = node.getBoundingClientRect ? node.getBoundingClientRect() : null;
+      return {
+        node: node,
+        textLength: cleanText(node).length,
+        area: rect ? rect.width * rect.height : Number.MAX_SAFE_INTEGER
+      };
+    });
+
+    var best = candidates.sort(function (a, b) {
+      return a.textLength - b.textLength || a.area - b.area;
+    })[0];
+    return best ? best.node : null;
   }
 
   function markPopover(buttonText, popoverTitle, modifier) {
@@ -100,10 +119,13 @@
 
     var head = findFilterHead();
     var body = findFilterBody();
-    if (!head || !body) return;
+    if (!head) return;
 
     head.classList.add('kliper-cards-filter-head');
-    body.classList.add('kliper-cards-filter-body');
+    head.classList.toggle('kliper-cards-filter-no-body', !body && currentCatalogTitle() === 'Застройщики');
+    if (body) body.classList.add('kliper-cards-filter-body');
+    markFilterHeadParts(head);
+    stripCatalogTabTooltips();
 
     var opened = [
       markPopover('Год сдачи', 'Год сдачи', 'kliper-cards-param-popover--year'),
@@ -116,17 +138,76 @@
   }
 
   function collapseFilterIfOpen() {
-    var head = findFilterHead();
-    if (!head) return;
-    var collapseButton = Array.prototype.slice.call(head.querySelectorAll('button')).find(function (node) {
-      return cleanText(node).indexOf('Свернуть') !== -1;
-    });
-    if (collapseButton) collapseButton.click();
+    var body = findFilterBody();
+    if (body) {
+      body.classList.add('kliper-cards-filter-body', 'kliper-cards-filter-body--suppress');
+    }
+  }
+
+  function silentlyCollapseFilterAfterSwitch() {
+    document.body.classList.add('kliper-cards-filter-switching');
+    collapseFilterIfOpen();
+
+    window.setTimeout(function () {
+      var action = Array.prototype.slice.call(document.querySelectorAll('.kliper-cards-filter-actions button')).find(function (node) {
+        return cleanText(node) === 'Свернуть фильтр';
+      });
+      if (action) action.click();
+    }, 80);
+
+    window.setTimeout(function () {
+      document.body.classList.remove('kliper-cards-filter-switching');
+      schedule(20);
+    }, 180);
   }
 
   function isCatalogTabButton(node) {
     if (!node) return false;
+    if (!node.closest('.kliper-cards-filter-tabs')) return false;
     return ['Застройщики', 'Новостройки', 'Сданные дома', 'Для бизнеса', 'Риелторы'].indexOf(cleanText(node)) !== -1;
+  }
+
+  function markFilterHeadParts(head) {
+    var row = head && head.firstElementChild;
+    var main = row && row.children && row.children[0];
+    var actions = row && row.children && row.children[1];
+    var title = main && main.children && main.children[0];
+    var tabs = main && main.children && main.children[1];
+
+    if (row) row.classList.add('kliper-cards-filter-row');
+    if (main) main.classList.add('kliper-cards-filter-main');
+    if (title) title.classList.add('kliper-cards-filter-title');
+    if (tabs) tabs.classList.add('kliper-cards-filter-tabs');
+    if (actions) actions.classList.add('kliper-cards-filter-actions');
+  }
+
+  function currentCatalogTitle() {
+    var title = Array.prototype.slice.call(document.querySelectorAll('h2')).find(function (node) {
+      return ['Застройщики', 'Новостройки', 'Сданные дома'].indexOf(cleanText(node)) !== -1;
+    });
+    return title ? cleanText(title) : '';
+  }
+
+  function isCurrentCatalogTabButton(node) {
+    return isCatalogTabButton(node) && cleanText(node) === currentCatalogTitle();
+  }
+
+  function stripCatalogTabTooltips() {
+    Array.prototype.forEach.call(document.querySelectorAll('button[title]'), function (button) {
+      if (isCatalogTabButton(button)) button.removeAttribute('title');
+    });
+  }
+
+  function isFilterExpandButton(node) {
+    if (!node) return false;
+    return cleanText(node).indexOf('Развернуть') !== -1;
+  }
+
+  function releaseFilterBody() {
+    document.body.classList.remove('kliper-cards-filter-switching');
+    Array.prototype.forEach.call(document.querySelectorAll('.kliper-cards-filter-body--suppress'), function (node) {
+      node.classList.remove('kliper-cards-filter-body--suppress');
+    });
   }
 
   function schedule(delay) {
@@ -137,7 +218,16 @@
   document.addEventListener('click', function (event) {
     var button = event.target.closest && event.target.closest('button');
     if (isCatalogTabButton(button)) {
-      window.setTimeout(collapseFilterIfOpen, 180);
+      if (isCurrentCatalogTabButton(button)) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        schedule(80);
+        return;
+      }
+      silentlyCollapseFilterAfterSwitch();
+    } else if (isFilterExpandButton(button)) {
+      releaseFilterBody();
     }
     schedule(80);
   }, true);

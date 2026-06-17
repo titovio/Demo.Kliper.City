@@ -66,7 +66,7 @@
         '<h2>Расположение на карте</h2>' +
         '<p>Узнайте, где находится ЖК, посмотрите инфраструктуру и транспортную доступность.</p>' +
       '</div>' +
-      '<div class="kliper-map-location__preview">' +
+      '<div class="kliper-map-location__preview" role="button" tabindex="0" aria-label="Открыть карту">' +
         '<div class="kliper-map-location__map" aria-hidden="true"><span class="kliper-map-location__pin"></span></div>' +
         '<div class="kliper-map-location__aerial">' +
           '<img src="' + escapeHtml(previewImage) + '" alt="Инфраструктура рядом с ЖК" loading="lazy">' +
@@ -75,10 +75,15 @@
           '<span>КАРТА ОБЪЕКТА</span>' +
           '<strong>Расположение на карте</strong>' +
         '</div>' +
-        '<button class="kliper-map-location__button" type="button">Открыть карту</button>' +
       '</div>';
 
-    section.querySelector('.kliper-map-location__button').addEventListener('click', function (event) {
+    var preview = section.querySelector('.kliper-map-location__preview');
+    preview.addEventListener('click', function (event) {
+      event.preventDefault();
+      showMapModal();
+    });
+    preview.addEventListener('keydown', function (event) {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
       event.preventDefault();
       showMapModal();
     });

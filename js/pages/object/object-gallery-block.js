@@ -103,6 +103,28 @@
     return gallery[activeCategory] || gallery['Общий вид'];
   }
 
+  function allGalleryEntries() {
+    var entries = [];
+    categories.forEach(function (category) {
+      (gallery[category] || []).forEach(function (item, index) {
+        entries.push({
+          category: category,
+          index: index,
+          item: item
+        });
+      });
+    });
+    return entries;
+  }
+
+  function galleryEntryIndex(category, index) {
+    var entries = allGalleryEntries();
+    var found = entries.findIndex(function (entry) {
+      return entry.category === category && entry.index === index;
+    });
+    return found >= 0 ? found : 0;
+  }
+
   function renderTabs() {
     return categories.map(function (category) {
       return '<button class="kliper-object-gallery__tab' + (category === activeCategory ? ' is-active' : '') + '" type="button" data-gallery-category="' + escapeHtml(category) + '">' +
@@ -161,10 +183,10 @@
   }
 
   function showGalleryModal(index) {
-    var items = galleryItems();
-    var currentIndex = Number(index) || 0;
-    var item = items[currentIndex];
-    if (!item) return;
+    var entries = allGalleryEntries();
+    var currentIndex = galleryEntryIndex(activeCategory, Number(index) || 0);
+    var entry = entries[currentIndex];
+    if (!entry || !entry.item) return;
     var oldModal = document.querySelector('.kliper-gallery-modal');
     if (oldModal) oldModal.remove();
 
@@ -172,22 +194,23 @@
     modal.className = 'kliper-gallery-modal';
     modal.innerHTML =
       '<button class="kliper-gallery-modal__backdrop" type="button" aria-label="Закрыть галерею"></button>' +
-      '<article class="kliper-gallery-modal__card" role="dialog" aria-modal="true" aria-label="' + escapeHtml(item.title) + '">' +
+      '<article class="kliper-gallery-modal__card" role="dialog" aria-modal="true" aria-label="' + escapeHtml(entry.item.title) + '">' +
         '<button class="kliper-gallery-modal__close" type="button" aria-label="Закрыть">×</button>' +
         '<button class="kliper-gallery-modal__nav kliper-gallery-modal__nav--prev" type="button" aria-label="Предыдущее фото">‹</button>' +
         '<div class="kliper-gallery-modal__media">' +
-          '<img src="' + escapeHtml(largeImage(item.image)) + '" alt="' + escapeHtml(item.title) + '">' +
+          '<img src="' + escapeHtml(largeImage(entry.item.image)) + '" alt="' + escapeHtml(entry.item.title) + '">' +
         '</div>' +
         '<button class="kliper-gallery-modal__nav kliper-gallery-modal__nav--next" type="button" aria-label="Следующее фото">›</button>' +
         '<div class="kliper-gallery-modal__caption">' +
-          '<p>' + escapeHtml(item.title) + '</p>' +
-          '<span>' + (currentIndex + 1) + ' / ' + items.length + '</span>' +
+          '<p>' + escapeHtml(entry.item.title) + '</p>' +
+          '<span>' + escapeHtml(entry.category) + ' · ' + (currentIndex + 1) + ' / ' + entries.length + '</span>' +
         '</div>' +
       '</article>';
     document.body.appendChild(modal);
 
     function renderModal() {
-      item = items[currentIndex];
+      entry = entries[currentIndex];
+      var item = entry.item;
       var card = modal.querySelector('.kliper-gallery-modal__card');
       var image = modal.querySelector('.kliper-gallery-modal__media img');
       var caption = modal.querySelector('.kliper-gallery-modal__caption p');
@@ -198,11 +221,11 @@
         image.alt = item.title;
       }
       if (caption) caption.textContent = item.title;
-      if (counter) counter.textContent = (currentIndex + 1) + ' / ' + items.length;
+      if (counter) counter.textContent = entry.category + ' · ' + (currentIndex + 1) + ' / ' + entries.length;
     }
 
     function showNext(direction) {
-      currentIndex = (currentIndex + direction + items.length) % items.length;
+      currentIndex = (currentIndex + direction + entries.length) % entries.length;
       renderModal();
     }
 

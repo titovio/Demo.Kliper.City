@@ -65,16 +65,21 @@
         '<h2>Вид сверху</h2>' +
         '<p>Исследуйте ЖК с высоты птичьего полёта.</p>' +
       '</div>' +
-      '<div class="kliper-aerial-view__preview">' +
+      '<div class="kliper-aerial-view__preview" role="button" tabindex="0" aria-label="Открыть вид сверху">' +
         '<img src="' + escapeHtml(aerialImage) + '" alt="Вид сверху" loading="lazy">' +
         '<div class="kliper-aerial-view__overlay">' +
           '<span>3D-ВИД ОБЪЕКТА</span>' +
           '<strong>Вид сверху</strong>' +
         '</div>' +
-        '<button class="kliper-aerial-view__button" type="button">Открыть вид сверху</button>' +
       '</div>';
 
-    section.querySelector('.kliper-aerial-view__button').addEventListener('click', function (event) {
+    var preview = section.querySelector('.kliper-aerial-view__preview');
+    preview.addEventListener('click', function (event) {
+      event.preventDefault();
+      showAerialModal();
+    });
+    preview.addEventListener('keydown', function (event) {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
       event.preventDefault();
       showAerialModal();
     });
