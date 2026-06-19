@@ -6,7 +6,7 @@
     '': true,
     'Застройщики': true,
     'Новостройки': true,
-    'Сданные дома': true,
+    'Готовые ЖК': true,
     'Лента города': true,
     'Лучшее в Тюмени': true,
     'Мой район': true
@@ -231,6 +231,11 @@
   }, true);
 
   window.addEventListener('beforeunload', saveCurrentPage);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scheduleRestore);
+  } else {
+    scheduleRestore();
+  }
   window.addEventListener('load', function () {
     scheduleRestore();
     window.setTimeout(saveCurrentPage, 1200);

@@ -15,64 +15,38 @@ function clean(value) {
 async function readCatalogState(page) {
   return page.evaluate(() => {
     const clean = (value) => String(value || '').replace(/\s+/g, ' ').trim();
-    const cards = Array.from(document.querySelectorAll('[aria-label^="Открыть карточку"]'));
-    const heading = Array.from(document.querySelectorAll('h1,h2'))
-      .map((node) => clean(node.textContent))
-      .find(Boolean) || '';
-    const cardCountLabel = Array.from(document.querySelectorAll('p'))
-      .map((node) => clean(node.textContent))
-      .find((text) => /карточки$/.test(text)) || '';
     const visible = (node) => {
       if (!node) return false;
       const style = window.getComputedStyle(node);
       const rect = node.getBoundingClientRect();
       return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 1 && rect.height > 1;
     };
-    const cleanFilterToggle = document.querySelector('[data-clean-filter-toggle]');
-
+    const buttons = Array.from(document.querySelectorAll('main button'))
+      .filter(visible)
+      .map((node) => clean(node.textContent))
+      .filter(Boolean);
+    const mainText = clean(document.querySelector('main')?.textContent);
     return {
-      heading,
-      cardCountLabel,
-      domCardCount: cards.length,
-      resultToolbarVisible: (() => {
-        const toolbar = document.querySelector('.kliper-cards-result-toolbar');
-        if (!toolbar) return false;
-        const style = window.getComputedStyle(toolbar);
-        const rect = toolbar.getBoundingClientRect();
-        return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 1 && rect.height > 1;
-      })(),
-      resultToolbarText: clean(document.querySelector('.kliper-cards-result-toolbar')?.textContent),
-      resultToolbarButtonCount: document.querySelectorAll('.kliper-cards-result-toolbar button').length,
-      cleanFilterToggleText: visible(cleanFilterToggle) ? clean(cleanFilterToggle.textContent) : '',
-      cleanFilterExpanded: visible(cleanFilterToggle) ? cleanFilterToggle.getAttribute('aria-expanded') || '' : '',
-      cleanFilterVisible: (() => {
-        const panel = document.querySelector('.kliper-cards-clean-filter');
-        if (!panel) return false;
-        const style = window.getComputedStyle(panel);
-        const rect = panel.getBoundingClientRect();
-        return !panel.hidden && style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 1 && rect.height > 1;
-      })(),
-      cleanFilterText: clean(document.querySelector('.kliper-cards-clean-filter')?.textContent),
-      visualTabs: Array.from(document.querySelectorAll('.kliper-cards-visual-filter [data-visual-cards-tab]'))
-        .map((node) => clean(node.textContent)),
-      activeVisualTabs: Array.from(document.querySelectorAll('.kliper-cards-visual-filter [data-visual-cards-tab].is-active'))
-        .map((node) => clean(node.textContent)),
-      filterToResultToolbarGap: (() => {
-        const filter = document.querySelector('.kliper-cards-visual-filter');
-        const toolbar = document.querySelector('.kliper-cards-result-toolbar');
-        if (!filter || !toolbar) return null;
-        return Math.round(toolbar.getBoundingClientRect().top - filter.getBoundingClientRect().bottom);
-      })(),
+      heading: Array.from(document.querySelectorAll('h1,h2'))
+        .map((node) => clean(node.textContent))
+        .find(Boolean) || '',
+      cardCountLabel: Array.from(document.querySelectorAll('p'))
+        .map((node) => clean(node.textContent))
+        .find((text) => /карточки$/.test(text)) || '',
+      domCardCount: document.querySelectorAll('[aria-label^="Открыть карточку"]').length,
+      buttons,
+      mainText,
+      oldVisualFilterExists: Boolean(document.querySelector('.kliper-cards-visual-filter')),
+      oldVisualTabExists: Boolean(document.querySelector('[data-visual-cards-tab]')),
+      oldVisualScriptLoaded: Array.from(document.scripts).some((script) => /cards-visual-section-filter/.test(script.src)),
       rootTextLength: clean(document.getElementById('root')?.textContent).length,
       bodyTextLength: clean(document.body.textContent).length,
-      visualFilterExists: Boolean(document.querySelector('.kliper-cards-visual-filter')),
-      hasPopupFilterText: Array.from(document.querySelectorAll('.kliper-cards-source-filter, .kliper-cards-source-filter-body, .kliper-cards-source-filter-overlay, .kliper-cards-old-filter-shell')).some((node) => {
-        const style = window.getComputedStyle(node);
-        const rect = node.getBoundingClientRect();
-        return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 1 && rect.height > 1;
-      }),
     };
   });
+}
+
+async function clickMainButton(page, label) {
+  await page.locator('main button').filter({ hasText: new RegExp(`^${label}$`) }).first().click();
 }
 
 (async () => {
@@ -86,134 +60,66 @@ async function readCatalogState(page) {
     if (message.type() === 'error') consoleErrors.push(message.text());
   });
 
-  await page.goto(targetUrl, { waitUntil: 'commit' });
-  await page.waitForFunction(() => Boolean(document.querySelector('.kliper-cards-visual-filter')), null, { timeout: 12000 });
+  await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 45000 });
+  await page.waitForFunction(() => document.querySelectorAll('main button').length > 3, null, { timeout: 12000 });
   await page.waitForTimeout(600);
 
   const initial = await readCatalogState(page);
-  assert.equal(initial.heading, 'Застройщики');
-  assert.ok(initial.visualFilterExists, 'visual catalog filter should be mounted');
+  assert.equal(initial.oldVisualFilterExists, false, 'removed visual catalog filter should not be mounted');
+  assert.equal(initial.oldVisualTabExists, false, 'removed visual catalog tab data attributes should not exist');
+  assert.equal(initial.oldVisualScriptLoaded, false, 'removed visual filter script should not be loaded');
   assert.ok(initial.domCardCount > 0, 'initial catalog should render cards');
-  assert.equal(initial.resultToolbarVisible, true, 'result toolbar should be visible');
-  assert.ok(initial.resultToolbarButtonCount >= 3, 'result toolbar should keep card view switch buttons');
-  assert.ok(initial.filterToResultToolbarGap <= 20, 'result toolbar should sit directly below the visual filter');
-  assert.equal(initial.cleanFilterToggleText, '', 'clean popup filter button should be hidden on developers tab');
-  assert.equal(initial.cleanFilterExpanded, '', 'clean popup filter button should be absent on developers tab');
-  assert.equal(initial.cleanFilterVisible, false, 'clean popup filter panel should be hidden by default');
-  assert.equal(initial.hasPopupFilterText, false, 'old popup filter text should not be visible initially');
-  assert.deepEqual(
-    initial.visualTabs,
-    ['Застройщики', 'Новостройки', 'Новые районы', 'Обжитые районы', 'Для бизнеса', 'Риелторы'],
-    'visual tabs should include district age filters after new buildings'
+  assert.ok(initial.buttons.includes('Застройщики'), 'React catalog tabs should render developers tab');
+  assert.ok(initial.buttons.includes('Новостройки'), 'React catalog tabs should render new buildings tab');
+  assert.ok(initial.buttons.includes('Готовые ЖК'), 'React catalog tabs should render ready residential complexes tab');
+  assert.equal(initial.buttons.includes('Новые районы'), false, 'new districts should not be a top-level real estate tab');
+  assert.equal(
+    initial.buttons.indexOf('Готовые ЖК'),
+    initial.buttons.indexOf('Новостройки') + 1,
+    'ready residential complexes tab should sit immediately after new buildings'
   );
 
-  await page.locator('.kliper-cards-visual-filter button', { hasText: 'Новостройки' }).click();
-  await page.waitForTimeout(900);
+  await clickMainButton(page, 'Новостройки');
+  await page.waitForTimeout(700);
   const afterNewBuildings = await readCatalogState(page);
   assert.equal(afterNewBuildings.heading, 'Новостройки');
   assert.ok(afterNewBuildings.domCardCount > 0, 'new buildings should render cards');
-  assert.equal(afterNewBuildings.resultToolbarVisible, true, 'result toolbar should stay visible on new buildings tab');
-  assert.ok(afterNewBuildings.resultToolbarButtonCount >= 3, 'result toolbar switch buttons should stay visible on new buildings tab');
-  assert.ok(afterNewBuildings.filterToResultToolbarGap <= 20, 'result toolbar should stay directly below the visual filter on new buildings tab');
-  assert.equal(afterNewBuildings.cleanFilterToggleText, 'Открыть фильтр', 'clean popup filter button should show on new buildings tab');
-  assert.equal(afterNewBuildings.cleanFilterExpanded, 'false', 'clean popup filter should be collapsed by default on new buildings tab');
-  assert.equal(afterNewBuildings.hasPopupFilterText, false, 'old popup filter text should stay hidden on new buildings tab');
+  assert.equal(afterNewBuildings.buttons.includes('Новые районы'), false, 'new districts should stay hidden from React tabs');
+  assert.ok(afterNewBuildings.buttons.includes('Районы'), 'settled district filter should be available in React tabs');
+  assert.ok(afterNewBuildings.mainText.includes('Все районы'), 'React detail filter should render default location value');
+  assert.equal(afterNewBuildings.mainText.includes('Подобрать новостройку'), false, 'instant new building filter should not render a title');
+  assert.equal(afterNewBuildings.mainText.includes('Показать ЖК'), false, 'instant new building filter should not render submit button');
+  assert.equal(afterNewBuildings.mainText.includes('Выберите район'), false, 'new building picker should not render full district list drawer');
+  assert.ok(afterNewBuildings.mainText.includes('Выгодно'), 'React detail filter should render buyer tag drawers');
+  assert.ok(afterNewBuildings.mainText.includes('Инвестиции'), 'React detail filter should render investment drawer');
+  assert.ok(afterNewBuildings.mainText.includes('Год сдачи'), 'React detail filter should render year row');
+  assert.equal(afterNewBuildings.oldVisualFilterExists, false, 'old visual filter should not reappear on new buildings');
 
-  await page.locator('[data-visual-cards-tab="Новостройки"]').click();
-  await page.waitForTimeout(250);
-  const afterRepeatedNewBuildingsClick = await readCatalogState(page);
-  assert.equal(afterRepeatedNewBuildingsClick.cleanFilterExpanded, 'true', 'repeated click on the active visual tab should open its clean filter');
-  assert.equal(afterRepeatedNewBuildingsClick.cleanFilterVisible, true, 'active visual tab should expose its clean filter on the second click');
+  await clickMainButton(page, 'Готовые ЖК');
+  await page.waitForTimeout(500);
+  const afterReadyComplexes = await readCatalogState(page);
+  assert.equal(afterReadyComplexes.heading, 'Готовые ЖК');
+  assert.ok(afterReadyComplexes.rootTextLength > 0, 'React root should not become empty after ready complexes tab');
+  assert.ok(afterReadyComplexes.bodyTextLength > 0, 'page body should not become blank after ready complexes tab');
+  assert.equal(afterReadyComplexes.oldVisualFilterExists, false, 'old visual filter should not reappear on ready complexes');
 
-  await page.locator('[data-visual-cards-tab="Новостройки"]').click();
-  await page.waitForTimeout(250);
-  const afterThirdNewBuildingsClick = await readCatalogState(page);
-  assert.equal(afterThirdNewBuildingsClick.cleanFilterExpanded, 'false', 'another click on the active visual tab should close its clean filter');
-  assert.equal(afterThirdNewBuildingsClick.cleanFilterVisible, false, 'active visual tab should hide its clean filter on the third click');
+  await clickMainButton(page, 'Районы');
+  await page.waitForTimeout(500);
+  const afterSettledDistricts = await readCatalogState(page);
+  assert.equal(afterSettledDistricts.heading, 'Районы');
+  assert.ok(afterSettledDistricts.rootTextLength > 0, 'React root should not become empty after settled district filter');
+  assert.ok(afterSettledDistricts.bodyTextLength > 0, 'page body should not become blank after settled district filter');
+  assert.equal(afterSettledDistricts.oldVisualFilterExists, false, 'old visual filter should not reappear on settled districts');
 
-  await page.locator('.kliper-cards-visual-filter button', { hasText: 'Новые районы' }).click();
-  await page.waitForTimeout(900);
-  const afterNewDistricts = await readCatalogState(page);
-  assert.equal(afterNewDistricts.heading, 'Новостройки');
-  assert.deepEqual(afterNewDistricts.activeVisualTabs, ['Новые районы'], 'new districts visual filter should be active inside new buildings');
-  assert.equal(afterNewDistricts.cleanFilterToggleText, 'Открыть фильтр', 'clean popup filter should stay available for new districts visual filter');
-
-  await page.locator('[data-clean-filter-toggle]').click();
-  await page.waitForTimeout(250);
-  const afterOpenCleanFilter = await readCatalogState(page);
-  assert.equal(afterOpenCleanFilter.cleanFilterToggleText, 'Скрыть фильтр', 'clean popup filter button should switch to hide label');
-  assert.equal(afterOpenCleanFilter.cleanFilterExpanded, 'true', 'clean popup filter button should report expanded state');
-  assert.equal(afterOpenCleanFilter.cleanFilterVisible, true, 'clean popup filter panel should open');
-  assert.ok(afterOpenCleanFilter.cleanFilterText.includes('Где'), 'clean popup filter should render location row');
-  assert.ok(afterOpenCleanFilter.cleanFilterText.includes('Сценарий покупки'), 'clean popup filter should render new-buildings scenario row');
-  assert.equal(afterOpenCleanFilter.cleanFilterText.includes('Новые районы'), false, 'new district filter should live in visual tabs');
-  assert.equal(afterOpenCleanFilter.cleanFilterText.includes('Обжитые районы'), false, 'settled district filter should live in visual tabs');
-  assert.ok(afterOpenCleanFilter.cleanFilterText.includes('Год сдачичастично сдан202620272028+'), 'clean popup filter should render year tags instead of rooms and price');
-  assert.equal(afterOpenCleanFilter.cleanFilterText.includes('Комнат'), false, 'clean popup filter should not render rooms field');
-  assert.equal(afterOpenCleanFilter.cleanFilterText.includes('Цена'), false, 'clean popup filter should not render price field');
-  assert.equal(afterOpenCleanFilter.hasPopupFilterText, false, 'old popup filter text should stay hidden when clean filter is open');
-
-  await page.evaluate(() => {
-    document.documentElement.style.scrollBehavior = 'auto';
-    document.body.style.scrollBehavior = 'auto';
-    window.scrollTo(0, 900);
-  });
-  await page.waitForTimeout(700);
-  const scrollBeforeStabilityWait = await page.evaluate(() => window.scrollY);
-  await page.waitForTimeout(1200);
-  const scrollAfterStabilityWait = await page.evaluate(() => window.scrollY);
-  assert.ok(
-    Math.abs(scrollAfterStabilityWait - scrollBeforeStabilityWait) <= 45,
-    'visual filter maintenance should not cause page scroll jumps'
-  );
-
-  await page.locator('[data-clean-filter-value="частично сдан"]').click();
-  await page.waitForTimeout(900);
-  const afterCompleted = await readCatalogState(page);
+  await clickMainButton(page, 'Застройщики');
+  await page.waitForTimeout(500);
+  const afterDevelopers = await readCatalogState(page);
+  assert.equal(afterDevelopers.heading, 'Застройщики');
+  assert.equal(afterDevelopers.mainText.includes('Где'), false, 'developers section should not render detail filter body');
+  assert.equal(afterDevelopers.oldVisualFilterExists, false, 'old visual filter should not reappear on developers');
 
   const runtimeErrors = pageErrors.concat(consoleErrors).join('\n');
   assert.ok(!runtimeErrors.includes('NotFoundError'), 'switching filters must not trigger React NotFoundError');
-  assert.equal(afterCompleted.heading, 'Сданные дома');
-  assert.ok(afterCompleted.rootTextLength > 0, 'React root should not become empty');
-  assert.ok(afterCompleted.bodyTextLength > 0, 'page body should not be blank');
-  assert.ok(afterCompleted.domCardCount > 0, 'completed houses should render cards');
-  assert.equal(afterCompleted.resultToolbarVisible, true, 'result toolbar should stay visible on completed houses tab');
-  assert.ok(afterCompleted.resultToolbarButtonCount >= 3, 'result toolbar switch buttons should stay visible on completed houses tab');
-  assert.ok(afterCompleted.filterToResultToolbarGap <= 20, 'result toolbar should stay directly below the visual filter on completed houses tab');
-  assert.equal(afterCompleted.hasPopupFilterText, false, 'old popup filter text should stay hidden on completed houses tab');
-  assert.ok(
-    Array.from(await page.locator('.kliper-cards-visual-filter [data-visual-cards-tab]').evaluateAll((nodes) => nodes.map((node) => node.textContent.trim()))).indexOf('Сданные дома') === -1,
-    'completed houses should not be shown as a top-level visual tab'
-  );
-
-  const afterOpenCompletedCleanFilter = await readCatalogState(page);
-  assert.equal(afterOpenCompletedCleanFilter.cleanFilterVisible, true, 'clean popup filter panel should open on completed houses tab');
-  assert.ok(afterOpenCompletedCleanFilter.cleanFilterText.includes('Сценарий покупки'), 'completed houses clean filter should match new-buildings scenario row');
-  assert.ok(afterOpenCompletedCleanFilter.cleanFilterText.includes('семейная ипотека'), 'completed houses clean filter should match new-buildings tags row');
-  assert.equal(afterOpenCompletedCleanFilter.cleanFilterText.includes('Новые районы'), false, 'completed houses clean filter should not duplicate new district visual tab');
-  assert.equal(afterOpenCompletedCleanFilter.cleanFilterText.includes('Обжитые районы'), false, 'completed houses clean filter should not duplicate settled district visual tab');
-  assert.ok(afterOpenCompletedCleanFilter.cleanFilterText.includes('Год сдачичастично сдан202620272028+'), 'completed houses clean filter should match new-buildings year tags row');
-  assert.equal(afterOpenCompletedCleanFilter.cleanFilterText.includes('Комнат'), false, 'completed houses clean filter should not render rooms field');
-  assert.equal(afterOpenCompletedCleanFilter.cleanFilterText.includes('Цена'), false, 'completed houses clean filter should not render price field');
-  await page.locator('[data-clean-filter-toggle]').click();
-  await page.waitForTimeout(250);
-
-  await page.locator('.kliper-cards-visual-filter button', { hasText: 'Для бизнеса' }).click();
-  await page.waitForTimeout(900);
-  const afterBusiness = await readCatalogState(page);
-  assert.equal(afterBusiness.heading, 'Для бизнеса');
-  assert.equal(afterBusiness.resultToolbarVisible, true, 'result toolbar should stay visible on business tab');
-  assert.ok(afterBusiness.resultToolbarButtonCount >= 3, 'result toolbar switch buttons should stay visible on business tab');
-  assert.ok(afterBusiness.filterToResultToolbarGap <= 20, 'result toolbar should stay directly below the visual filter on business tab');
-  assert.equal(afterBusiness.hasPopupFilterText, false, 'old popup filter should stay hidden on business tab');
-
-  await page.locator('.kliper-cards-visual-filter button', { hasText: 'Риелторы' }).click();
-  await page.waitForTimeout(900);
-  const afterRealtors = await readCatalogState(page);
-  assert.equal(afterRealtors.heading, 'Риелторы');
-  assert.equal(afterRealtors.cleanFilterToggleText, '', 'clean popup filter button should be hidden on realtors tab');
-  assert.equal(afterRealtors.cleanFilterVisible, false, 'clean popup filter panel should be absent on realtors tab');
-  assert.equal(afterRealtors.hasPopupFilterText, false, 'old popup filter should stay hidden on realtors tab');
 
   await browser.close();
 })().catch(async (error) => {

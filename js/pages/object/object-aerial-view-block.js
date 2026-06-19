@@ -17,7 +17,7 @@
     }).find(Boolean) || '';
 
     if (title.toLowerCase().indexOf('жк ') === 0) return true;
-    return /новостройк|сданн/i.test(title) && (document.body.textContent || '').toLowerCase().indexOf('жк ') !== -1;
+    return /новостройк|готов/i.test(title) && (document.body.textContent || '').toLowerCase().indexOf('жк ') !== -1;
   }
 
   function showAerialModal() {

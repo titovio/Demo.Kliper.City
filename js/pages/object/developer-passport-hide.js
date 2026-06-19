@@ -27,8 +27,8 @@
   }
 
   function hasPassportText(node) {
-    var text = normalize(node && node.textContent);
-    return text.indexOf(passportTitle) !== -1 && text.indexOf(passportHeading) !== -1;
+    var text = normalize(node && node.textContent).toLowerCase();
+    return text.indexOf(passportTitle.toLowerCase()) !== -1 && text.indexOf(passportHeading.toLowerCase()) !== -1;
   }
 
   function scoreCandidate(node) {
@@ -45,6 +45,24 @@
 
   function findPassportBlock() {
     var root = document.getElementById('root');
+    var marker = Array.prototype.slice.call(document.querySelectorAll('p,span,h2,h3')).find(function (node) {
+      return normalize(node.textContent).toLowerCase() === passportTitle.toLowerCase();
+    });
+
+    if (marker) {
+      var parent = marker.parentElement;
+      while (parent && parent !== root && parent !== document.body) {
+        var parentText = normalize(parent.textContent).toLowerCase();
+        var parentRect = parent.getBoundingClientRect ? parent.getBoundingClientRect() : null;
+        if (parentText.indexOf(passportHeading.toLowerCase()) !== -1 &&
+            (parentText.indexOf('жк в базе') !== -1 || parentText.indexOf('объекты застройщика') !== -1) &&
+            parentRect && parentRect.width > 260 && parentRect.height > 80) {
+          return scoreCandidate(parent);
+        }
+        parent = parent.parentElement;
+      }
+    }
+
     var nodes = Array.prototype.slice.call(document.querySelectorAll('section, article, div'));
 
     return nodes
@@ -56,18 +74,44 @@
       })
       .map(scoreCandidate)
       .filter(function (item) {
-        return item.width > 260 && item.height > 80 && item.textLength < 1200;
+        return item.width > 260 && item.height > 80;
       })
       .sort(function (a, b) {
-        return a.textLength - b.textLength || a.area - b.area;
+        return a.area - b.area || a.textLength - b.textLength;
       })[0];
   }
 
   function hideDeveloperPassport() {
     var candidate = findPassportBlock();
     if (!candidate || !candidate.node) return false;
-    candidate.node.remove();
-    return true;
+
+    var changed = false;
+    var platformBadge = Array.prototype.slice.call(candidate.node.querySelectorAll('span,button')).find(function (node) {
+      return normalize(node.textContent).toLowerCase() === 'единая карточка платформы';
+    });
+    if (platformBadge && !platformBadge.classList.contains('kliper-developer-passport-control-hidden')) {
+      platformBadge.classList.add('kliper-developer-passport-control-hidden');
+      changed = true;
+    }
+
+    var statsRow = Array.prototype.slice.call(candidate.node.querySelectorAll('div'))
+      .filter(function (node) {
+        var text = normalize(node.textContent).toLowerCase();
+        return text.indexOf('жк в базе') !== -1 &&
+          text.indexOf('активно') !== -1 &&
+          text.indexOf('сдано в базе') !== -1;
+      })
+      .map(scoreCandidate)
+      .sort(function (a, b) {
+        return a.area - b.area || a.textLength - b.textLength;
+      })[0];
+
+    if (statsRow && statsRow.node && !statsRow.node.classList.contains('kliper-developer-passport-control-hidden')) {
+      statsRow.node.classList.add('kliper-developer-passport-control-hidden');
+      changed = true;
+    }
+
+    return changed;
   }
 
   function findBlockByHeading(label) {
@@ -80,23 +124,25 @@
       heading.parentElement;
   }
 
-  function removeDeveloperLegacyBlocks() {
+  function hideDeveloperLegacyBlocks() {
     if (!isDeveloperPage()) return false;
 
-    var removed = false;
+    var changed = false;
     legacyHeadings.map(findBlockByHeading).filter(Boolean).forEach(function (node) {
       if (node.closest('.kliper-developer-feed, .kliper-developer-section-tabs')) return;
-      node.remove();
-      removed = true;
+      if (!node.classList.contains('kliper-developer-passport-control-hidden')) {
+        node.classList.add('kliper-developer-passport-control-hidden');
+        changed = true;
+      }
     });
 
-    return removed;
+    return changed;
   }
 
   function scheduleHide() {
     window.requestAnimationFrame(function () {
       hideDeveloperPassport();
-      removeDeveloperLegacyBlocks();
+      hideDeveloperLegacyBlocks();
     });
   }
 

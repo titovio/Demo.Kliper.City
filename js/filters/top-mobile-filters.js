@@ -34,7 +34,7 @@
     const select = document.createElement('select');
     Array.from(row.querySelectorAll('button')).forEach((button) => {
       const optionText = text(button);
-      if (!optionText || optionText.startsWith('Ещё') || optionText === 'Свернуть') return;
+      if (!optionText || optionText.startsWith('Ещё') || optionText === 'Свернуть' || optionText === 'Все' || optionText === 'Все разделы') return;
       const option = document.createElement('option');
       option.value = optionText;
       option.textContent = optionText;

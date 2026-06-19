@@ -1,0 +1,67 @@
+/* Tyumen district catalog: isolated styles, no changes to legacy bundle. */
+.kliper-district-source-hidden{display:none!important}
+.kliper-district-catalog{margin:16px 0 48px;padding:0}
+.kliper-district-catalog[hidden]{display:none!important}
+.kliper-district-catalog__toolbar{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.kliper-district-catalog__toolbar>div{display:flex;align-items:baseline;gap:10px;margin-right:auto}
+.kliper-district-catalog__toolbar strong{font-size:20px;font-weight:800;color:#171827}
+.kliper-district-catalog__toolbar>div span{font-size:13px;color:#787b91}
+.kliper-district-catalog__search input,.kliper-district-catalog__select select{height:42px;border:1px solid #e2e4ee;border-radius:12px;background:#fff;padding:0 14px;color:#242638;outline:none}
+.kliper-district-catalog__search input{width:min(280px,32vw)}
+.kliper-district-catalog__search input:focus,.kliper-district-catalog__select select:focus{border-color:#8645ee;box-shadow:0 0 0 3px rgba(134,69,238,.12)}
+.kliper-district-catalog__hint{margin:0 0 18px;color:#73768a;font-size:14px}
+.kliper-district-catalog__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.kliper-district-card{position:relative;overflow:hidden;min-height:285px;border-radius:26px;background:#11182b;box-shadow:0 12px 34px rgba(18,22,45,.12)}
+.kliper-district-card__open{position:absolute;inset:0;width:100%;height:100%;text-align:left;color:#fff}
+.kliper-district-card__cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s ease,filter .35s ease}
+.kliper-district-card[data-theme="2"] .kliper-district-card__cover,.kliper-district-dialog__hero[data-theme="2"] img{filter:hue-rotate(22deg) saturate(.9)}
+.kliper-district-card[data-theme="3"] .kliper-district-card__cover,.kliper-district-dialog__hero[data-theme="3"] img{filter:hue-rotate(48deg) brightness(.92)}
+.kliper-district-card[data-theme="4"] .kliper-district-card__cover,.kliper-district-dialog__hero[data-theme="4"] img{filter:hue-rotate(82deg) saturate(.75)}
+.kliper-district-card[data-theme="5"] .kliper-district-card__cover,.kliper-district-dialog__hero[data-theme="5"] img{filter:hue-rotate(142deg) brightness(.88)}
+.kliper-district-card[data-theme="6"] .kliper-district-card__cover,.kliper-district-dialog__hero[data-theme="6"] img{filter:hue-rotate(198deg) saturate(.8)}
+.kliper-district-card[data-theme="7"] .kliper-district-card__cover,.kliper-district-dialog__hero[data-theme="7"] img{filter:hue-rotate(250deg) brightness(.92)}
+.kliper-district-card[data-theme="8"] .kliper-district-card__cover,.kliper-district-dialog__hero[data-theme="8"] img{filter:hue-rotate(310deg) saturate(.85)}
+.kliper-district-card:hover .kliper-district-card__cover{transform:scale(1.035)}
+.kliper-district-card__shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,11,25,.1) 18%,rgba(7,11,25,.28) 48%,rgba(7,11,25,.92) 100%)}
+.kliper-district-card__initials{position:absolute;right:26px;top:17px;font-size:74px;line-height:1;font-weight:900;letter-spacing:-.08em;color:rgba(255,255,255,.12)}
+.kliper-district-card__tag{position:absolute;top:17px;left:17px;padding:9px 14px;border-radius:13px;background:#7f3ee9;font-size:12px;font-weight:800;text-transform:lowercase}
+.kliper-district-card__content{position:absolute;left:18px;right:18px;bottom:55px;display:flex;flex-direction:column;gap:3px}
+.kliper-district-card__location{font-size:13px;font-weight:700;color:rgba(255,255,255,.9)}
+.kliper-district-card__title{font-size:21px;line-height:1.18;font-weight:800}
+.kliper-district-card__status{display:inline-flex;align-self:flex-start;margin-top:5px;padding:5px 9px;border-radius:9px;background:rgba(10,12,25,.5);font-size:12px;font-weight:700}
+.kliper-district-card__metrics{position:absolute;left:14px;right:14px;bottom:11px;display:flex;align-items:center;gap:9px;color:#fff;font-size:12px;pointer-events:none}
+.kliper-district-card__metrics>span{display:inline-flex;align-items:center;min-height:34px;padding:0 11px;border:1px solid rgba(255,255,255,.22);border-radius:14px;background:rgba(9,12,28,.55);backdrop-filter:blur(8px)}
+.kliper-district-card__subscribe{pointer-events:auto;margin-left:auto;display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:0 12px;border:1px solid rgba(178,137,255,.55);border-radius:14px;background:rgba(31,23,66,.72);font-weight:800}
+.kliper-district-card__subscribe svg{width:16px;height:16px;fill:none;stroke:#ba86ff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.kliper-district-card__subscribe.is-active{background:#8143e9;border-color:#a970ff}
+.kliper-district-card__subscribe.is-active svg{stroke:#fff;fill:rgba(255,255,255,.12)}
+.kliper-district-catalog__empty{padding:48px;border:1px dashed #d9dbea;border-radius:20px;text-align:center;color:#777b90;background:#fff}
+.kliper-district-dialog{width:min(760px,calc(100vw - 28px));max-height:calc(100vh - 28px);border:0;border-radius:26px;background:#fff;box-shadow:0 28px 90px rgba(12,15,35,.38);overflow:auto}
+.kliper-district-dialog::backdrop{background:rgba(9,12,25,.65);backdrop-filter:blur(5px)}
+.kliper-district-dialog__panel{position:relative}
+.kliper-district-dialog__close{position:absolute;z-index:3;right:15px;top:15px;width:40px;height:40px;border-radius:50%;background:rgba(10,13,28,.72);color:#fff;font-size:27px;line-height:1}
+.kliper-district-dialog__hero{position:relative;height:245px;overflow:hidden}
+.kliper-district-dialog__hero img{width:100%;height:100%;object-fit:cover}
+.kliper-district-dialog__hero span{position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(10,12,26,.58))}
+.kliper-district-dialog__body{padding:26px}
+.kliper-district-dialog__tag{display:inline-flex;padding:7px 11px;border-radius:10px;background:#efe7ff;color:#7133d6;font-size:12px;font-weight:800}
+.kliper-district-dialog h2{margin:10px 0 4px;font-size:30px;line-height:1.15;font-weight:850;color:#171827}
+.kliper-district-dialog__location{margin-bottom:16px!important;color:#74778b!important;font-size:14px}
+.kliper-district-dialog__body>p{color:#3b3e50;line-height:1.65}
+.kliper-district-dialog__actions{display:flex;gap:10px;margin-top:22px}
+.kliper-district-dialog__actions button{min-height:44px;padding:0 16px;border-radius:13px;background:#f0f1f6;color:#343648;font-weight:800}
+.kliper-district-dialog__actions button:first-child{background:#8240e8;color:#fff}
+.kliper-district-dialog__actions button:first-child.is-active{background:#35245a}
+.kliper-district-dialog__feed{margin-top:24px;padding:18px;border-radius:16px;background:#f7f6fb}
+.kliper-district-dialog__feed h3{font-size:17px;font-weight:850;color:#202234}
+.kliper-district-dialog__feed p{margin-top:5px;color:#6e7184;font-size:14px;line-height:1.55}
+.kliper-dark-theme .kliper-district-catalog__toolbar strong{color:#f7f7fb}
+.kliper-dark-theme .kliper-district-catalog__search input,.kliper-dark-theme .kliper-district-catalog__select select,.kliper-dark-theme .kliper-district-catalog__empty{background:#171927;border-color:#303346;color:#f6f6fb}
+.kliper-dark-theme .kliper-district-dialog{background:#181a28;color:#f5f5fa}
+.kliper-dark-theme .kliper-district-dialog h2{color:#fff}
+.kliper-dark-theme .kliper-district-dialog__body>p{color:#d8d9e4}
+.kliper-dark-theme .kliper-district-dialog__feed{background:#232638}
+.kliper-dark-theme .kliper-district-dialog__feed h3{color:#fff}
+@media(max-width:1180px){.kliper-district-catalog__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.kliper-district-catalog{padding:0}.kliper-district-catalog__toolbar{align-items:stretch;flex-wrap:wrap}.kliper-district-catalog__toolbar>div{width:100%}.kliper-district-catalog__search{flex:1}.kliper-district-catalog__search input{width:100%}.kliper-district-catalog__grid{grid-template-columns:1fr;gap:16px}.kliper-district-card{min-height:255px;border-radius:22px}.kliper-district-card__subscribe span{display:none}}
+@media(max-width:520px){.kliper-district-catalog__select{width:100%}.kliper-district-catalog__select select{width:100%}.kliper-district-dialog__body{padding:20px}.kliper-district-dialog h2{font-size:25px}.kliper-district-dialog__actions{flex-direction:column}}

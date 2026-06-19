@@ -84,24 +84,45 @@
       ]
     }
   ];
-  var planImages = [
-    './assets/images/plans/plan-studio-1.png',
-    './assets/images/plans/plan-1room-1.png',
-    './assets/images/plans/plan-2room-wide.png',
-    './assets/images/plans/plan-3room-1.png',
-    './assets/images/plans/plan-2room-1.png',
-    './assets/images/plans/plan-2room-2.png',
-    './assets/images/plans/plan-2room-wide-2.png',
-    './assets/images/plans/plan-1room-2.png',
-    './assets/images/plans/plan-1room-terrace.png',
-    './assets/images/plans/plan-2room-3.png'
-  ];
-  var imageCursor = 0;
+  var planImagePools = {
+    studio: ['./assets/images/plans/plan-01.webp'],
+    one: [
+      './assets/images/plans/plan-03.webp',
+      './assets/images/plans/plan-08.webp',
+      './assets/images/plans/plan-09.webp',
+      './assets/images/plans/plan-10.webp'
+    ],
+    two: [
+      './assets/images/plans/plan-05.webp',
+      './assets/images/plans/plan-07.webp'
+    ],
+    three: [
+      './assets/images/plans/plan-04.webp',
+      './assets/images/plans/plan-06.webp'
+    ],
+    four: ['./assets/images/plans/plan-02.webp']
+  };
+  var imageCursorByType = {};
+
+  function nextPlanImage(type, previousImage) {
+    var pool = planImagePools[type] || planImagePools.one;
+    var cursor = imageCursorByType[type] || 0;
+    var image = pool[cursor % pool.length];
+
+    if (image === previousImage && pool.length > 1) {
+      cursor += 1;
+      image = pool[cursor % pool.length];
+    }
+
+    imageCursorByType[type] = cursor + 1;
+    return image;
+  }
 
   houses.forEach(function (house) {
+    var previousImage = '';
     house.plans.forEach(function (plan) {
-      plan.image = planImages[imageCursor % planImages.length];
-      imageCursor += 1;
+      plan.image = nextPlanImage(plan.type, previousImage);
+      previousImage = plan.image;
     });
   });
 
@@ -540,7 +561,7 @@
     }).find(Boolean) || '';
 
     if (title.toLowerCase().indexOf('жк ') === 0) return true;
-    return /новостройк|сданн/i.test(title) && (document.body.textContent || '').toLowerCase().indexOf('жк ') !== -1;
+    return /новостройк|готов/i.test(title) && (document.body.textContent || '').toLowerCase().indexOf('жк ') !== -1;
   }
 
   function removePlansBlock() {

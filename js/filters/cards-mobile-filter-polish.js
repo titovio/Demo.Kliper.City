@@ -13,7 +13,7 @@
   }
 
   function isCardsCatalogPage() {
-    return hasExactHeading('Новостройки') || hasExactHeading('Сданные дома') || hasExactHeading('Застройщики');
+    return hasExactHeading('Новостройки') || hasExactHeading('Готовые ЖК') || hasExactHeading('Застройщики');
   }
 
   function reset() {
@@ -41,7 +41,7 @@
   function findFilterHead() {
     var headings = Array.prototype.slice.call(document.querySelectorAll('h2'));
     var title = headings.find(function (node) {
-      return ['Новостройки', 'Сданные дома', 'Застройщики'].indexOf(cleanText(node)) !== -1;
+      return ['Новостройки', 'Готовые ЖК', 'Застройщики'].indexOf(cleanText(node)) !== -1;
     });
     if (!title) return null;
 
@@ -164,7 +164,7 @@
   function isCatalogTabButton(node) {
     if (!node) return false;
     if (!node.closest('.kliper-cards-filter-tabs')) return false;
-    return ['Застройщики', 'Новостройки', 'Сданные дома', 'Для бизнеса', 'Риелторы'].indexOf(cleanText(node)) !== -1;
+    return ['Застройщики', 'Новостройки', 'Готовые ЖК', 'Для бизнеса', 'Риелторы'].indexOf(cleanText(node)) !== -1;
   }
 
   function markFilterHeadParts(head) {
@@ -183,7 +183,7 @@
 
   function currentCatalogTitle() {
     var title = Array.prototype.slice.call(document.querySelectorAll('h2')).find(function (node) {
-      return ['Застройщики', 'Новостройки', 'Сданные дома'].indexOf(cleanText(node)) !== -1;
+      return ['Застройщики', 'Новостройки', 'Готовые ЖК'].indexOf(cleanText(node)) !== -1;
     });
     return title ? cleanText(title) : '';
   }

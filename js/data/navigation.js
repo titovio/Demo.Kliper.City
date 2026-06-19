@@ -3,7 +3,7 @@ window.KLIPER_NAVIGATION = {
     top: "Топ",
     cards: "Карточки",
     feed: "Лента",
-    district: "Мой район"
+    district: "Мой двор"
   },
   districtFilters: ["Все районы", "В городе", "У воды", "За городом", "Центральный"]
 };

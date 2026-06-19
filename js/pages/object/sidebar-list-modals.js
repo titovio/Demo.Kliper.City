@@ -18,31 +18,37 @@
   var recommendations = [
     {
       author: 'Анна М.',
+      initials: 'АМ',
       tone: 'советует',
       text: 'Понятно, что строят и где смотреть новости по объекту.'
     },
     {
       author: 'Илья С.',
+      initials: 'ИС',
       tone: 'полезно',
-      text: 'Удобно сравнивать ЖК и сразу видеть связанные сданные дома.'
+      text: 'Удобно сравнивать ЖК и сразу видеть связанные готовые ЖК.'
     },
     {
       author: 'Марина К.',
+      initials: 'МК',
       tone: 'актуально',
       text: 'Все обновления по объекту собраны в одном месте, не нужно искать по разным сайтам.'
     },
     {
       author: 'Дмитрий К.',
+      initials: 'ДК',
       tone: 'удобно',
       text: 'Можно подписаться и получать новости по всем важным этапам строительства.'
     },
     {
       author: 'Екатерина П.',
+      initials: 'ЕП',
       tone: 'понятно',
       text: 'Нравится, что рядом видны сервисы, предложения и связанные компании.'
     },
     {
       author: 'Ольга С.',
+      initials: 'ОС',
       tone: 'советует',
       text: 'Карточка помогает быстро понять, подходит ли объект по району и инфраструктуре.'
     }
@@ -94,11 +100,12 @@
   function renderRecommendations() {
     return recommendations.map(function (item) {
       return '<article class="kliper-sidebar-list-modal__recommendation">' +
-        '<div class="kliper-sidebar-list-modal__recommendation-head">' +
+        '<span class="kliper-sidebar-list-modal__avatar kliper-sidebar-list-modal__avatar--recommendation">' + escapeHtml(item.initials) + '</span>' +
+        '<div class="kliper-sidebar-list-modal__recommendation-content">' +
           '<strong>' + escapeHtml(item.author) + '</strong>' +
-          '<span>' + escapeHtml(item.tone) + '</span>' +
+          '<p>' + escapeHtml(item.text) + '</p>' +
         '</div>' +
-        '<p>' + escapeHtml(item.text) + '</p>' +
+        '<span class="kliper-sidebar-list-modal__recommendation-tone">' + escapeHtml(item.tone) + '</span>' +
       '</article>';
     }).join('');
   }

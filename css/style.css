@@ -5,6 +5,42 @@ html.kliper-page-restoring body {
   background: #f5f7fb;
 }
 
+html.kliper-page-restoring:not(.kliper-restore-ready) body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 42%, rgb(124 58 237 / 0.08), transparent 18rem),
+    #f5f7fb;
+  color: #334155;
+  font-size: 0.92rem;
+  font-weight: 850;
+  content: "Открываем карточку...";
+}
+
+html.kliper-page-restoring:not(.kliper-restore-ready) body::after {
+  position: fixed;
+  left: 50%;
+  top: calc(50% - 3.25rem);
+  z-index: 10000;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0.22rem solid rgb(124 58 237 / 0.16);
+  border-top-color: #7c3aed;
+  border-radius: 999px;
+  content: "";
+  transform: translateX(-50%);
+  animation: kliper-restore-spin 760ms linear infinite;
+}
+
+@keyframes kliper-restore-spin {
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
 /* Dark theme polish across generated pages */
 body.kliper-dark-theme {
   --kliper-dark-page: #080d18;
@@ -423,17 +459,253 @@ html.kliper-page-restoring.kliper-restore-ready #root {
 }
 
 .kliper-developer-card-hero {
-  height: 370px !important;
-  min-height: 370px !important;
+  height: 320px !important;
+  min-height: 320px !important;
 }
 
-.kliper-developer-card-hero > [class*="bottom-"],
-.kliper-developer-card-hero > div > [class*="bottom-"] {
-  bottom: 1.35rem !important;
+.kliper-developer-card-hero > .relative[class*="min-h-"] {
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+.kliper-developer-card-hero > .relative[class*="min-h-"] > .relative[class*="min-h-"] {
+  height: 100% !important;
+  min-height: 100% !important;
 }
 
 .kliper-developer-card-hero h1 {
   line-height: 1.02 !important;
+}
+
+.kliper-developer-hero-title-row {
+  margin-bottom: 0.85rem !important;
+}
+
+.kliper-developer-hero-facts {
+  display: none;
+}
+
+.kliper-developer-card-hero .kliper-developer-hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0;
+}
+
+.kliper-developer-hero-facts span {
+  display: inline-flex;
+  min-height: 1.9rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 999px;
+  background: rgb(15 23 42 / 0.72);
+  padding: 0.35rem 0.75rem;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 950;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.kliper-developer-card-hero h1 ~ p {
+  display: none !important;
+}
+
+.kliper-developer-card-hero p[class*="max-w-2xl"][class*="text-base"] {
+  display: none !important;
+}
+
+.kliper-developer-passport-control-hidden {
+  display: none !important;
+}
+
+.kliper-developer-reviews-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.25rem !important;
+  border: 1px solid rgb(255 255 255 / 0.92);
+  background: radial-gradient(circle at 92% 4%, rgb(34 211 238 / 0.13), transparent 42%), rgb(248 252 255 / 0.96) !important;
+  box-shadow: 0 20px 54px rgb(15 23 42 / 0.08) !important;
+}
+
+.kliper-developer-reviews-card__star {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.25rem;
+  width: 2rem !important;
+  height: 2rem !important;
+  margin: 0 !important;
+  color: #f59e0b !important;
+  stroke-width: 2.2;
+}
+
+.kliper-developer-reviews-card__label {
+  display: flex;
+  min-height: 2rem;
+  align-items: center;
+  padding-left: 2.75rem;
+  color: #8b5cf6 !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.13em !important;
+}
+
+.kliper-developer-reviews-card > h3,
+.kliper-developer-reviews-card h3 {
+  margin-top: 1.25rem !important;
+  font-size: 1.85rem !important;
+  line-height: 1.08 !important;
+}
+
+.kliper-developer-reviews-card__list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.1rem !important;
+}
+
+.kliper-developer-review {
+  display: grid;
+  grid-template-columns: 2.7rem minmax(0, 1fr) auto;
+  grid-template-areas: "avatar name tone" "avatar text text";
+  column-gap: 0.8rem;
+  row-gap: 0.32rem;
+  align-items: center;
+  padding: 0.9rem !important;
+  border: 1px solid rgb(226 232 240 / 0.82);
+  border-radius: 1rem !important;
+  background: rgb(255 255 255 / 0.94) !important;
+  box-shadow: 0 12px 28px rgb(15 23 42 / 0.045);
+}
+
+.kliper-developer-review__avatar {
+  position: relative;
+  grid-area: avatar;
+  width: 2.7rem;
+  height: 2.7rem;
+  overflow: hidden;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ede9fe, #c4b5fd);
+}
+
+.kliper-developer-review.is-green .kliper-developer-review__avatar {
+  background: linear-gradient(145deg, #ecfccb, #bef264);
+}
+
+.kliper-developer-review__avatar::before,
+.kliper-developer-review__avatar::after {
+  position: absolute;
+  left: 50%;
+  content: "";
+  transform: translateX(-50%);
+  background: rgb(124 58 237 / 0.28);
+}
+
+.kliper-developer-review__avatar::before {
+  top: 0.65rem;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+}
+
+.kliper-developer-review__avatar::after {
+  bottom: -0.2rem;
+  width: 2rem;
+  height: 1.3rem;
+  border-radius: 1.2rem 1.2rem 0 0;
+}
+
+.kliper-developer-review.is-green .kliper-developer-review__avatar::before,
+.kliper-developer-review.is-green .kliper-developer-review__avatar::after {
+  background: rgb(101 163 13 / 0.35);
+}
+
+.kliper-developer-review__head {
+  display: contents !important;
+}
+
+.kliper-developer-review__name {
+  grid-area: name;
+  margin: 0 !important;
+  color: #0f172a !important;
+  font-size: 0.95rem !important;
+}
+
+.kliper-developer-review__tone {
+  grid-area: tone;
+  border-radius: 999px !important;
+  padding: 0.38rem 0.65rem !important;
+  color: #d97706 !important;
+  background: #fff7ed !important;
+}
+
+.kliper-developer-review.is-green .kliper-developer-review__tone {
+  color: #65a30d !important;
+  background: #f7fee7 !important;
+}
+
+.kliper-developer-review__text {
+  grid-area: text;
+  margin: 0 !important;
+  color: #64748b !important;
+  font-size: 0.83rem !important;
+  line-height: 1.5 !important;
+}
+
+.kliper-developer-reviews-card__button {
+  position: relative;
+  min-height: 3.25rem;
+  margin-top: 1rem !important;
+  padding-right: 3.2rem !important;
+  border-radius: 1rem !important;
+  background: linear-gradient(135deg, #f59e0b, #fb8c00) !important;
+  box-shadow: 0 14px 28px rgb(245 158 11 / 0.24);
+}
+
+.kliper-developer-reviews-card__button::after {
+  position: absolute;
+  right: 1.15rem;
+  top: 50%;
+  content: "→";
+  font-size: 1.45rem;
+  font-weight: 500;
+  transform: translateY(-52%);
+}
+
+body.kliper-dark-theme .kliper-developer-reviews-card {
+  border-color: rgb(255 255 255 / 0.1);
+  background: radial-gradient(circle at 92% 4%, rgb(34 211 238 / 0.12), transparent 42%), rgb(15 23 42 / 0.94) !important;
+}
+
+body.kliper-dark-theme .kliper-developer-review {
+  border-color: rgb(255 255 255 / 0.08);
+  background: rgb(30 41 59 / 0.9) !important;
+}
+
+body.kliper-dark-theme .kliper-developer-review__name {
+  color: #f8fafc !important;
+}
+
+@media (max-width: 640px) {
+  .kliper-developer-reviews-card > h3,
+  .kliper-developer-reviews-card h3 {
+    font-size: 1.55rem !important;
+  }
+
+  .kliper-developer-review {
+    grid-template-columns: 2.55rem minmax(0, 1fr);
+    grid-template-areas: "avatar name" "avatar tone" "text text";
+  }
+
+  .kliper-developer-review__tone {
+    justify-self: start;
+  }
+}
+
+div[class*="rounded-[30px]"] > div[class*="md:flex-row"]:has(+ div[class*="md:grid-cols-3"]),
+div[class*="rounded-[30px]"] > div[class*="md:flex-row"] + div[class*="md:grid-cols-3"] {
+  display: none !important;
 }
 
 .kliper-object-hero-facts span {
@@ -486,13 +758,8 @@ html.kliper-page-restoring.kliper-restore-ready #root {
   }
 
   .kliper-developer-card-hero {
-    height: 330px !important;
-    min-height: 330px !important;
-  }
-
-  .kliper-developer-card-hero > [class*="bottom-"],
-  .kliper-developer-card-hero > div > [class*="bottom-"] {
-    bottom: 1rem !important;
+    height: 270px !important;
+    min-height: 270px !important;
   }
 }
 
@@ -503,8 +770,8 @@ html.kliper-page-restoring.kliper-restore-ready #root {
   }
 
   .kliper-developer-card-hero {
-    height: 350px !important;
-    min-height: 350px !important;
+    height: 300px !important;
+    min-height: 300px !important;
   }
 }
 
@@ -1407,19 +1674,22 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 }
 
 .kliper-developer-section-shell {
+  --kliper-developer-tabs-height: 3.55rem;
   width: 100%;
   max-width: 100%;
   min-width: 0;
 }
 
 .kliper-developer-section-tabs {
+  position: relative;
+  z-index: 3;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.45rem;
   width: 100%;
   max-width: 100%;
   min-width: 0;
-  margin: 1rem 0;
+  margin: 0 0 1rem;
   padding: 0.35rem;
   border: 1px solid rgb(226 232 240 / 0.95);
   border-radius: 1rem;
@@ -1458,8 +1728,386 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 }
 
 .kliper-developer-section-shell[data-developer-section="objects"] .kliper-developer-feed,
-.kliper-developer-section-shell[data-developer-section="feed"] .kliper-developer-objects-area {
+.kliper-developer-section-shell[data-developer-section="feed"] .kliper-developer-map-card,
+.kliper-developer-section-hidden {
   display: none !important;
+}
+
+.kliper-developer-map-card {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid rgb(226 232 240 / 0.9);
+  border-radius: 1.2rem;
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / 0.94), rgb(248 250 252 / 0.9));
+  box-shadow: 0 18px 52px rgb(15 23 42 / 0.06);
+  cursor: pointer;
+  transition: border-color 170ms ease, box-shadow 170ms ease, transform 170ms ease;
+}
+
+.kliper-developer-map-card:hover,
+.kliper-developer-map-card:focus-visible {
+  border-color: rgb(124 58 237 / 0.26);
+  box-shadow: 0 22px 60px rgb(79 70 229 / 0.12);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.kliper-developer-map-card__scene {
+  position: relative;
+  min-height: 9.4rem;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  background:
+    linear-gradient(90deg, rgb(7 14 29 / 0.92), rgb(7 14 29 / 0.58) 42%, rgb(7 14 29 / 0.72)),
+    url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&q=84") center / cover;
+  color: #ffffff;
+  isolation: isolate;
+}
+
+.kliper-developer-map-card__scene::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 26% 50%, rgb(244 63 94 / 0.34), transparent 4.5rem),
+    linear-gradient(110deg, rgb(15 23 42 / 0.92), transparent 58%);
+  content: "";
+}
+
+.kliper-developer-map-card__grid {
+  position: absolute;
+  inset: -1rem;
+  z-index: 2;
+  opacity: 0.26;
+  background-image:
+    radial-gradient(circle, rgb(255 255 255 / 0.38) 0 0.12rem, transparent 0.16rem),
+    linear-gradient(90deg, rgb(255 255 255 / 0.1) 1px, transparent 1px),
+    linear-gradient(0deg, rgb(255 255 255 / 0.1) 1px, transparent 1px);
+  background-size: 2.4rem 2.4rem, 5rem 5rem, 5rem 5rem;
+  transform: rotate(-5deg) scale(1.08);
+}
+
+.kliper-developer-map-card__route {
+  position: absolute;
+  z-index: 3;
+  width: 42rem;
+  height: 9rem;
+  border: 1px solid rgb(125 211 252 / 0.28);
+  border-color: transparent transparent rgb(125 211 252 / 0.32) rgb(125 211 252 / 0.2);
+  border-radius: 50%;
+  transform: rotate(-10deg);
+}
+
+.kliper-developer-map-card__route--one {
+  left: 16%;
+  top: 22%;
+}
+
+.kliper-developer-map-card__route--two {
+  left: 34%;
+  top: 44%;
+  transform: rotate(9deg);
+}
+
+.kliper-developer-map-card__copy {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  min-height: 9.4rem;
+  max-width: 34rem;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.25rem 1.4rem;
+  text-shadow: 0 3px 16px rgb(0 0 0 / 0.5);
+}
+
+.kliper-developer-map-card__copy span {
+  color: rgb(226 232 240 / 0.86);
+  font-size: 0.62rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kliper-developer-map-card__copy strong {
+  max-width: 15.5rem;
+  color: #ffffff;
+  font-size: clamp(1.28rem, 2vw, 1.75rem);
+  font-weight: 950;
+  line-height: 0.98;
+}
+
+.kliper-developer-map-card__copy small {
+  margin-top: 0.45rem;
+  color: rgb(226 232 240 / 0.78);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.kliper-developer-map-card__pin {
+  position: absolute;
+  z-index: 6;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 0.22rem solid #ffffff;
+  border-radius: 999px;
+  background: #f43f5e;
+  box-shadow:
+    0 0 0 0.28rem rgb(244 63 94 / 0.24),
+    0 0.65rem 1.4rem rgb(0 0 0 / 0.35);
+  transform: translate(-50%, -50%);
+}
+
+.kliper-developer-map-card__pin::after {
+  position: absolute;
+  inset: -0.75rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: rgb(244 63 94 / 0.28);
+  content: "";
+}
+
+.kliper-developer-map-card__pin span {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 0.45rem);
+  max-width: 9rem;
+  padding: 0.28rem 0.48rem;
+  border-radius: 0.55rem;
+  background: rgb(2 6 23 / 0.72);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 900;
+  line-height: 1.1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-0.2rem);
+  transition: opacity 160ms ease, transform 160ms ease;
+  white-space: nowrap;
+}
+
+.kliper-developer-map-card__pin:hover span {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.kliper-developer-map-card__pin--visible span {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.kliper-developer-map-card__pin--city {
+  background: #38bdf8;
+  box-shadow:
+    0 0 0 0.28rem rgb(56 189 248 / 0.22),
+    0 0.65rem 1.4rem rgb(0 0 0 / 0.35);
+}
+
+.kliper-developer-map-card__pin--city::after {
+  color: rgb(56 189 248 / 0.26);
+}
+
+.kliper-developer-map-card__pin--water {
+  background: #8b5cf6;
+  box-shadow:
+    0 0 0 0.28rem rgb(139 92 246 / 0.24),
+    0 0.65rem 1.4rem rgb(0 0 0 / 0.35);
+}
+
+.kliper-developer-map-card__pin--water::after {
+  color: rgb(139 92 246 / 0.28);
+}
+
+.kliper-developer-map-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.kliper-developer-map-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(2 6 23 / 0.76);
+  backdrop-filter: blur(14px);
+}
+
+.kliper-developer-map-modal__card {
+  position: relative;
+  z-index: 1;
+  width: min(76rem, calc(100vw - 2.5rem));
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 1.25rem;
+  background: #020617;
+  box-shadow: 0 30px 96px rgb(0 0 0 / 0.46);
+}
+
+.kliper-developer-map-modal__map {
+  position: relative;
+  min-height: min(72vh, 42rem);
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    linear-gradient(90deg, rgb(7 14 29 / 0.9), rgb(7 14 29 / 0.44) 48%, rgb(7 14 29 / 0.72)),
+    url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2200&q=88") center / cover;
+  isolation: isolate;
+}
+
+.kliper-developer-map-modal__map::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 24% 42%, rgb(244 63 94 / 0.28), transparent 11rem),
+    radial-gradient(circle at 72% 56%, rgb(56 189 248 / 0.18), transparent 13rem),
+    linear-gradient(180deg, rgb(2 6 23 / 0.08), rgb(2 6 23 / 0.7));
+  content: "";
+}
+
+.kliper-developer-map-modal__copy {
+  position: absolute;
+  left: 2rem;
+  bottom: 2rem;
+  z-index: 8;
+  max-width: min(27rem, calc(100% - 4rem));
+  padding: 1.1rem 1.2rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 1rem;
+  background: rgb(2 6 23 / 0.64);
+  box-shadow: 0 18px 48px rgb(0 0 0 / 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.kliper-developer-map-modal__copy p {
+  color: rgb(196 181 253 / 0.92);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kliper-developer-map-modal__copy h3 {
+  margin-top: 0.25rem;
+  color: #ffffff;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 950;
+  line-height: 0.98;
+}
+
+.kliper-developer-map-modal__copy span {
+  display: block;
+  margin-top: 0.7rem;
+  color: rgb(226 232 240 / 0.82);
+  font-size: 0.94rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.kliper-developer-map-modal__close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  color: #0f172a;
+  background: rgb(255 255 255 / 0.92);
+  font-size: 1.35rem;
+  font-weight: 800;
+  box-shadow: 0 12px 30px rgb(0 0 0 / 0.24);
+}
+
+.kliper-developer-map-modal__close:hover,
+.kliper-developer-map-modal__close:focus-visible {
+  color: #ffffff;
+  background: #7c3aed;
+  outline: none;
+}
+
+.kliper-developer-map-modal .kliper-developer-map-card__pin {
+  z-index: 7;
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.kliper-developer-map-modal .kliper-developer-map-card__pin span {
+  top: calc(100% + 0.58rem);
+  padding: 0.38rem 0.58rem;
+  font-size: 0.76rem;
+}
+
+.kliper-developer-object-tabs__list {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.kliper-developer-objects-heading-hidden {
+  display: none !important;
+}
+
+.kliper-developer-object-tabs__button {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.kliper-developer-object-tabs__title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kliper-developer-object-tabs__icon {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.kliper-developer-object-tabs__icon svg {
+  width: 1.18rem;
+  height: 1.18rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.kliper-developer-object-tabs__count {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 1.55rem;
+  height: 1.55rem;
+  margin-top: 0 !important;
+  border-radius: 999px;
+  color: #7c3aed !important;
+  background: rgb(124 58 237 / 0.1);
+  font-size: 0.75rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.kliper-developer-object-tabs__button[class*="bg-slate-950"] .kliper-developer-object-tabs__count {
+  color: #0f172a !important;
+  background: #ffffff;
 }
 
 .kliper-developer-feed {
@@ -1812,7 +2460,7 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 }
 
 .kliper-sidebar-list-modal__status,
-.kliper-sidebar-list-modal__recommendation-head span {
+.kliper-sidebar-list-modal__recommendation-tone {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1826,14 +2474,21 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 }
 
 .kliper-sidebar-list-modal__recommendation {
-  padding: 0.9rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem;
 }
 
-.kliper-sidebar-list-modal__recommendation-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+.kliper-sidebar-list-modal__avatar--recommendation {
+  border-radius: 50%;
+  background: #facc15;
+  color: #422006;
+}
+
+.kliper-sidebar-list-modal__recommendation-content {
+  min-width: 0;
 }
 
 .kliper-sidebar-list-modal-open {
@@ -2270,19 +2925,19 @@ body.kliper-dark-theme .kliper-mobile-nav-panel {
 .kliper-aerial-view__overlay span,
 .kliper-map-location__overlay span {
   display: block;
-  margin-bottom: 0.24rem;
-  font-size: 0.68rem;
+  margin-bottom: 0.2rem;
+  font-size: 0.58rem;
   line-height: 1.1;
   font-weight: 950;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .kliper-aerial-view__overlay strong,
 .kliper-map-location__overlay strong {
   display: block;
-  font-size: clamp(1.25rem, 2.4vw, 2.35rem);
-  line-height: 0.98;
+  font-size: clamp(1.02rem, 1.65vw, 1.6rem);
+  line-height: 1;
   font-weight: 950;
 }
 
@@ -3638,6 +4293,11 @@ body.kliper-dark-theme .kliper-sidebar-list-modal__avatar {
   color: #ffffff;
 }
 
+body.kliper-dark-theme .kliper-sidebar-list-modal__avatar--recommendation {
+  background: #facc15;
+  color: #422006;
+}
+
 body.kliper-dark-theme .kliper-sidebar-list-modal__close {
   color: #e2e8f0;
   box-shadow: 0 12px 28px rgb(0 0 0 / 0.22);
@@ -3670,7 +4330,12 @@ body.kliper-dark-theme .kliper-sidebar-list-modal__close {
     grid-template-columns: auto minmax(0, 1fr);
   }
 
-  .kliper-sidebar-list-modal__status {
+  .kliper-sidebar-list-modal__recommendation {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .kliper-sidebar-list-modal__status,
+  .kliper-sidebar-list-modal__recommendation-tone {
     grid-column: 2;
     justify-self: start;
   }
@@ -3684,6 +4349,49 @@ body.kliper-dark-theme .kliper-sidebar-list-modal__close {
     min-height: 2.55rem;
     padding: 0 0.7rem;
     font-size: 0.86rem;
+  }
+
+  .kliper-developer-object-tabs__list {
+    gap: 0.4rem !important;
+    padding: 0.4rem !important;
+    border-radius: 1.1rem !important;
+  }
+
+  .kliper-developer-object-tabs__button {
+    min-height: 3.05rem;
+    padding: 0.62rem 0.55rem !important;
+    border-radius: 0.85rem !important;
+  }
+
+  .kliper-developer-object-tabs__title {
+    font-size: clamp(0.68rem, 2.7vw, 0.82rem) !important;
+  }
+
+  .kliper-developer-object-tabs__count {
+    width: 1.35rem;
+    height: 1.35rem;
+    font-size: 0.68rem !important;
+  }
+
+  @media (max-width: 430px) {
+    .kliper-developer-object-tabs__button {
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.62rem 0.45rem !important;
+    }
+
+    .kliper-developer-object-tabs__title {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .kliper-developer-object-tabs__icon {
+      display: inline-flex;
+    }
   }
 
   .kliper-developer-feed {
@@ -5539,164 +6247,18 @@ body.kliper-dark-theme .kliper-object-hero-action > span:first-child {
 body.kliper-dark-theme .kliper-object-hero-action__label {
   color: #ffffff !important;
 }
-
-.kliper-cards-visual-filter {
-  position: relative;
-  z-index: 30;
-  margin: 0 0 0.75rem;
-  overflow: visible;
-  border: 1px solid rgb(255 255 255 / 0.9);
-  border-radius: 20px;
-  background: #ffffff;
-  box-shadow: 0 10px 26px rgb(15 23 42 / 0.08);
-}
-
-.kliper-cards-visual-filter.is-clean-filter-open {
-  overflow: hidden;
-}
-
-.kliper-cards-visual-filter__row {
-  display: grid;
-  grid-template-columns: minmax(170px, auto) minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-}
-
-.kliper-cards-visual-filter__title {
-  min-width: 0;
-  color: #0f172a;
-  font-size: 1.05rem;
-  font-weight: 950;
-  line-height: 1.15;
-}
-
-.kliper-cards-visual-filter__tabs {
-  display: flex;
-  min-width: 0;
-  justify-content: flex-start;
-  gap: 0.45rem;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.kliper-cards-visual-filter__tabs::-webkit-scrollbar {
-  display: none;
-}
-
-.kliper-cards-visual-filter__tab {
-  display: inline-flex;
-  min-height: 2.25rem;
-  min-width: 7.35rem;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.5rem;
-  padding: 0 0.75rem;
-  color: #64748b;
-  background: #ffffff;
-  box-shadow: inset 0 0 0 1px rgb(226 232 240 / 0.95);
-  font-size: 0.82rem;
-  font-weight: 950;
-  line-height: 1;
-  transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
-}
-
-.kliper-cards-visual-filter__tab-icon {
-  display: none;
-  width: 1.2rem;
-  height: 1.2rem;
-  flex: 0 0 auto;
-}
-
-.kliper-cards-visual-filter__tab-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.kliper-cards-visual-filter__tab:hover,
-.kliper-cards-visual-filter__tab:focus-visible {
-  color: #6d28d9;
-  background: #f5f3ff;
-  outline: none;
-}
-
-.kliper-cards-visual-filter__tab.is-active {
-  color: #ffffff;
-  background: #7c3aed;
-  box-shadow: 0 10px 20px rgb(124 58 237 / 0.18);
-}
-
-.kliper-cards-visual-filter__filter-toggle {
-  display: inline-flex;
-  min-height: 2.35rem;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  border: 0;
-  border-radius: 0.75rem;
-  background: #1c2234;
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 0.88rem;
-  font-weight: 950;
-  line-height: 1;
-  padding: 0.75rem 1rem;
-  white-space: nowrap;
-  box-shadow: 0 12px 26px rgb(15 23 42 / 0.16), inset 0 0 0 1px rgb(255 255 255 / 0.1);
-  transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
-}
-
-.kliper-cards-visual-filter__filter-toggle[hidden] {
-  display: none !important;
-}
-
-.kliper-cards-visual-filter__filter-toggle:hover,
-.kliper-cards-visual-filter__filter-toggle:focus-visible {
-  background: #273149;
-  outline: none;
-  transform: translateY(-1px);
-}
-
-.kliper-cards-visual-filter__filter-icon {
-  position: relative;
-  width: 1rem;
-  height: 1rem;
-}
-
-.kliper-cards-visual-filter__filter-icon::before,
-.kliper-cards-visual-filter__filter-icon::after {
-  position: absolute;
-  content: "";
-}
-
-.kliper-cards-visual-filter__filter-icon::before {
-  left: 0.1rem;
-  right: 0.1rem;
-  top: 0.24rem;
-  height: 0.12rem;
-  border-radius: 999px;
-  background: currentColor;
-  box-shadow: 0 0.36rem 0 currentColor, 0 0.72rem 0 currentColor;
-}
-
-.kliper-cards-visual-filter__filter-icon::after {
-  left: 0.56rem;
-  top: 0.1rem;
-  width: 0.28rem;
-  height: 0.28rem;
-  border-radius: 999px;
-  background: #ffffff;
-  box-shadow: -0.42rem 0.36rem 0 #ffffff, 0.18rem 0.72rem 0 #ffffff;
-}
-
 .kliper-cards-clean-filter {
+  position: relative;
+  z-index: 2;
   overflow: hidden;
   border-top: 1px solid rgb(226 232 240 / 0.72);
   background: rgb(255 255 255 / 0.96);
   border-radius: 0 0 20px 20px;
+}
+
+.kliper-cards-clean-filter,
+.kliper-cards-clean-filter * {
+  pointer-events: auto;
 }
 
 .kliper-cards-clean-filter[hidden] {
@@ -5807,113 +6369,44 @@ body.kliper-dark-theme .kliper-object-hero-action__label {
   opacity: 0.78;
 }
 
-body.kliper-cards-visual-filter-ready .kliper-cards-source-filter {
-  display: none !important;
-}
 
-body.kliper-cards-visual-filter-ready .kliper-cards-filter-head {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
+.kliper-cards-source-filter-overlay {
+  display: none !important;
   pointer-events: none !important;
-  clip-path: inset(50%) !important;
 }
 
-body.kliper-cards-visual-filter-ready .kliper-cards-filter-body,
-body.kliper-cards-visual-filter-ready .kliper-cards-source-filter-body {
-  display: none !important;
+.fixed.pointer-events-none,
+.fixed.pointer-events-none * {
+  pointer-events: none !important;
 }
 
-body.kliper-cards-visual-filter-ready .kliper-cards-old-filter-shell {
-  display: none !important;
+.kliper-developer-card-status-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 100%;
 }
 
-body.kliper-cards-visual-filter-ready .kliper-cards-source-filter-overlay {
-  display: none !important;
+.kliper-developer-card-status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.58);
+  padding: 0 9px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 8px 18px rgba(2, 6, 23, 0.18);
+  backdrop-filter: blur(10px);
 }
 
-@media (max-width: 1180px) {
-  .kliper-cards-visual-filter__row {
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas:
-      "title toggle"
-      "tabs tabs";
-    gap: 0.75rem;
-  }
-
-  .kliper-cards-visual-filter__title {
-    grid-area: title;
-  }
-
-  .kliper-cards-visual-filter__tabs {
-    grid-area: tabs;
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    width: 100%;
-    gap: 0.4rem;
-    overflow: visible;
-  }
-
-  .kliper-cards-visual-filter__tab {
-    width: 100%;
-    min-width: 0;
-    max-width: none;
-    padding: 0.55rem;
-  }
-
-  .kliper-cards-visual-filter__tab-icon {
-    display: block;
-  }
-
-  .kliper-cards-visual-filter__tab-label {
-    display: none;
-  }
-
-  .kliper-cards-visual-filter__filter-toggle {
-    grid-area: toggle;
-    width: auto;
-    justify-self: end;
-  }
-}
 
 /* Mobile catalog filters: full-screen panel and safe dropdown sheets */
-@media (max-width: 640px) {
-  .kliper-cards-visual-filter {
-    margin: 0 0 0.75rem;
-    border-radius: 22px;
-    box-shadow: 0 16px 38px rgb(15 23 42 / 0.16);
-  }
-
-  .kliper-cards-visual-filter__row {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 0.75rem;
-    padding: 0.9rem 1rem 1rem;
-  }
-
-  .kliper-cards-visual-filter__title {
-    font-size: 1rem;
-  }
-
-  .kliper-cards-visual-filter__tab {
-    min-width: 0;
-    max-width: none;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  .kliper-cards-visual-filter__filter-toggle {
-    width: auto;
-    min-height: 2.25rem;
-    padding: 0.65rem 0.8rem;
-    font-size: 0.8rem;
-  }
-
-  .kliper-cards-clean-filter__row {
+@media (max-width: 640px) {.kliper-cards-clean-filter__row {
     grid-template-columns: minmax(0, 1fr);
     gap: 0.65rem;
     padding: 0.9rem 1rem;
@@ -6390,7 +6883,7 @@ body.kliper-dark-theme main section > div > aside[class*="space-y-5"] {
   --tw-ring-shadow: 0 0 #0000 !important;
 }
 
-/* Let the navigation panel scroll below the header while its city menu stays on top. */
+/* Let the navigation panel scroll below the sticky header and stories. */
 .kliper-mobile-nav-panel {
   position: relative;
   z-index: auto;
@@ -6398,11 +6891,11 @@ body.kliper-dark-theme main section > div > aside[class*="space-y-5"] {
 
 .kliper-mobile-nav-panel .relative:has(> button) {
   position: relative;
-  z-index: 260;
+  z-index: 20;
 }
 
 .kliper-mobile-nav-panel .relative:has(> button) > div[class*="absolute"][class*="top-full"] {
-  z-index: 320 !important;
+  z-index: 30 !important;
   isolation: isolate;
 }
 
@@ -6466,6 +6959,27 @@ body.kliper-dark-theme main section[class*="relative"][class*="z-[80]"]:has([ari
   box-shadow: none !important;
   --tw-ring-color: transparent !important;
   --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+@media (max-width: 767px) {
+  html {
+    overflow-x: clip !important;
+    overflow-y: auto !important;
+  }
+
+  body,
+  #root {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  #root > div > header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+    align-self: start;
+    isolation: isolate;
+  }
 }
 
 /* Final dark surface model: transparent wrappers, soft real panels. */
@@ -6641,3 +7155,38 @@ body.kliper-dark-theme [aria-label^="Открыть карточку"] {
 
 
 
+/* Kliper radius tune: calmer corners for cards, panels and controls. */
+.kliper-newbuild-picker-row {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .kliper-newbuild-picker-row {
+    grid-template-columns: minmax(132px, 0.78fr) repeat(4, minmax(122px, 0.8fr)) minmax(150px, 0.86fr);
+    align-items: start;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1180px) {
+  .kliper-newbuild-picker-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.rounded-lg{border-radius:6px}
+.rounded-xl{border-radius:10px}
+.rounded-2xl{border-radius:12px}
+.rounded-3xl{border-radius:16px}
+.rounded-\[10px\]{border-radius:8px}
+.rounded-\[16px\]{border-radius:12px}
+.rounded-\[18px\]{border-radius:12px}
+.rounded-\[20px\]{border-radius:14px}
+.rounded-\[22px\]{border-radius:15px}
+.rounded-\[24px\]{border-radius:16px}
+.rounded-\[26px\]{border-radius:17px}
+.rounded-\[28px\]{border-radius:18px}
+.rounded-\[30px\]{border-radius:20px}
+.rounded-\[34px\]{border-radius:22px}
+.rounded-b-\[20px\]{border-bottom-right-radius:14px;border-bottom-left-radius:14px}
+.rounded-tl-\[70px\]{border-top-left-radius:42px}
