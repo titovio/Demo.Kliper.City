@@ -1,0 +1,615 @@
+/* =============================================
+   Kliper.City — Catalog Components
+   Phase 1: Недвижимость
+   ============================================= */
+
+/* ---- Stories Bar ---- */
+.kliper-stories {
+  display: flex;
+  gap: 16px;
+  padding: 12px 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.kliper-stories::-webkit-scrollbar { display: none; }
+
+.kliper-story {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.kliper-story-ring {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(from 180deg, #7c3aed, #c084fc, #7c3aed);
+}
+.kliper-story-ring-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  padding: 2px;
+}
+.kliper-story-ring-inner img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.kliper-story-name {
+  font-size: 10px;
+  font-weight: 700;
+  color: #334155;
+  text-align: center;
+  max-width: 68px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .kliper-story-ring { width: 72px; height: 72px; }
+  .kliper-story-name { font-size: 11px; max-width: 76px; }
+}
+
+/* ---- Top Navigation Bar ---- */
+.kliper-topbar {
+  border-radius: 22px;
+  background: #030a1d;
+  padding: 12px;
+  color: #fff;
+  box-shadow: 0 18px 44px rgba(15,23,42,0.18);
+  ring: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 16px;
+}
+.kliper-topbar-grid {
+  display: grid;
+  grid-template-columns: auto auto minmax(280px, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+@media (max-width: 767px) {
+  .kliper-topbar-grid { display: none; }
+}
+
+/* City Selector */
+.kliper-city-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  min-width: 140px;
+  padding: 0 16px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: Manrope, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.kliper-city-btn:hover { background: rgba(255,255,255,0.15); }
+
+/* Desktop Pills */
+.kliper-pills {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.kliper-pills::-webkit-scrollbar { display: none; }
+
+.kliper-pill {
+  white-space: nowrap;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: Manrope, sans-serif;
+  color: rgba(255,255,255,0.65);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.kliper-pill:hover { color: rgba(255,255,255,0.9); }
+.kliper-pill.active {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(109,40,217,0.35);
+}
+
+/* Search */
+.kliper-search {
+  position: relative;
+}
+.kliper-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+.kliper-search-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 16px 0 44px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,1);
+  font-size: 15px;
+  font-weight: 600;
+  font-family: Manrope, sans-serif;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.kliper-search-input::placeholder { color: #94a3b8; }
+.kliper-search-input:focus { border-color: #7c3aed; }
+
+/* ---- Mobile Navigation ---- */
+.kliper-mobile-nav {
+  display: none;
+  flex-direction: column;
+}
+@media (max-width: 767px) {
+  .kliper-mobile-nav { display: flex; }
+}
+
+.kliper-mob-row1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+}
+.kliper-mob-city {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  font-family: Manrope, sans-serif;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.kliper-mob-search-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.kliper-mob-search-toggle.open { background: rgba(124,58,237,0.5); }
+
+.kliper-mob-search-row {
+  overflow: hidden;
+  transition: max-height 0.25s ease, opacity 0.25s ease, padding 0.25s ease;
+  max-height: 0;
+  opacity: 0;
+  padding: 0 14px;
+}
+.kliper-mob-search-row.open {
+  max-height: 60px;
+  opacity: 1;
+  padding: 0 14px 8px;
+}
+.kliper-mob-search-input {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: Manrope, sans-serif;
+  outline: none;
+}
+.kliper-mob-search-input::placeholder { color: rgba(255,255,255,0.4); }
+.kliper-mob-search-input:focus { border-color: rgba(124,58,237,0.6); }
+
+/* Mobile Pills */
+.kliper-mob-pills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 6px 14px 12px;
+}
+.kliper-mob-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 4px;
+  border-radius: 10px;
+  border: none;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: Manrope, sans-serif;
+  color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.06);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+.kliper-mob-pill.active {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(109,40,217,0.3);
+}
+.kliper-mob-pill svg { flex-shrink: 0; }
+@media (max-width: 359px) {
+  .kliper-mob-pill span { display: none; }
+  .kliper-mob-pill { padding: 10px; }
+}
+
+/* ---- Card Grid ---- */
+.kliper-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 0;
+}
+@media (min-width: 640px) {
+  .kliper-card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1280px) {
+  .kliper-card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---- Developer Card ---- */
+.kliper-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 14px 38px rgba(15,23,42,0.06);
+  background: #fff;
+}
+.kliper-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 48px rgba(15,23,42,0.12);
+}
+.kliper-card-image {
+  position: relative;
+  height: 285px;
+  overflow: hidden;
+}
+.kliper-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.kliper-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+}
+.kliper-card-badge-profile {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.kliper-card-avatar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(from 180deg, #7c3aed, #c084fc, #7c3aed);
+}
+.kliper-card-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  padding: 2px;
+}
+.kliper-card-avatar-inner img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.kliper-card-avatar-letter {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  color: #475569;
+}
+.kliper-card-content {
+  position: absolute;
+  bottom: 58px;
+  left: 0;
+  right: 0;
+  padding: 0 16px;
+  z-index: 2;
+  color: #fff;
+}
+.kliper-card-districts {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.85;
+  margin-bottom: 4px;
+  max-width: 92%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.kliper-card-name {
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0 0 6px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+.kliper-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.kliper-card-status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.72);
+  padding: 0 10px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(2, 6, 23, 0.32);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Card Footer (counters) */
+.kliper-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+}
+.kliper-card-counter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.kliper-card-counter svg { color: #94a3b8; }
+
+/* ---- Counter Bar (above grid) ---- */
+.kliper-grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  margin-bottom: 8px;
+}
+.kliper-grid-count {
+  font-size: 14px;
+  font-weight: 700;
+  color: #64748b;
+}
+.kliper-grid-views {
+  display: flex;
+  gap: 4px;
+}
+.kliper-grid-view-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.kliper-grid-view-btn.active {
+  background: #7c3aed;
+  color: #fff;
+}
+.kliper-grid-view-btn:hover:not(.active) {
+  background: #f1f5f9;
+}
+
+/* ---- Filter Bar (Novostroyki style) ---- */
+.kliper-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 14px 38px rgba(15,23,42,0.06);
+}
+.kliper-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: Manrope, sans-serif;
+  background: #fff;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+  height: 40px;
+}
+.kliper-filter-btn:hover { border-color: #7c3aed; color: #7c3aed; }
+.kliper-filter-btn.active {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #fff;
+  border-color: transparent;
+}
+.kliper-filter-empty {
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+/* ---- List View Mode ---- */
+.kliper-card-grid--list {
+  grid-template-columns: 1fr !important;
+}
+.kliper-card-grid--list .kliper-card {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  grid-template-rows: auto;
+}
+.kliper-card-grid--list .kliper-card-image {
+  height: 100%;
+  min-height: 160px;
+  border-radius: 20px 0 0 20px;
+}
+.kliper-card-grid--list .kliper-card-content {
+  position: relative;
+  bottom: auto;
+  padding: 16px;
+  color: #0f172a;
+}
+.kliper-card-grid--list .kliper-card-content .kliper-card-districts {
+  color: #64748b;
+}
+.kliper-card-grid--list .kliper-card-name {
+  color: #0f172a;
+  text-shadow: none;
+}
+.kliper-card-grid--list .kliper-card-badge-profile {
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  padding: 4px 8px;
+}
+.kliper-card-grid--list .kliper-card-avatar {
+  top: 10px;
+  right: auto;
+  left: 230px;
+  width: 40px;
+  height: 40px;
+}
+.kliper-card-grid--list .kliper-card-footer {
+  grid-column: 1 / -1;
+}
+@media (max-width: 640px) {
+  .kliper-card-grid--list .kliper-card {
+    grid-template-columns: 1fr;
+  }
+  .kliper-card-grid--list .kliper-card-image {
+    border-radius: 20px 20px 0 0;
+    height: 200px;
+  }
+  .kliper-card-grid--list .kliper-card-avatar {
+    left: auto;
+    right: 12px;
+  }
+}
+
+/* ---- Dark Theme ---- */
+.kliper-dark-theme .kliper-card {
+  background: var(--kliper-dark-surface, #0f172a);
+  box-shadow: var(--kliper-dark-shadow-soft, 0 18px 48px rgba(2,6,23,0.18));
+}
+.kliper-dark-theme .kliper-card-footer {
+  color: var(--kliper-dark-muted, #a9b6ca);
+  border-top-color: var(--kliper-dark-border, rgba(255,255,255,0.08));
+}
+.kliper-dark-theme .kliper-story-name {
+  color: var(--kliper-dark-text, #f8fafc);
+}
+.kliper-dark-theme .kliper-story-ring-inner {
+  background: var(--kliper-dark-surface, #0f172a);
+}
+.kliper-dark-theme .kliper-search-input {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.12);
+  color: #fff;
+}
+.kliper-dark-theme .kliper-search-input::placeholder { color: rgba(255,255,255,0.4); }
+.kliper-dark-theme .kliper-filter-bar {
+  background: var(--kliper-dark-surface, #0f172a);
+}
+.kliper-dark-theme .kliper-filter-btn {
+  background: var(--kliper-dark-surface-2, rgba(24,34,52,0.94));
+  color: var(--kliper-dark-text, #f8fafc);
+  border-color: var(--kliper-dark-border, rgba(255,255,255,0.08));
+}
+.kliper-dark-theme .kliper-filter-btn:hover {
+  border-color: #7c3aed;
+  color: #c084fc;
+}
+.kliper-dark-theme .kliper-grid-count {
+  color: var(--kliper-dark-muted, #a9b6ca);
+}
+.kliper-dark-theme .kliper-grid-view-btn {
+  color: var(--kliper-dark-muted, #a9b6ca);
+}
+.kliper-dark-theme .kliper-grid-view-btn:hover:not(.active) {
+  background: var(--kliper-dark-surface-2, rgba(24,34,52,0.94));
+}
