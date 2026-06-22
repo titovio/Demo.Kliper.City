@@ -7,6 +7,7 @@
     'Брусника': { active: 10, built: 2 }
   };
 
+
   function cleanText(node) {
     return (node && node.textContent ? node.textContent : '').replace(/\s+/g, ' ').trim();
   }
@@ -34,7 +35,19 @@
   }
 
   function enhanceBadge(node) {
-    if (!node || node.getAttribute('data-developer-status-badges') === 'ready') return;
+    if (!node) return;
+
+    var isReady = node.getAttribute('data-developer-status-badges') === 'ready';
+
+    if (isReady) {
+      var zeroBadges = node.querySelectorAll('.kliper-developer-card-status-badge');
+      Array.prototype.forEach.call(zeroBadges, function (b) {
+        if (b.textContent.trim().indexOf('отстроено 0') !== -1) {
+          b.setAttribute('data-hidden', '1');
+        }
+      });
+      return;
+    }
 
     var match = cleanText(node).match(/^(\d+)\s*ЖК\s*в базе$/);
     if (!match) return;
@@ -50,8 +63,8 @@
     node.classList.remove('truncate');
     node.classList.add('kliper-developer-card-status-badges');
     node.setAttribute('data-developer-status-badges', 'ready');
-    node.appendChild(badge('строится ' + counts.active + ' ЖК'));
-    node.appendChild(badge('отстроено ' + counts.built + ' ЖК'));
+    if (counts.active > 0) node.appendChild(badge('строится ' + counts.active + ' ЖК'));
+    if (counts.built > 0) node.appendChild(badge('отстроено ' + counts.built + ' ЖК'));
   }
 
   function enhanceCards() {
